@@ -5,7 +5,6 @@ require './config/conexao.php';
 if (isset($_POST['email']) && empty($_POST['email']) == FALSE) {
     if (isset($_POST['senha']) && empty($_POST['senha']) == FALSE) {
 
-
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $senha = mysqli_real_escape_string($con, $_POST['senha']);
         $senha = md5($senha);

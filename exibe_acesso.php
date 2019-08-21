@@ -13,6 +13,8 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     exit();
 }
 
+$data = date('d/m/Y \a\s  H:i:s');
+echo $data;
 ?>
 <link rel="stylesheet" href="css/estilo_exibe_acesso.css">
 <form name="fmrpesquisa">

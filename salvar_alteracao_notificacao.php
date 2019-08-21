@@ -49,6 +49,16 @@ $sql = "UPDATE tb_notificacao SET fk5_codigo_empresa='$empresa',fk1_codigo_fisca
         . "orgao_emissor_licenca='$orgao_emissor_licenca',data_validade='$data_validade',status_notificado='$status_notificado',nome_notificado='$nome_notificado',cpf='$cpf',logradouro='$logradouro',numero='$numero',bairro='$bairro',testemunha='$testemunha',chefe_fiscalizacao='$chefe_fiscalizacao' WHERE codigo_notificacao='$codigo_notificacao'";
 mysqli_query($con, $sql);
 //print_r($sql);
+
+// O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+$emailUser = $_SESSION['email'];
+$user = $_SESSION['nome'];
+$ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+$ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+$data = Date("Y-m-d H:i:s");
+$acaoUsuario = "Realizou alteração da Notificação de Numero ->$numero_notificacao, para empresa de codigo $empresa";
+$sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+mysqli_query($con, $sqlLog);
 ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
     <div class="modal-dialog" role="document">

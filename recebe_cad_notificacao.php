@@ -91,6 +91,17 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                                     . "VALUES('$empresa','$processo','$fiscal','$numero_notificacao','$ano_notificacao','$data_notificacao','$data_comparecimento',UPPER('$profissao_atividade'),UPPER('$descricao_prazo'),'$status','$status_informacoes_adicionais','$numero_notificacao_anterior','$numero_notificacao_ano_anterior','$numero_processo_notificacao_anterior','$ano_processo_notificacao_anterior','$status_licenca','$numero_licenca_notificacao_anterior','$ano_licenca_notificacao_anterior',UPPER('$orgao_emissor_licenca'),'$data_validade',UPPER('$status_notificado'),UPPER('$nome_notificado'),'$cpf',UPPER('$logradouro'),'$numero',UPPER('$bairro'),UPPER('$testemunha'),UPPER('$chefe_fiscalizacao'))";
                                             mysqli_query($con, $sql);
 //                                            print_r($sql);
+                                            
+                                             // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+                                        $emailUser = $_SESSION['email'];
+                                        $user = $_SESSION['nome'];
+                                        $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+                                        $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+                                        $data = Date("Y-m-d H:i:s");
+                                        $acaoUsuario = "Realizou o Cadastro da Notificação de Numero ->$numero_notificacao, para empresa de codigo $empresa, e processo de codigo $processo";
+                                        $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+                                        mysqli_query($con, $sqlLog);
+                                            
                                             ?>
                                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
                                                 <div class="modal-dialog" role="document">

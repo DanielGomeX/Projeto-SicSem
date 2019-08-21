@@ -63,6 +63,17 @@ if (isset($_POST['razaosocial_pessoafisica']) && empty($_POST['razaosocial_pesso
                                                 $ultimo_cod = mysqli_insert_id($con);
 //                                                echo $ultimo_cod;
                                                 $_SESSION['ultimo_cod'] = $ultimo_cod;
+                                                
+                                                
+                                                // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+                                                $emailUser = $_SESSION['email'];
+                                                $user = $_SESSION['nome'];
+                                                $ip_rem = getenv('REMOTE_ADDR');//pega o ip da maquina ususario
+                                                $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+                                                $data = Date("Y-m-d H:i:s");
+                                                $acaoUsuario = "Realizou o Cadastro da Empresa->$razaosocial_pessoafisica";
+                                                $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+                                                mysqli_query($con,$sqlLog);
                                                 ?>
                                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
                                                     <div class="modal-dialog btn-success" role="document">                                

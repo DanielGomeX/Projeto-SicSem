@@ -28,7 +28,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                     $motivo_situacao = strtoupper(addslashes($_POST['motivo_situacao']));
 
                     //verificando se ja existe no banco de dados o numero do processo informado            
-                    $consulta_processo = "SELECT numero_processo,assunto FROM tb_processo WHERE numero_processo ='" . $_POST['numero_processo'] . "' AND assunto ='" . $_POST['assunto'] . "' ";
+                    $consulta_processo = "SELECT numero_processo,assunto,ano FROM tb_processo WHERE numero_processo ='" . $_POST['numero_processo'] . "' AND assunto ='" . $_POST['assunto'] . "' AND ano='". $_POST['ano']."' ";
                     $recebe_consulta = mysqli_query($con, $consulta_processo);
 
                     if (mysqli_num_rows($recebe_consulta) > 0) {
@@ -48,9 +48,18 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                         $ultimo_processo = mysqli_insert_id($con);
 //                        echo $ultimo_processo;
                         $_SESSION['ultimo_processo'] = $ultimo_processo;
-
 //                      print_r($sql);                   
 //                        $_SESSION['controle_de_abas'] = 1;
+                       
+                        // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+                        $emailUser = $_SESSION['email'];
+                        $user = $_SESSION['nome'];
+                        $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+                        $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+                        $data = Date("Y-m-d H:i:s");
+                        $acaoUsuario = "Realizou o Cadastro do processo de numero ->$numero_processo, para o empreendimento de codigo->$empreendimento, e empresa de codigo $empreendimento";
+                        $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+                        mysqli_query($con, $sqlLog);
                         ?>
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
                             <div class="modal-dialog" role="document">

@@ -51,8 +51,19 @@ $sql = "UPDATE tb_auto_infracao SET fk9_codigo_empresa='$empresa',fk3_codigo_fis
         . "numero_licenca_anterior_auto='$numero_licenca_anterior_auto',ano_licenca_anterior_auto='$ano_licenca_anterior_auto',orgao_emissor_licenca_auto='$orgao_emissor_licenca_auto',data_validade_licenca_anterior='$data_validade_licenca_anterior',nome_infrator='$nome_infrator',cpf='$cpf',logradouro='$logradouro',numero='$numero',bairro='$bairro',chefe_fiscalizacao='$chefe_fiscalizacao'";
 
 mysqli_query($con, $sql);
-
 //print_r($sql);
+
+
+
+
+$emailUser = $_SESSION['email'];
+$user = $_SESSION['nome'];
+$ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+$ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+$data = Date("Y-m-d H:i:s");
+$acaoUsuario = "Realizou alteração do auto de inifração de numero ->$numero_auto_infracao, para empresa de codigo $empresa";
+$sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+mysqli_query($con, $sqlLog);
 ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
     <div class="modal-dialog" role="document">

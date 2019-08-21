@@ -27,7 +27,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             ?>            
             <ul class="nav nav-pills">
                 <li>
-                     <?php if ($_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "7") {
+                     <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6") {
                         ?>  
                         <a href="cadastros.php" style="color:#fff">
                             <strong>CADASTRAR<span class="glyphicon glyphicon-plus" style="margin-left: 10px"></strong></a>
@@ -50,7 +50,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     </a>
                 </li>
                 <li>
-                    <?php if ($_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6" || $_SESSION['nivel_acesso'] == "7") {
+                    <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6")  {
                         ?>  
                         <a href="editar.php" style="color:#fff">
                             <strong>EDITAR<span class="glyphicon glyphicon-pencil" style="margin-left: 10px"></strong></a>

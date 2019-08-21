@@ -51,28 +51,39 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
         $ultimo_cod = mysqli_insert_id($con);
 //        echo $ultimo_cod;
         $_SESSION['ultimo_cod'] = $ultimo_cod;
+
+
+        // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+        $emailUser = $_SESSION['email'];
+        $user = $_SESSION['nome'];
+        $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+        $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+        $data = Date("Y-m-d H:i:s");
+        $acaoUsuario = "Realizou o Cadastro da Atividade / Empreendimento->$nome_atividade,$nome_empreendimento,Para a Empresa de codigo->$empresa";
+        $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+        mysqli_query($con,$sqlLog);
         ?>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
             <div class="modal-dialog btn-success" role="document">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel"><strong>EMPREENDIMENTO /  ATIVIDADE CADASTRADO COM SUCESSO!<br><br><P style="text-align: center">AGUARDE UM MOMENTO</strong></P></h4>
-                    </div>
-                    <div class="modal-footer">
-                        <?php if ($_POST['nome_atividade']) {
-                            ?>
-                            <script type="text/javascript">
-                                setTimeout('window.location.href="cadastros.php"', 3500);
-                            </script>
-                            <?php
-                        } else {
-                            ?>
-                            <script type="text/javascript">
-                                setTimeout('window.location.href="cad_atividade.php"', 3500);
-                            </script><?php }
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><strong>EMPREENDIMENTO /  ATIVIDADE CADASTRADO COM SUCESSO!<br><br><P style="text-align: center">AGUARDE UM MOMENTO</strong></P></h4>
+                </div>
+                <div class="modal-footer">
+                    <?php if ($_POST['nome_atividade']) {
                         ?>
-                    </div>
+                        <script type="text/javascript">
+                            setTimeout('window.location.href="cadastros.php"', 3500);
+                        </script>
+                        <?php
+                    } else {
+                        ?>
+                        <script type="text/javascript">
+                            setTimeout('window.location.href="cad_atividade.php"', 3500);
+                        </script><?php }
+                    ?>
                 </div>
             </div>
+        </div>
         </div>
         <script>
             $(document).ready(function () {

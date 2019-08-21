@@ -36,6 +36,15 @@ $descricao_atividade = strtoupper(addslashes($_POST['descricao_atividade']));
 $sql = "UPDATE tb_licenca SET fk4_codigo_empresa='$empresa',fk1_codigo_empreendimento='$empreendimento',fk1_codigo_processo='$processo',numero_licenca='$numero_licenca',ano_licenca='$ano_licenca',data_emissao='$data_emissao',data_validade='$data_validade',descricao_atividade='$descricao_atividade' WHERE codigo_licenca='$codigo_licenca'";
 mysqli_query($con, $sql);
 
+// O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+$emailUser = $_SESSION['email'];
+$user = $_SESSION['nome'];
+$ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+$ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+$data = Date("Y-m-d H:i:s");
+$acaoUsuario = "Realizou alteração da licenca de numero ->$numero_licenca, para o empreendimento de codigo->$empreendimento, empresa de codigo $empreendimento, e processo de codigo $processo";
+$sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+mysqli_query($con, $sqlLog);
 ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
     <div class="modal-dialog" role="document">
@@ -46,7 +55,7 @@ mysqli_query($con, $sql);
                     setTimeout('window.location.href="exibe_licencas.php"', 3500);
                 </script>
             </div>            
-           
+
         </div>
     </div>
 </div>

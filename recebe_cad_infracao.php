@@ -60,6 +60,16 @@ if (mysqli_num_rows($recebe_consulta) > 0) {
     $sql = "INSERT INTO tb_auto_infracao(fk9_codigo_empresa,fk5_codigo_processo,fk3_codigo_fiscal,numero_auto_infracao,ano_auto_infracao,data_auto_infracao,profissao_atividade,descricao_infracao,auto_infracao,status_auto,natureza_da_infracao,material_apreendido,valor_infracao,valor_reais,status_informacoes_adicionais_auto,numero_notificacao_anterior_auto,numero_notificacao_ano_anterior_auto,numero_processo_notificacao_anterior_auto,ano_processo_notificacao_anterior_auto,status_licenca,numero_licenca_anterior_auto,ano_licenca_anterior_auto,orgao_emissor_licenca_auto,data_validade_licenca_anterior,nome_infrator,cpf,logradouro,numero,bairro,chefe_fiscalizacao)"
             . "VALUES('$empresa','$processo','$fiscal','$numero_auto_infracao','$ano_auto_infracao','$data_auto_infracao',UPPER('$profissao_atividade'),UPPER('$descricao_infracao'),UPPER('$auto_infracao'),'$status_auto',UPPER('$natureza_da_infracao'),UPPER('$material_apreendido'),'$valor_infracao','$valor_reais','$status_informacoes_adicionais_auto','$numero_notificacao_anterior_auto','$numero_notificacao_ano_anterior_auto','$numero_processo_notificacao_anterior_auto','$ano_processo_notificacao_anterior_auto','$status_licenca','$numero_licenca_anterior_auto','$ano_licenca_anterior_auto','$orgao_emissor_licenca_auto','$data_validade_licenca_anterior','$nome_infrator','$cpf','$logradouro','$numero','$bairro','$chefe_fiscalizacao')";
     mysqli_query($con, $sql);
+
+
+    $emailUser = $_SESSION['email'];
+    $user = $_SESSION['nome'];
+    $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+    $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+    $data = Date("Y-m-d H:i:s");
+    $acaoUsuario = "Realizou o Cadastro do auto de inifração de numero ->$numero_auto_infracao, para empresa de codigo $empresa, e processo de codigo $processo";
+    $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+    mysqli_query($con, $sqlLog);
     ?>
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">

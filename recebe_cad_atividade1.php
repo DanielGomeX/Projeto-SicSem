@@ -36,6 +36,18 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                 . "VALUES($empresa,$empreendimento,UPPER('$nome_atividade'),'$potencial_poluidor')";
         mysqli_query($con, $sql);
 //        print_r($sql);
+        
+        
+        // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+        $emailUser = $_SESSION['email'];
+        $user = $_SESSION['nome'];
+        $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+        $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+        $data = Date("Y-m-d H:i:s");
+        $acaoUsuario = "Realizou o Cadastro da Atividade ->$nome_atividade, para o empreendimento de codigo->$empreendimento, e empresa de codigo $empreendimento";
+        $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+        mysqli_query($con,$sqlLog);
+        
         ?>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
             <div class="modal-dialog" role="document">

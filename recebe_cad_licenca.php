@@ -57,7 +57,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                         <?php
                                     }
                                     //VERIFICANDO SE JÁ EXISTE UM NÚMERO E O UM TIPO DE LICEÇA JÁ CADASTRADOS 
-                                    $consulta_licenca = "SELECT numero_licenca,licenca FROM tb_licenca WHERE numero_licenca ='" . $_POST['numero_licenca'] . "' AND licenca ='" . $_POST['licenca'] . "' ";
+                                    $consulta_licenca = "SELECT numero_licenca,licenca,ano_licenca FROM tb_licenca WHERE numero_licenca ='" . $_POST['numero_licenca'] . "' AND licenca ='" . $_POST['licenca'] . "' AND ano_licenca='".$_POST['ano_licenca']."'";
                                     $recebe_consulta = mysqli_query($con, $consulta_licenca);
 
                                     if (mysqli_num_rows($recebe_consulta) > 0) {
@@ -75,6 +75,16 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                         mysqli_query($con, $sql);
                                         $_SESSION['controle_de_abas'] = 2;
 //                                        print_r($sql);
+//                                        
+                                        // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+                                        $emailUser = $_SESSION['email'];
+                                        $user = $_SESSION['nome'];
+                                        $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+                                        $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+                                        $data = Date("Y-m-d H:i:s");
+                                        $acaoUsuario = "Realizou o Cadastro da licenca de numero ->$numero_licenca, para o empreendimento de codigo->$empreendimento, empresa de codigo $empreendimento, e processo de codigo $processo";
+                                        $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+                                        mysqli_query($con, $sqlLog);
                                         ?>
                                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
                                             <div class="modal-dialog" role="document">

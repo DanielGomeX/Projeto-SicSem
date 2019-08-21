@@ -26,6 +26,16 @@ $motivo_situacao = strtoupper(addslashes($_POST['motivo_situacao']));
 
 $sql = "UPDATE tb_processo SET numero_processo='$numero_processo',ano='$ano',data_processo='$data_processo',assunto='$assunto',situacao_processo='$situacao_processo',motivo_situacao='$motivo_situacao' WHERE codigo_processo='$codigo_processo'";
 mysqli_query($con, $sql);
+
+// O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+$emailUser = $_SESSION['email'];
+$user = $_SESSION['nome'];
+$ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+$ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+$data = Date("Y-m-d H:i:s");
+$acaoUsuario = "Realizou a Alteração do processo de numero ->$numero_processo";
+$sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+ mysqli_query($con, $sqlLog);
 ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
     <div class="modal-dialog" role="document">
@@ -36,7 +46,7 @@ mysqli_query($con, $sql);
                     setTimeout('window.location.href="exibe_processo.php"', 3500);
                 </script>
             </div>
-            
+
         </div>
     </div>
 </div>

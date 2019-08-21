@@ -35,11 +35,14 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     }
 </script>
 
+
+
 <link rel="stylesheet" href="css/estilo_empreedempres.css">
 <form name="fmrpesquisa" id="frmpesquisa">
     <div class="row">
         <div class="col-sm-10">
             <?php
+            $_SESSION['nome'];
             //ESSA PARTE DO CÓDIGO TEM  COMO PROPÓSITO CAPTURAR A QTD DEGAL DE EMPRESAS CADASTRADAS
             $sql_qtd_emp = "SELECT *FROM tb_empresa";
             $sql_qtd = mysqli_query($con, $sql_qtd_emp);
@@ -52,7 +55,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">-------  IR PARA -------
                 <span class="caret"></span></button>
             <ul class="dropdown-menu"> 
-                <?php if ($_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "7") {
+                <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6")  {
                     ?>  
                     <li><a href="cadastros.php" style="font-weight:bold; color:#006600; text-decoration:none;margin-right: 20px">CADASTRO<span class="glyphicon glyphicon-plus" style="margin-left: 5px"></a></li>          
                     <li><a href="cad_empresa.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR RAZÃO SOCIAL / PESSOA FÍSICA<span class="glyphicon glyphicon-home" style="margin-left: 5px"></a></li>          
@@ -85,7 +88,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 <li><a href="#" style="font-weight:bold; color:#2e6da4; text-decoration:none;margin-right: 20px">CONSULTAR AUTO DE INFRAÇÕES<span class="glyphicon glyphicon-alert" style="margin-left: 5px"></a></li>
 
                 <li>
-                    <?php if ($_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6" || $_SESSION['nivel_acesso'] == "7") {
+                    <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6")  {
                         ?>  
                         <a href="editar.php" style="color:#985f0d">
                             <strong>REALIZAR EDICÃO<span class="glyphicon glyphicon-pencil" style="margin-left: 10px"></strong></a>

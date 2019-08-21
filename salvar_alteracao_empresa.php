@@ -41,6 +41,16 @@ $telefone = strtoupper(addslashes($_POST['telefone']));
 
 $sql = "UPDATE tb_empresa SET razaosocial_pessoafisica='$razaosocial_pessoafisica',nome_fantasia='$nome_fantasia',pessoa_fisicajuridica='$pessoa_fisicajuridica',cnpj_cpf='$cnpj_cpf',cep='$cep',logradouro='$logradouro',numero='$numero',uf='$uf',complemento='$complemento',localizacao_map='$localizacao_map',municipio='$municipio',bairro='$bairro',email='$email',telefone='$telefone' WHERE codigo_empresa='$codigo_empresa'";
 mysqli_query($con, $sql);
+
+// O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+$emailUser = $_SESSION['email'];
+$user = $_SESSION['nome'];
+$ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+$ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+$data = Date("Y-m-d H:i:s");
+$acaoUsuario = "Realizou a alteracao da Empresa->$razaosocial_pessoafisica";
+$sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+mysqli_query($con, $sqlLog);
 ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
     <div class="modal-dialog" role="document">

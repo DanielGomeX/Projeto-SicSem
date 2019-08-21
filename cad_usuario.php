@@ -141,11 +141,11 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                             <option value="">SELECIONE</option>
                                             <option value="0">Administrador - SicSem</option>
                                             <option value="1">Administrativo</option>
-                                            <option value="3">Educação Ambiental</option>
-                                            <option value="4">Fiscalização</option>
-                                            <option value="5">Gabinete</option>
-                                            <option value="6">Licencimento</option>
-                                            <option value="7">Protocolo</option>
+                                            <option value="2">Educação Ambiental</option>
+                                            <option value="3">Fiscalização</option>
+                                            <option value="4">Gabinete</option>
+                                            <option value="5">Licencimento</option>
+                                            <option value="6">Protocolo</option>
                                         </select> 
                                     </div>
                                 </div>
