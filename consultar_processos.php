@@ -12,7 +12,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     header("Location:login.php");
 }
 
-
 ?>
 <script type="text/javascript">
     function somenteNumeros(num) {
@@ -170,17 +169,17 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 <option value="02">02</option>
                 <option value="03">03</option>
                 <option value="04">04</option>
+                <option value="05">05</option>
                 <option value="06">06</option>
                 <option value="07">07</option>
                 <option value="08">08</option>
-                <option value="9">09</option>
+                <option value="09">09</option>
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
             </select>
         </div>
-        
-        
+           
         <div class="col-sm-2" style="">
             <select name="parametro_situacao" id="situacao" class="form-control" >
                 <option value="">STATUS</option>
@@ -226,20 +225,16 @@ $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
 $parametro_situacao = filter_input(INPUT_GET, "parametro_situacao");
 $parametro_data = filter_input(INPUT_GET, "parametro_data");
 
-
-
 $sql = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.data_processo,tb_processo.assunto,tb_processo.situacao_processo,tb_empresa.razaosocial_pessoafisica,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_atividade 
             FROM 
             tb_processo, tb_empresa, tb_empreendimento
-            WHERE(numero_processo LIKE '$parametro_num_processo%' AND ano LIKE '$parametro_ano%' AND MONTH(data_processo) = '$parametro_data') AND
+            WHERE(numero_processo LIKE '$parametro_num_processo%' AND ano = '$parametro_ano' AND  MONTH (data_processo) = '$parametro_data' AND situacao_processo LIKE '$parametro_situacao%' AND assunto LIKE '$parametro_assunto%') AND
             tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa AND tb_processo.fk4_codigo_empreendimento = tb_empreendimento.codigo_empreendimento ORDER BY codigo_processo";
 
 $recebe = mysqli_query($con, $sql);
 
-if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR $parametro_ano OR $parametro_data) {
+if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR  $parametro_ano OR $parametro_situacao OR $parametro_assunto OR $parametro_data) {
     ?>
-
-
 
     <div class = "row">
         <div class = "col-sm-12">
