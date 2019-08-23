@@ -35,29 +35,14 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                     /* codigo responsavel pela comparaçõa entre as data de emissoa e validade */
                                     if ($data_emissao >= $data_validade) {
                                         ?>
-                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel">ERRO! A DATA DE EMISSÃO NÃO PODE SER MAIOR OU IGUAL A DATA DE VALIDADE</h4>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <a href="cad_licenca.php"><button type="button" class="btn btn-info"><strong>VOLTAR PARA O FORMULÁRIO DE CADASTRO</strong></button></a>
-                                                        <a href="home.php"><button type="button" class="btn btn-danger"><strong>CANCELAR</strong></button></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <script>
-                                            $(document).ready(function () {
-                                                $('#myModal').modal('show');
-                                            });
+                                            alert('ERRO! A DATA DE EMISSÃO NÃO PODE SER MAIOR OU IGUAL A DATA DE VALIDADE');
+                                            window.history.back();
                                         </script>
-
                                         <?php
                                     }
                                     //VERIFICANDO SE JÁ EXISTE UM NÚMERO E O UM TIPO DE LICEÇA JÁ CADASTRADOS 
-                                    $consulta_licenca = "SELECT numero_licenca,licenca,ano_licenca FROM tb_licenca WHERE numero_licenca ='" . $_POST['numero_licenca'] . "' AND licenca ='" . $_POST['licenca'] . "' AND ano_licenca='".$_POST['ano_licenca']."'";
+                                    $consulta_licenca = "SELECT numero_licenca,licenca,ano_licenca FROM tb_licenca WHERE numero_licenca ='" . $_POST['numero_licenca'] . "' AND licenca ='" . $_POST['licenca'] . "' AND ano_licenca='" . $_POST['ano_licenca'] . "'";
                                     $recebe_consulta = mysqli_query($con, $consulta_licenca);
 
                                     if (mysqli_num_rows($recebe_consulta) > 0) {
@@ -116,22 +101,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
     }
 }
 ?>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">ERRO! POR FAVOR PREENCHA O FORMULÁRIO</h4>
-            </div>
-            <div class="modal-footer">
-                <a href="cad_licenca.php"><button type="button" class="btn btn-info"><strong>VOLTAR PARA O FORMULÁRIO DE CADASTRO</strong></button></a>
-                <a href="home.php"><button type="button" class="btn btn-danger"><strong>CANCELAR</strong></button></a>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
-    $(document).ready(function () {
-        $('#myModal').modal('show');
-    });
+    alert('ERRO!PREENCHA O FORMUIÁRIO');
+    window.history.back();
 </script>
 

@@ -114,6 +114,10 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 },
                 processo: {
                     required: true
+                },
+                descricao_atividade: {
+                    required: true,
+                    minlength: 15
                 }
             },
             //na  linha abaixo sao criada as mensagem que serao vista pelo usuarios
@@ -146,6 +150,10 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 },
                 processo: {
                     required: "Campo Obrigatório*"
+                },
+                descricao_atividade: {
+                    required: "Campo Obrigatório*",
+                    minlength: "Erro! Informe mais detalhes!"
                 }
             }
         });
@@ -431,6 +439,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 localizacao_map_empre: {
                     required: true
                 }
+                
             },
             //na  linha abaixo sao criada as mensagem que serao vista pelo usuarios
             messages: {
@@ -470,6 +479,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 localizacao_map_empre: {
                     required: "Campo Obrigatório*"
                 }
+                
             }
         });
     });
