@@ -12,7 +12,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     header("Location:login.php");
 }
 
-
 ?>
 <script type="text/javascript">
     function somenteNumeros(num) {

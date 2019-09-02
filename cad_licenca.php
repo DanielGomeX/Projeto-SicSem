@@ -156,7 +156,11 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 },
                 descricao_atividade: {
                     required: "Campo Obrigatório*",
+<<<<<<< HEAD
                     minlength: "Atividade Inválida, Informe Mais Detalhes Para Finalizar o Cadastro!"
+=======
+                    minlength: "Erro! Informe mais detalhes!"
+>>>>>>> 37e1a52be5a6a568fbe25491a8699bba021807df
                 }
             }
         });
@@ -445,6 +449,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 localizacao_map_empre: {
                     required: true
                 }
+                
             },
             //na  linha abaixo sao criada as mensagem que serao vista pelo usuarios
             messages: {
@@ -484,6 +489,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 localizacao_map_empre: {
                     required: "Campo Obrigatório*"
                 }
+                
             }
         });
     });
