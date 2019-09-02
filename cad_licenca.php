@@ -52,11 +52,13 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
         var data_emissao = document.getElementById("data_emissao").value;
         var data = data_emissao.substr(0, 4); // pega só o ano
         if (ano_licenca !== data) {
-            alert("ERRO! OANO DA LICENÇA INFORMADO, NÃO ESTÁ COM O MESMO ANO DA DATA DE EMISSÃO");
+            alert("ERRO! O  CAMPO ANO DA LICENÇA NÃO FOI INFORMADO OU NÃO ESTÁ COM O MESMO ANO DA DATA DE EMISSÃO");
+            window.history();
             ano_licenca = document.getElementById("ano_licenca").value = '';
             data_emissao = document.getElementById("data_emissao").value = '';
         }
     }
+
 </script>
 
 <script type="text/javascript">
@@ -69,6 +71,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             data_emissao = document.getElementById('data_emissao').value = '';
             data_validade = document.getElementById('data_validade').value = '';
         }
+
     }
 </script>
 
@@ -98,9 +101,9 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 data_validade: {
                     required: true
                 },
-                licenca: {
-                    required: true
-                },
+//                licenca: {
+//                    required: true
+//                },
                 atividade_realizada: {
                     required: true,
                     minlength: 10,
@@ -135,9 +138,9 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 data_validade: {
                     required: "Campo Obrigatório*"
                 },
-                licenca: {
-                    required: "Campo Obrigatório*"
-                },
+//                licenca: {
+//                    required: "Campo Obrigatório*"
+//                },
                 atividade_realizada: {
                     required: "Campo Obrigatório*",
                     minlength: "Atividade Inválida, Informe Mais Detalhes Para Que o Cadastro Possa Ser Realizado!"
@@ -153,7 +156,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 },
                 descricao_atividade: {
                     required: "Campo Obrigatório*",
-                    minlength: "Erro! Informe mais detalhes!"
+                    minlength: "Atividade Inválida, Informe Mais Detalhes Para Finalizar o Cadastro!"
                 }
             }
         });
@@ -188,6 +191,9 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
         });
     });
 </script>
+
+
+
 <!--OS DADOS ACIMA SÃO REFERENTES AO CADASTRO DE ATIVIDADES-->
 
 <!--OS DADOS ABAIXO SÃO REFERENTES AO CADASTRO DE EMPRESA-->
@@ -439,7 +445,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 localizacao_map_empre: {
                     required: true
                 }
-                
             },
             //na  linha abaixo sao criada as mensagem que serao vista pelo usuarios
             messages: {
@@ -479,7 +484,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 localizacao_map_empre: {
                     required: "Campo Obrigatório*"
                 }
-                
             }
         });
     });
@@ -513,7 +517,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             <li><a href="#" style="font-weight:bold; color:#2e6da4; text-decoration:none;margin-right: 20px">CONSULTAR AUTO DE INFRAÇÕES<span class="glyphicon glyphicon-alert" style="margin-left: 5px"></a></li>
 
             <li>
-                <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6")  {
+                <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6") {
                     ?>  
                     <a href="editar.php" style="color:#2e6da4">
                         <strong>REALIZAR EDICÃO<span class="glyphicon glyphicon-pencil" style="margin-left: 10px"></strong></a>
@@ -576,6 +580,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 $recebe_empresas = mysqli_query($con, $empresa);
                                 while ($linha = mysqli_fetch_array($recebe_empresas)) {
                                     echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                     echo '<option></option>';
                                 }
                                 ?>
                             </select>
@@ -615,30 +620,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
         <div  class="panel-collapse">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="licenca"><strong>TIPO DE LICENÇA *</strong></label><br/>
-                            <select name="licenca" id="licenca" class="form-control">
-                                <option value="">SELECIONE</option>                                            
-                                <option value="AUTO DE INFRAÇÃO">AUTO DE INFRAÇÃO</option>
-                                <option value="AUTO DE NOTIFICAÇÃO E INTIMAÇÃO">AUTO DE NOTIFICAÇÃO E INTIMAÇÃO</option>                                           
-                                <option value="AUTORIZAÇÃO PARA CORTE DE ARVORE">AUTORIZAÇÃO PARA CORTE DE ARVORE</option> 
-                                <option value="AUTORIZAÇÃO PARA PODA DE ÁRVORE">AUTORIZAÇÃO PARA PODA DE ÁRVORE</option> 
-                                <option value="AUTORIZAÇÃO DE LIMPEZA DE ÁREA">AUTORIZAÇÃO DE LIMPEZA DE ÁREA</option>                                                   
-                                <option value="AUTORIZAÇÃO PARA SUPRESSÃO DE VEGETAÇÃO E LIMPEZA DE ÁREA">AUTORIZAÇÃO PARA SUPRESSÃO DE VEGETAÇÃO E LIMPEZA DE ÁREA</option>                                                  
-                                <option value="LICENCA AMBIENTAL SIMPLIFICADA">L.A.S</option>
-                                <option value="LICENÇA DE INSTALAÇÃO">L.I</option>
-                                <option value="LICENÇA DE OPERAÇÃO">L.O</option>
-                                <option value="LICENÇA DE OPERAÇÃO CORRETIVA">L.O.C</option>
-                                <option value="LICENÇA DE PRÉVIA">L.P</option>                                                                                                                   
-                                <option value="RENOVAÇÃO DE LICENCA PRÉVIA">R.L.P</option>
-                                <option value="RENOVAÇÃO DE LICENÇA DE INSTALAÇÃO">R.L.I</option>
-                                <option value="RENOVAÇÃO DE LICENÇA DE OPERAÇÃO">R.L.O</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-2">
                         <div class="form-group">
                             <label for="numero_licenca"><strong>NÚMERO DA LICENÇA *</strong></label><br/>
@@ -673,7 +654,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="descricao_atividade"><strong>ATIVIDADE A SER LICENCIADA*</strong></label><br/>
-                            <input type="text"  name="descricao_atividade" id="descricao_atividade" class="form-control" autocomplete="off"> 
+                            <input type="text" name="descricao_atividade" id="descricao_atividade" class="form-control" > 
                         </div>
                     </div>
                 </div>                          

@@ -20,7 +20,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                     if (isset($_POST['data_emissao']) && empty($_POST['data_emissao']) == FALSE) {
                         if (isset($_POST['data_validade']) && empty($_POST['data_validade']) == FALSE) {
                             if (isset($_POST['descricao_atividade']) && empty($_POST['descricao_atividade']) == FALSE) {
-                                if (isset($_POST['licenca']) && empty($_POST['licenca']) == FALSE) {
+//                                if (isset($_POST['licenca']) && empty($_POST['licenca']) == FALSE) {
 
                                     $empresa = strtoupper(addslashes($_POST['empresa']));
                                     $empreendimento = strtoupper(addslashes($_POST['empreendimento']));
@@ -30,19 +30,36 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                     $data_emissao = strtoupper(addslashes($_POST['data_emissao']));
                                     $data_validade = strtoupper(addslashes($_POST['data_validade']));
                                     $descricao_atividade = strtoupper(addslashes($_POST['descricao_atividade']));
-                                    $licenca = strtoupper(addslashes($_POST['licenca']));
+//                                    $licenca = strtoupper(addslashes($_POST['licenca']));
 
                                     /* codigo responsavel pela comparaçõa entre as data de emissoa e validade */
                                     if ($data_emissao >= $data_validade) {
                                         ?>
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="myModalLabel">ERRO! A DATA DE EMISSÃO NÃO PODE SER MAIOR OU IGUAL A DATA DE VALIDADE</h4>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="cad_licenca.php"><button type="button" class="btn btn-info"><strong>VOLTAR PARA O FORMULÁRIO DE CADASTRO</strong></button></a>
+                                                        <a href="home.php"><button type="button" class="btn btn-danger"><strong>CANCELAR</strong></button></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <script>
-                                            alert('ERRO! A DATA DE EMISSÃO NÃO PODE SER MAIOR OU IGUAL A DATA DE VALIDADE');
-                                            window.history.back();
+                                            $(document).ready(function () {
+                                                $('#myModal').modal('show');
+                                            });
                                         </script>
+
                                         <?php
                                     }
                                     //VERIFICANDO SE JÁ EXISTE UM NÚMERO E O UM TIPO DE LICEÇA JÁ CADASTRADOS 
-                                    $consulta_licenca = "SELECT numero_licenca,licenca,ano_licenca FROM tb_licenca WHERE numero_licenca ='" . $_POST['numero_licenca'] . "' AND licenca ='" . $_POST['licenca'] . "' AND ano_licenca='" . $_POST['ano_licenca'] . "'";
+
+                                    $consulta_licenca = "SELECT fk1_codigo_processo,numero_licenca,ano_licenca FROM tb_licenca,tb_processo WHERE tb_licenca.fk1_codigo_processo='" . $_POST['processo']."'AND tb_licenca.numero_licenca='".$_POST['numero_licenca']."'AND tb_licenca.ano_licenca='".$_POST['ano_licenca']."'";
+                                    
                                     $recebe_consulta = mysqli_query($con, $consulta_licenca);
 
                                     if (mysqli_num_rows($recebe_consulta) > 0) {
@@ -55,8 +72,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                     } else {
 
 
-                                        $sql = "INSERT INTO tb_licenca(fk4_codigo_empresa,fk1_codigo_empreendimento,fk1_codigo_processo,numero_licenca,ano_licenca,data_emissao,data_validade,descricao_atividade,licenca)"
-                                                . "VALUES('$empresa','$empreendimento','$processo','$numero_licenca','$ano_licenca','$data_emissao','$data_validade',UPPER('$descricao_atividade'),'$licenca')";
+                                        $sql = "INSERT INTO tb_licenca(fk4_codigo_empresa,fk1_codigo_empreendimento,fk1_codigo_processo,numero_licenca,ano_licenca,data_emissao,data_validade,descricao_atividade)"
+                                                . "VALUES('$empresa','$empreendimento','$processo','$numero_licenca','$ano_licenca','$data_emissao','$data_validade',UPPER('$descricao_atividade'))";
                                         mysqli_query($con, $sql);
                                         $_SESSION['controle_de_abas'] = 2;
 //                                        print_r($sql);
@@ -99,10 +116,23 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
             }
         }
     }
-}
 ?>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">ERRO! POR FAVOR PREENCHA O FORMULÁRIO</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="cad_licenca.php"><button type="button" class="btn btn-info"><strong>VOLTAR PARA O FORMULÁRIO DE CADASTRO</strong></button></a>
+                <a href="home.php"><button type="button" class="btn btn-danger"><strong>CANCELAR</strong></button></a>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
-    alert('ERRO!PREENCHA O FORMUIÁRIO');
-    window.history.back();
+    $(document).ready(function () {
+        $('#myModal').modal('show');
+    });
 </script>
 

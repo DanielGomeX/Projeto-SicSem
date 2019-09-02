@@ -278,7 +278,7 @@ $parametro_numero = filter_input(INPUT_GET, "parametro_numero");
 $parametro_processo = filter_input(INPUT_GET, "parametro_processo");
 $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
 
-$sql = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.descricao_atividade,tb_licenca.licenca,
+$sql = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.descricao_atividade,
             tb_empresa.codigo_empresa,tb_empresa.razaosocial_pessoafisica,tb_empresa.nome_fantasia,tb_empresa.cnpj_cpf,tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_bairro,tb_empreendimento.nome_atividade,tb_processo.numero_processo,tb_processo.assunto, (if(current_date()<= data_validade,'<strong>VALIDA</strong>','<strong style=color:#F4C430>INVALIDA<strong>')) AS situacao
             FROM 
             tb_licenca,tb_empresa,tb_empreendimento,tb_processo
@@ -329,7 +329,7 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_nome_fanta
                         echo'<td style="font-size:12px">' . $linhas['razaosocial_pessoafisica'] . '</td>';
                         echo'<td style="font-size:12px;">' . $linhas['nome_fantasia'] . '</td>';
                         echo'<td style="font-size:12px;width:10%">' . $linhas['cnpj_cpf'] . '</td>';
-                        echo'<td style="font-size:12px;width:10%">' . $linhas['licenca'] . '</td>';
+                        echo'<td style="font-size:12px;width:10%">' . $linhas['assunto'] . '</td>';
                         echo'<td style="font-size:12px">' . $linhas['numero_licenca'] . '</td>';
                         echo'<td style="font-size:12px;">' . $linhas['numero_processo'] . '</td>';
                         echo'<td style="font-size:12px;">' . date('d/m/Y', strtotime($linhas['data_emissao'])) . '</td>';

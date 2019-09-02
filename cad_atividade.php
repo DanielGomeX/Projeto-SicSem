@@ -96,6 +96,31 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     });
 </script>
 
+<script type='text/javascript' >
+    $(function () {
+        $("#nome_atividade").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "auto_complete_licenca.php",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        search: request.term
+                    },
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $('#nome_atividade').val(ui.item.label); // display the selected text
+                $('#selectuser_id').val(ui.item.value); // save selected id to input
+                return false;
+            }
+        });
+    });
+</script>
+
 <div class="row">  
     <div class="col-sm-6">
         <h3><strong>CADASTRO DE ATIVIDADE PARA EMPRENDIMENTO</strong></h3>
@@ -161,6 +186,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                             $recebe_empresas = mysqli_query($con, $empresa);
                                             while ($linha = mysqli_fetch_array($recebe_empresas)) {
                                                 echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                                echo '<option></option>';
                                             }
                                             ?>
                                         </select>

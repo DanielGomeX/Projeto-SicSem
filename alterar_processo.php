@@ -199,6 +199,7 @@ $linha_sql = mysqli_fetch_array($exe_sql);
                                             <option value="FISCALIZACAO">FISCALIZACAO</option>
                                             <option value="EMITIDO">EMITIDO</option>
                                             <option value="SEMREC">SEMREC</option>
+                                            <option value="INDEFERIDO">INDEFERIDO</option>
                                         </select>
                                     </div>
                                 </div>

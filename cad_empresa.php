@@ -23,6 +23,8 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/estilo_cad_empresa.css">
 
+
+
 <!--o script abaixo permite que somente letras sejam digitas nos campos que recebem essa validação-->
 <script type="text/javascript">
     function letras(e) {
@@ -167,6 +169,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 telefone: {
                     required: true
                 }
+                
             },
             //na  linha abaixo sao criada as mensagem que serao vista pelo usuarios
             messages: {
@@ -271,13 +274,13 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="razaosocial_pessoafisica"><strong>RAZÃO SOCIAL / PESSOA FÍSICA *</strong></label><br/>
-                                        <input type="text" name="razaosocial_pessoafisica" id="razaosocial_pessoafisica"  class="form-control" autocomplete="off"/>                                    
+                                        <input type="text" name="razaosocial_pessoafisica" id="razaosocial_pessoafisica"  class="form-control" autocomplete="on|of"/>                                                   
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="nome_fantasia"><strong>NOME FANTASIA *</strong></label><br/>
-                                        <input type="text" name="nome_fantasia" id="nome_fantasia" class="form-control" autocomplete="off"/>
+                                        <input type="text" name="nome_fantasia" id="nome_fantasia" class="form-control" autocomplete="on|of"/>
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +288,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="pessoa_fisicajuridica"><strong>PESSOA JURÍDICA / FÍSICA*</strong></label><br/>
-                                        <select name="pessoa_fisicajuridica" id="pessoa_fisicajuridica" class="form-control">
+                                        <select name="pessoa_fisicajuridica" id="pessoa_fisicajuridica" class="form-control" autocomplete="on|of">
                                             <option  value="">SELECIONE</option>
                                             <option  value="física">FÍSICA</option>
                                             <option  value="jurídica">JURÍDICA</option>
@@ -315,30 +318,30 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="cep"><strong>CEP *</strong></label><br/>
-                                        <input type="text" name="cep" id="cep" class="form-control" onblur="pesquisacep(this.value);" autocomplete="off" />
+                                        <input type="text" name="cep" id="cep" class="form-control" onblur="pesquisacep(this.value);" autocomplete="on|of"/>
                                     </div>
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="logradouro"><strong>RUA *</strong></label><br/>
-                                        <input type="text" name="logradouro" id="logradouro" class="form-control" autocomplete="off"/>
+                                        <input type="text" name="logradouro" id="logradouro" class="form-control" autocomplete="on|of"/>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
                                     <div class="form-group">
                                         <label for="numero"><strong>NÚMERO</strong></label><br/>
-                                        <input type="text" name="numero" id="numero" class="form-control" placeholder="S/N" autocomplete="off"/>
+                                        <input type="text" name="numero" id="numero" class="form-control" placeholder="S/N" autocomplete="on|of"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-8">
                                     <label for="complemento"><strong>COMPLEMENTO *</strong></label><br/>
-                                    <input type="text" name="complemento" id="complemento" class="form-control" autocomplete="off"/>
+                                    <input type="text" name="complemento" id="complemento" class="form-control" autocomplete="on|of"/>
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="localizacao_map"><strong>LOCALIZAÇÃO MAP *</strong></label><br/>
-                                    <input type="url" name="localizacao_map" id="localizacao_map" class="form-control" autocomplete="off"/>
+                                    <input type="url" name="localizacao_map" id="localizacao_map" class="form-control" autocomplete="on|of"/>
                                 </div>
                                 <div class="col-sm-1">
                                     <label for="localizacao_map"><strong>MAPS</strong></label>
@@ -349,19 +352,19 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="uf"><strong>ESTADO *</strong></label><br/>
-                                        <input type="text" name="uf" id="uf" class="form-control" onKeypress="return letras(event)" autocomplete="off">
+                                        <input type="text" name="uf" id="uf" class="form-control" onKeypress="return letras(event)" autocomplete="on|of">
                                     </div>
                                 </div>
                                 <div class="col-sm-4" >
                                     <div class="form-group">
                                         <label for="municipio"><strong>MUNICÍPIO *</strong></label><br/>
-                                        <input type="text" name="municipio" id="municipio" class="form-control" onKeypress="return letras(event)" autocomplete="off">
+                                        <input type="text" name="municipio" id="municipio" class="form-control" onKeypress="return letras(event)" autocomplete="on|of">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="bairro"><strong>BAIRRO *</strong></label><br/>
-                                        <input type="text" name="bairro" id="bairro" class="form-control" onKeypress="return letras(event)" autocomplete="off">
+                                        <input type="text" name="bairro" id="bairro" class="form-control" onKeypress="return letras(event)" autocomplete="on|of">
                                     </div>
                                 </div>
                             </div>
@@ -380,13 +383,13 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label for="email"><strong>EMAIL</strong></label><br/>
-                                        <input type="email" name="email" id="email" class="form-control" autocomplete="off" />
+                                        <input type="email" name="email" id="email" class="form-control" autocomplete="on|of"/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="telefone"><strong>TELEFONE *</strong></label><br/>
-                                        <input type="text" name="telefone" id="telefone" class="form-control" autocomplete="off" />
+                                        <input type="text" name="telefone" id="telefone" class="form-control" autocomplete="off"/>
                                     </div>
                                 </div>
                             </div>

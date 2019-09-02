@@ -13,7 +13,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 }
 
 $licencas = $_GET ['codigo_empresa'];
-$sql = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.descricao_atividade,tb_licenca.licenca,tb_licenca.ano_licenca,
+$sql = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.descricao_atividade,tb_licenca.ano_licenca,
             tb_empresa.codigo_empresa,tb_empresa.razaosocial_pessoafisica,tb_empresa.cnpj_cpf,tb_empresa.logradouro,tb_empresa.numero,tb_empresa.bairro,tb_empresa.municipio,tb_empresa.cep,tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_bairro,tb_empreendimento.nome_logradouro,tb_empreendimento.numero_empreendimento,tb_empreendimento.nome_bairro,tb_empreendimento.nome_municipio,tb_processo.numero_processo,tb_processo.ano,tb_processo.assunto, (if(current_date()<= data_validade,'<strong>VALIDA</strong>','<strong style=color:#F4C430>INVALIDA<strong>')) AS situacao
             FROM 
             tb_licenca,tb_empresa,tb_empreendimento,tb_processo 
@@ -43,7 +43,7 @@ if (mysqli_num_rows($recebe) > 0) {
                         $codigo_empresa = $linhas['codigo_licenca'];
                         ?>
                         <tr style="font-size:13px">
-                            <td style="font-size:12px"><?php echo $linhas['licenca']; ?></td>
+                            <td style="font-size:12px"><?php echo $linhas['assunto']; ?></td>
                             <td style="font-size:12px"><?php echo $linhas['numero_licenca']; ?></td>
                             <td style="font-size:12px"><?php echo date('d/m/Y', strtotime($linhas['data_emissao'])); ?></td>
                             <td style="font-size:12px"><?php echo date('d/m/Y', strtotime($linhas['data_validade'])); ?></td>
@@ -70,7 +70,7 @@ if (mysqli_num_rows($recebe) > 0) {
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-sm-9">
-                                                <strong>LICENÇA: </strong><?php echo $linhas['licenca']; ?>   
+                                                <strong>LICENÇA: </strong><?php echo $linhas['assunto']; ?>   
                                             </div>
                                             <div class="col-sm-3">
                                                 <strong>DATA EMISSÃO: </strong> <?php echo date('d/m/Y', strtotime($linhas['data_emissao'])); ?> 

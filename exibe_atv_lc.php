@@ -11,13 +11,17 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     header("Location:login.php");
 }
 
-$codigo_empreendimentos = $_GET['empresa'];
+$codigo_li = $_GET['empresa'];
 
-$sql = ("SELECT *FROM tb_processo WHERE fk3_codigo_empresa= ".$codigo_empreendimentos." order by numero_processo asc ");
+$sql = "SELECT nome_atividade from tb_empreendimento WHERE fk1_codigo_empresa= ".$codigo_li;
+
+//$sql = "SELECT *FROM tb_atividade WHERE fk8_codigo_empresa= ".$codigo_li;
+
 $recebesql = (mysqli_query($con, $sql));
 while ($linha = mysqli_fetch_array($recebesql)) {
         echo"<option value='" .$linha['']."'> ".$linha['']." ".$linha ['']."</option>";
-        echo"<option value='" .$linha['codigo_processo']."'> ".$linha['numero_processo']." ".$linha ['assunto']."</option>";
+        echo"<option value='" .$linha['codigo_empreendimento']."'> ".$linha['nome_atividade']."</option>";
+//        echo"<option value='" .$linha['codigo_atividade']."'> ".$linha['nome_atividade']."</option>";
 //    echo"<option value='" .$linha['codigo_processo']."'> ".$linha['numero_processo']." ".$linha ['assunto']."</option>";
 }
 

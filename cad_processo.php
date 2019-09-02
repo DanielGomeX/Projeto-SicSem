@@ -36,7 +36,8 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 
 <!--OS DADOS ABAIXO SÃO REFERENTES AO CADASTRO DE PROCESSO-->
 <script type="text/javascript">
-    function comparaDataAnoProcesso() {
+    function comparaDataAnoProcesso() 
+    {
         var ano = document.getElementById("ano").value;
         var data_processo = document.getElementById("data_processo").value;
         var data = data_processo.substr(0, 4); // pega só o ano
@@ -506,6 +507,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 $recebe_empresas = mysqli_query($con, $empresa);
                                 while ($linha = mysqli_fetch_array($recebe_empresas)) {
                                     echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                    echo '<option></option>';
                                 }
                                 ?>                                                                                                                    
                             </select>

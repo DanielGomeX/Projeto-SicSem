@@ -22,7 +22,7 @@ require './pages/header.php';
 <div class="row">
     <div class="col-sm-4" id="sm4"></div>
     <div class="col-sm-4" id="login">
-        <form method="POST" action="valida.php" name="frmlogin" id="frmlogin">
+        <form method="POST" action="valida.php" name="frmlogin" id="frmlogin" autocomplete="off">
             <div class="login-header">
                 <p style="font-family:initial;font-size:30px;color: #006600"><strong>Bem - Vindo!</strong></p>
                 <img src="img/user (2).png"><br>

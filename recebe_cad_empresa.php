@@ -16,13 +16,13 @@ if (isset($_POST['razaosocial_pessoafisica']) && empty($_POST['razaosocial_pesso
     if (isset($_POST['nome_fantasia']) && empty($_POST['nome_fantasia']) == FALSE) {
         if (isset($_POST['pessoa_fisicajuridica']) && empty($_POST['pessoa_fisicajuridica']) == FALSE) {
             if (isset($_POST['cnpj_cpf']) && empty($_POST['cnpj_cpf']) == FALSE) {
-                if (isset($_POST['cep']) && empty($_POST['cep']) == FALSE) {
-                    if (isset($_POST['logradouro']) && empty($_POST['logradouro']) == FALSE) {
-                        if (isset($_POST['localizacao_map']) && empty($_POST['localizacao_map']) == FALSE) {
-                            if (isset($_POST['uf']) && empty($_POST['uf']) == FALSE) {
-                                if (isset($_POST['municipio']) && empty($_POST['municipio']) == FALSE) {
-                                    if (isset($_POST['bairro']) && empty($_POST['bairro']) == FALSE) {
-                                        if (isset($_POST['telefone']) && empty($_POST['telefone']) == FALSE) {
+//                if (isset($_POST['cep']) && empty($_POST['cep']) == FALSE) {
+//                    if (isset($_POST['logradouro']) && empty($_POST['logradouro']) == FALSE) {
+////                        if (isset($_POST['localizacao_map']) && empty($_POST['localizacao_map']) == FALSE) {
+//                            if (isset($_POST['uf']) && empty($_POST['uf']) == FALSE) {
+//                                if (isset($_POST['municipio']) && empty($_POST['municipio']) == FALSE) {
+//                                    if (isset($_POST['bairro']) && empty($_POST['bairro']) == FALSE) {
+//                                        if (isset($_POST['telefone']) && empty($_POST['telefone']) == FALSE) {
 
                                             $razaosocial_pessoafisica = strtoupper(addslashes($_POST['razaosocial_pessoafisica']));
                                             $nome_fantasia = strtoupper(addslashes($_POST['nome_fantasia']));
@@ -50,7 +50,7 @@ if (isset($_POST['razaosocial_pessoafisica']) && empty($_POST['razaosocial_pesso
                                              if (mysqli_num_rows($recebe_consulta) > 0) {
                                                 ?>
                                                 <script>
-                                                    alert('ERRO O CPF / CNPJ INFORMADO JÁ EXISTE, POR FAVOR INFORME OUTRO NÚMERO!');
+                                                    alert('ERRO! O CPF / CNPJ INFORMADO JÁ EXISTE EM NOSSA BASE DADOS, POR FAVOR SELECIONE O TIPO DE DOCUMENTO E INFORME OUTRO NÚMERO');
                                                     window.history.back();
                                                 </script>
                                                 <?php
@@ -99,13 +99,13 @@ if (isset($_POST['razaosocial_pessoafisica']) && empty($_POST['razaosocial_pesso
                                     }
                                 }
                             }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
 ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
     <div class="modal-dialog" role="document">

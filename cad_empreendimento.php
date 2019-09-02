@@ -235,6 +235,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                         $recebe_empresas = mysqli_query($con, $empresa);
                                         while ($linha = mysqli_fetch_array($recebe_empresas)) {
                                             echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                            echo '<option></option>';
                                         }
                                         ?>
                                     </select>

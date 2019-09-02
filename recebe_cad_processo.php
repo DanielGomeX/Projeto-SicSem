@@ -34,8 +34,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                     if (mysqli_num_rows($recebe_consulta) > 0) {
                         ?>
                         <script>
-                            alert('ERRO JÁ EXISTE UM PROCESSO COM O NÚMERO INFORMADO, POR FAVOR INFORME OUTRO NÚMERO! \n\n ATENÇÃO CASO O EMPREENDIMENTO NÃO APAREÇA SELECIONE A EMPRESA NOVAMENTE ');
-                            window.history.back();
+                            alert('ERRO! JÁ EXISTE UM PROCESSO COM O NÚMERO INFORMADO, POR FAVOR INFORME OUTRO NÚMERO! \n\n ATENÇÃO CASO O EMPREENDIMENTO / ATIVIDADE NÃO APAREÇA SELECIONE A RAZÃO SOCIAL / Pª FISICA NOVAMENTE ');
+                            window.history.back();  
                         </script>
                         <?php
                     } else {
