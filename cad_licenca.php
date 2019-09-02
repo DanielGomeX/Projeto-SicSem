@@ -101,9 +101,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 data_validade: {
                     required: true
                 },
-//                licenca: {
-//                    required: true
-//                },
                 atividade_realizada: {
                     required: true,
                     minlength: 10,
@@ -138,9 +135,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 data_validade: {
                     required: "Campo Obrigatório*"
                 },
-//                licenca: {
-//                    required: "Campo Obrigatório*"
-//                },
                 atividade_realizada: {
                     required: "Campo Obrigatório*",
                     minlength: "Atividade Inválida, Informe Mais Detalhes Para Que o Cadastro Possa Ser Realizado!"
@@ -156,11 +150,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 },
                 descricao_atividade: {
                     required: "Campo Obrigatório*",
-<<<<<<< HEAD
                     minlength: "Atividade Inválida, Informe Mais Detalhes Para Finalizar o Cadastro!"
-=======
-                    minlength: "Erro! Informe mais detalhes!"
->>>>>>> 37e1a52be5a6a568fbe25491a8699bba021807df
                 }
             }
         });

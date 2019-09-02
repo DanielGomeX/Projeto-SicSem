@@ -20,7 +20,6 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                     if (isset($_POST['data_emissao']) && empty($_POST['data_emissao']) == FALSE) {
                         if (isset($_POST['data_validade']) && empty($_POST['data_validade']) == FALSE) {
                             if (isset($_POST['descricao_atividade']) && empty($_POST['descricao_atividade']) == FALSE) {
-//                                if (isset($_POST['licenca']) && empty($_POST['licenca']) == FALSE) {
 
                                     $empresa = strtoupper(addslashes($_POST['empresa']));
                                     $empreendimento = strtoupper(addslashes($_POST['empreendimento']));
@@ -30,7 +29,6 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                     $data_emissao = strtoupper(addslashes($_POST['data_emissao']));
                                     $data_validade = strtoupper(addslashes($_POST['data_validade']));
                                     $descricao_atividade = strtoupper(addslashes($_POST['descricao_atividade']));
-//                                    $licenca = strtoupper(addslashes($_POST['licenca']));
 
                                     /* codigo responsavel pela comparaçõa entre as data de emissoa e validade */
                                     if ($data_emissao >= $data_validade) {
@@ -42,12 +40,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                         <?php
                                     }
                                     //VERIFICANDO SE JÁ EXISTE UM NÚMERO E O UM TIPO DE LICEÇA JÁ CADASTRADOS 
-
-
                                     $consulta_licenca = "SELECT fk1_codigo_processo,numero_licenca,ano_licenca FROM tb_licenca,tb_processo WHERE tb_licenca.fk1_codigo_processo='" . $_POST['processo']."' AND tb_licenca.numero_licenca='".$_POST['numero_licenca']."'AND tb_licenca.ano_licenca='".$_POST['ano_licenca']."'";
-                                    
-//                                    $consulta_licenca = "SELECT numero_licenca,licenca,ano_licenca FROM tb_licenca WHERE numero_licenca ='" . $_POST['numero_licenca'] . "' AND licenca ='" . $_POST['licenca'] . "' AND ano_licenca='" . $_POST['ano_licenca'] . "'";
-
+                           
                                     $recebe_consulta = mysqli_query($con, $consulta_licenca);
 
                                     if (mysqli_num_rows($recebe_consulta) > 0) {
@@ -59,13 +53,11 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                         <?php
                                     } else {
 
-
                                         $sql = "INSERT INTO tb_licenca(fk4_codigo_empresa,fk1_codigo_empreendimento,fk1_codigo_processo,numero_licenca,ano_licenca,data_emissao,data_validade,descricao_atividade)"
                                                 . "VALUES('$empresa','$empreendimento','$processo','$numero_licenca','$ano_licenca','$data_emissao','$data_validade',UPPER('$descricao_atividade'))";
                                         mysqli_query($con, $sql);
                                         $_SESSION['controle_de_abas'] = 2;
-//                                        print_r($sql);
-//                                        
+                                     
                                         // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
                                         $emailUser = $_SESSION['email'];
                                         $user = $_SESSION['nome'];
@@ -105,8 +97,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
         }
     }
 ?>
-<script>
+<!--<script>
     alert('ERRO!PREENCHA O FORMUIÁRIO');
     window.history.back();
-</script>
+</script>-->
 
