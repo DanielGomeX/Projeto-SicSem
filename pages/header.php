@@ -7,6 +7,7 @@
         <script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="./js/jquery.maskedinput.js"></script>
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./css/loading.css"/>
         <script type="text/javascript">
             $(function ($) {
                 $("#cpf").mask("999.999.999-99");

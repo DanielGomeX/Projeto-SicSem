@@ -156,6 +156,14 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
         <div class="col-sm-2" style="">
             <input type="text" name="parametro_num_processo" onkeyup="somenteNumeros(this);" maxlength="4" class="form-control"  placeholder="Nº Processo" title="Digite Apenas Números">
         </div>
+         <div class="col-sm-2" style="">
+            <select name="parametro_ano" id="ano" class="form-control" >
+                <option value="">ANO</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+            </select>
+        </div> 
         <div class="col-sm-1" style="">
             <input type="submit" value="BUSCAR" class="btn btn-primary" style="font-size: 15px; font-weight: bold;color: #fff;text-align: center">
         </div>
@@ -165,16 +173,17 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 $parametro_empresa = filter_input(INPUT_GET, "parametro_empresa");
 $parametro_num_auto = filter_input(INPUT_GET, "parametro_num_auto");
 $parametro_num_processo = filter_input(INPUT_GET, "parametro_num_processo");
+$parametro_ano = filter_input(INPUT_GET, "parametro_ano");
 
 $sql = "SELECT tb_auto_infracao.codigo_auto_infracao,tb_auto_infracao.numero_auto_infracao,tb_auto_infracao.ano_auto_infracao,tb_auto_infracao.data_auto_infracao,tb_auto_infracao.profissao_atividade,tb_auto_infracao.descricao_infracao,tb_auto_infracao.auto_infracao,tb_auto_infracao.status_auto,tb_auto_infracao.natureza_da_infracao,tb_auto_infracao.material_apreendido,
             tb_auto_infracao.valor_infracao,tb_auto_infracao.valor_reais,tb_auto_infracao.status_informacoes_adicionais_auto,tb_auto_infracao.numero_notificacao_anterior_auto,tb_auto_infracao.numero_notificacao_ano_anterior_auto,tb_auto_infracao.numero_processo_notificacao_anterior_auto,tb_auto_infracao.ano_processo_notificacao_anterior_auto,tb_auto_infracao.status_licenca,
             tb_auto_infracao.numero_licenca_anterior_auto,tb_auto_infracao.ano_licenca_anterior_auto,tb_auto_infracao.orgao_emissor_licenca_auto,tb_auto_infracao.data_validade_licenca_anterior,tb_auto_infracao.nome_infrator,tb_auto_infracao.cpf,tb_auto_infracao.logradouro,tb_auto_infracao.numero,tb_auto_infracao.bairro,tb_auto_infracao.chefe_fiscalizacao,tb_empresa.razaosocial_pessoafisica,tb_empresa.nome_fantasia,tb_processo.numero_processo,tb_fiscal.nome_matricula_fiscal    
             FROM 
             tb_auto_infracao,tb_empresa,tb_processo,tb_fiscal
-            WHERE(razaosocial_pessoafisica LIKE '$parametro_empresa%' AND numero_auto_infracao LIKE '$parametro_num_auto%' AND numero_processo LIKE '$parametro_num_processo%')AND
+            WHERE(razaosocial_pessoafisica LIKE '$parametro_empresa%' AND numero_auto_infracao LIKE '$parametro_num_auto%' AND numero_processo LIKE '$parametro_num_processo%' AND ano_auto_infracao LIKE '$parametro_ano')AND
             tb_auto_infracao.fk9_codigo_empresa = tb_empresa.codigo_empresa AND tb_auto_infracao.fk5_codigo_processo = tb_processo.codigo_processo AND tb_auto_infracao.fk3_codigo_fiscal = tb_fiscal.codigo_fiscal ORDER BY codigo_auto_infracao";
 $recebe = mysqli_query($con, $sql);
-if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_num_auto OR $parametro_num_processo) {
+if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_num_auto OR $parametro_num_processo OR $parametro_ano) {
     ?>
     <div class="row">
         <div class = "col-sm-12">
@@ -189,7 +198,7 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_num_auto O
                 <table class="table table-striped table-hover table-bordered">
                     <header>
                         <tr style="text-align: center;background-color:#dff0d8;color: #000000" >
-                            <th style="text-align: center;font-size: 12px">PROFISSÃO / ATIVIDADE</th> 
+                            <th style="text-align: center;font-size: 12px">RAZAO SOCIAL / Pª FÍSICA</th> 
                             <th style="text-align: center;font-size: 12px"><strong>Nº DO AUTO</strong></th>
                             <th style="text-align: center;font-size: 12px">DATA</th>
                             <th style="text-align: center;font-size: 12px">NATUREZA</th>
@@ -204,7 +213,7 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_num_auto O
                     while ($linhas = mysqli_fetch_array($recebe)) {
                         $auto_infracao = $linhas['codigo_auto_infracao']; //variavel para recupar o id da notificação
                         echo'<tr style="font-size:13px">';
-                        echo'<td style="font-size:12px">' . $linhas['nome_fantasia'] . '</td>';
+                        echo'<td style="font-size:12px">' . $linhas['razaosocial_pessoafisica'] . '</td>';
                         echo'<td style="font-size:12px">' . $linhas['numero_auto_infracao'] . '</td>';
                         echo'<td style="font-size:12px">' . date('d/m/Y', strtotime($linhas['data_auto_infracao'])) . '</td>';                  
                         echo'<td style="font-size:12px">' . $linhas['natureza_da_infracao'] . '</td>';

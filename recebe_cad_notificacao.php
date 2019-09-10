@@ -108,6 +108,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                                     <div class="modal-content">
                                                         <div class="modal-header btn-success">
                                                             <h4 class="modal-title text-center" id="myModalLabel"><strong>NOTIFICAÇÃO CADASTRADA COM SUCESSO!<br><br><P style="text-align: center">AGUARDE UM MOMENTO</strong></P></h4>
+                                                            <div class="spinner"></div>
+                                                            
                                                             <script type="text/javascript">
                                                                 setTimeout('window.location.href="cadastros.php"', 3500);
                                                             </script>

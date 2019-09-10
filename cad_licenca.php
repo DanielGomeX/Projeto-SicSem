@@ -19,7 +19,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 <link rel="stylesheet" href="css/jquery-ui.min.css">
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="css/estilo_cadProcessoLicenca.css">
-<script type='text/javascript' >
+<script type='text/javascript'>
     $(function () {
         $("#descricao_atividade").autocomplete({
             source: function (request, response) {

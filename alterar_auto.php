@@ -176,8 +176,8 @@ $linha_sql = mysqli_fetch_array($exe_sql);
                 },
                 descricao_infracao: {
                     required: true,
-                    minlength: 10,
-                    isString: true
+                    minlength: 10
+                    
                 },
                 descricao_prazo: {
                     required: true,
@@ -583,10 +583,12 @@ $linha_sql = mysqli_fetch_array($exe_sql);
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="chefe_fiscalizacao"><strong>CHEFE DE FISCALIZAÇÃO *</strong></label><br/>
-                                        <input type="text" name="chefe_fiscalizacao" id="chefe_fiscalizacao" value="CLAUDIO BASTOS FILGUEIRAS JUNIOR - 993200 " readonly="" class="form-control" />
-                                    </div>
+                                    <label for="chefe_fiscalizacao"><strong>CHEFE DE FISCALIZAÇÃO *</strong></label><br/>
+                                    <select name="chefe_fiscalizacao" id="chefe_fiscalizacao" class="form-control">
+                                        <option value="">SELECIONE</option>
+                                        <option value="CLAUDIO BASTOS FILGUEIRAS JUNIOR - 993200">CLAUDIO BASTOS FILGUEIRAS JUNIOR - 993200</option>
+                                        <option value="NÃO ESTAVA PRESENTE">NÃO ESTAVA PRESENTE</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

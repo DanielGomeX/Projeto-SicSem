@@ -79,6 +79,9 @@ if (isset($_POST['razaosocial_pessoafisica']) && empty($_POST['razaosocial_pesso
                                                     <div class="modal-dialog btn-success" role="document">                                
                                                         <div class="modal-header">
                                                             <h4 class="modal-title" id="myModalLabel"><strong>EMPRESA / PESSOA FÍSICA CADASTRADA COM SUCESSO!<br><br><P style="text-align: center">AGUARDE UM MOMENTO</strong></P></h4>
+                                                           
+                                                            <div class="spinner"></div>
+                                                            
                                                             <script type="text/javascript">
                                                                 setTimeout('window.location.href="cad_empreendimento.php"', 3500);
                                                             </script>
