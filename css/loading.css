@@ -8,7 +8,6 @@
     animation: spin 1s linear infinite;
     margin-left: 240px;
 
-
 }
 @keyframes spin{
     to{transform:rotate(360deg);}

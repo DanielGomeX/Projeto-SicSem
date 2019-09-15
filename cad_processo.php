@@ -501,7 +501,8 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                         <div class="form-group">                                                
                             <label for="empresa"><strong>RAZÃO SOCIAL / Pª FÍSICA *</strong></label><button type="button" data-toggle="modal" data-target="#myModalcadEmpresa" class="btn btn-link">Caso não encontre, clique aqui para realizar o cadastro</button> 
                             <select name="empresa" id="empresa" class="form-control" autofocus="">                                                                                            
-                                <option value="">SELECIONE</option>                                                       
+                                <option value="">SELECIONE</option>                                                  
+                                <option></option>                                                  
                                 <?php
                                 $empresa = "SELECT codigo_empresa, razaosocial_pessoafisica FROM tb_empresa ORDER BY codigo_empresa DESC";
                                 $recebe_empresas = mysqli_query($con, $empresa);
