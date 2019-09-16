@@ -214,7 +214,7 @@ $parametro_ano = filter_input(INPUT_GET, "parametro_ano");
 $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
 //$parametro_mes = filter_input(INPUT_GET, "parametro_mes");
 
-$sql = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.data_processo,tb_processo.assunto,tb_processo.situacao_processo,tb_empresa.razaosocial_pessoafisica,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_atividade 
+$sql = "SELECT DISTINCT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.data_processo,tb_processo.assunto,tb_processo.situacao_processo,tb_empresa.razaosocial_pessoafisica,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_atividade 
             FROM 
             tb_processo, tb_empresa, tb_empreendimento
             WHERE(numero_processo LIKE '$parametro_num_processo%' AND ano LIKE '$parametro_ano%' AND assunto LIKE '$parametro_assunto%') AND
@@ -223,7 +223,11 @@ $sql = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_proces
 
 $recebe = mysqli_query($con, $sql);
 
+<<<<<<< HEAD
 if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR $parametro_ano OR $parametro_assunto) {
+=======
+if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR  $parametro_ano OR $parametro_situacao OR $parametro_assunto OR $parametro_data OR $parametro_data) {
+>>>>>>> afadd45f6628ccca6b14da5a1476135f573c3eeb
     ?>
 
     <div class = "row">
