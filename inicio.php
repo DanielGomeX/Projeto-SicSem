@@ -150,16 +150,17 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
         </div>
         <div class="col-sm-2 grow">
             <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: #31708f;"><h5><strong>CONSULTAR<br>LICENÇAS</strong><br><br></span></h5></div>
-                <div class="panel-body" style="background-color: #67b168;text-align: center"><a href="consultar_licencas.php"><span class="glyphicon glyphicon-list-alt" style="color:#fff;font-size: 60px"></span></a></div>
-            </div>
-        </div>
-         <div class="col-sm-2 grow">
-            <div class="panel panel-default">
                 <div class="panel-heading" style="background-color:#31708f;"><h5><strong>CONSULTAR<br>PROCESSO</strong><br><br></span></h5></div>
                 <div class="panel-body" style="background-color: #67b168;text-align: center"><a href="consultar_processos.php"><span class="glyphicon glyphicon-th-list" style="color:#fff;font-size: 60px"></span></a></div>
             </div>
         </div>
+        <div class="col-sm-2 grow">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: #31708f;"><h5><strong>CONSULTAR<br>LICENÇAS</strong><br><br></span></h5></div>
+                <div class="panel-body" style="background-color: #67b168;text-align: center"><a href="consultar_licencas.php"><span class="glyphicon glyphicon-list-alt" style="color:#fff;font-size: 60px"></span></a></div>
+            </div>
+        </div>
+         
         <div class="col-sm-2 grow">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: #31708f;"><h5><strong>CONSULTAR<br>ATIVIDADES</strong><br><br></span></h5></div>

@@ -11,7 +11,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 } else {
     header("Location:login.php");
 }
-
 ?>
 <script type="text/javascript">
     function somenteNumeros(num) {
@@ -51,20 +50,20 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">-------  IR PARA -------
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">  
-                <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6")  {
+                <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6") {
                     ?>  
-                <li><a href="cadastros.php" style="font-weight:bold; color:#006600; text-decoration:none;margin-right: 20px">CADASTRO<span class="glyphicon glyphicon-plus" style="margin-left: 5px"></a></li>          
-                <li><a href="cad_empresa.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR RAZÃO SOCIAL / PESSOA FÍSICA<span class="glyphicon glyphicon-home" style="margin-left: 5px"></a></li>          
-                <li><a href="cad_empreendimento.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR EMPREENDIMENTO / ATIVIDADE<span class="glyphicon glyphicon-stats" style="margin-left: 5px"></a></li>
-                <li><a href="cad_atividade.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR ATIVIDADE PARA UM EMPREENDIMENTO<span class="glyphicon glyphicon-briefcase" style="margin-left: 5px"></a></li>
-                <li><a href="cad_processo.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR PROCESSO<span class="glyphicon glyphicon-list-alt" style="margin-left: 5px"></a></li>
-                <li><a href="cad_licenca.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR LICENÇA<span class="glyphicon glyphicon-duplicate" style="margin-left: 5px"></a></li>
-                <li><a href="cad_notificacao.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR NOTIFICAÇÃO<span class="glyphicon  glyphicon-bell" style="margin-left: 5px"></a></li>
-                <li><a href="cad_infracao.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR AUTO DE INFRAÇÃO<span class="glyphicon  glyphicon-alert" style="margin-left: 5px"></a></li>
-                     <?php
+                    <li><a href="cadastros.php" style="font-weight:bold; color:#006600; text-decoration:none;margin-right: 20px">CADASTRO<span class="glyphicon glyphicon-plus" style="margin-left: 5px"></a></li>          
+                    <li><a href="cad_empresa.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR RAZÃO SOCIAL / PESSOA FÍSICA<span class="glyphicon glyphicon-home" style="margin-left: 5px"></a></li>          
+                    <li><a href="cad_empreendimento.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR EMPREENDIMENTO / ATIVIDADE<span class="glyphicon glyphicon-stats" style="margin-left: 5px"></a></li>
+                    <li><a href="cad_atividade.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR ATIVIDADE PARA UM EMPREENDIMENTO<span class="glyphicon glyphicon-briefcase" style="margin-left: 5px"></a></li>
+                    <li><a href="cad_processo.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR PROCESSO<span class="glyphicon glyphicon-list-alt" style="margin-left: 5px"></a></li>
+                    <li><a href="cad_licenca.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR LICENÇA<span class="glyphicon glyphicon-duplicate" style="margin-left: 5px"></a></li>
+                    <li><a href="cad_notificacao.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR NOTIFICAÇÃO<span class="glyphicon  glyphicon-bell" style="margin-left: 5px"></a></li>
+                    <li><a href="cad_infracao.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR AUTO DE INFRAÇÃO<span class="glyphicon  glyphicon-alert" style="margin-left: 5px"></a></li>
+                    <?php
                 } else {
                     ?>  
-                <li><a href="#myModalCadastro" data-toggle="modal" style="font-weight:bold; color:#006600; text-decoration:none;margin-right: 20px">CADASTRO<span class="glyphicon glyphicon-plus" style="margin-left: 5px"></a></li>          
+                    <li><a href="#myModalCadastro" data-toggle="modal" style="font-weight:bold; color:#006600; text-decoration:none;margin-right: 20px">CADASTRO<span class="glyphicon glyphicon-plus" style="margin-left: 5px"></a></li>          
                     <li><a href="#myModalCadastro" data-toggle="modal"  style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR RAZÃO SOCIAL / PESSOA FÍSICA<span class="glyphicon glyphicon-home" style="margin-left: 5px"></a></li>          
                     <li><a href="#myModalCadastro" data-toggle="modal"  style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR EMPREENDIMENTO / ATIVIDADE<span class="glyphicon glyphicon-stats" style="margin-left: 5px"></a></li>
                     <li><a href="#myModalCadastro" data-toggle="modal"  style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR ATIVIDADE PARA UM EMPREENDIMENTO<span class="glyphicon glyphicon-briefcase" style="margin-left: 5px"></a></li>
@@ -72,7 +71,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     <li><a href="#myModalCadastro" data-toggle="modal"  style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR LICENÇA<span class="glyphicon glyphicon-duplicate" style="margin-left: 5px"></a></li>
                     <li><a href="#myModalCadastro" data-toggle="modal"  style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR NOTIFICAÇÃO<span class="glyphicon  glyphicon-bell" style="margin-left: 5px"></a></li>
                     <li><a href="#myModalCadastro" data-toggle="modal"  style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR AUTO DE INFRAÇÃO<span class="glyphicon  glyphicon-alert" style="margin-left: 5px"></a></li>
-                 <?php }
+                <?php }
                 ?>
                 <li><a href="inicio.php" style="font-weight:bold; color:#0A246A; text-decoration:none;margin-right: 15px">CONSULTA<span class="glyphicon glyphicon-search" style="margin-left: 5px"></a></li>          
                 <li><a href="#" style="font-weight:bold; color:#2e6da4; text-decoration:none;margin-right: 20px">CONSULTAR EMPREENDIMENTO / ATIVIDADE<span class="glyphicon glyphicon-stats" style="margin-left: 5px"></a></li>
@@ -119,7 +118,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 </div>
             </div>
         </div>
-        
+
         <!-- MODAL PARA O CAMPO EDITAR CASOS USUARIO NÃO AUTORIZADOS TENTEM ACESSAR ESTE CAMPO-->
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
@@ -130,7 +129,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">VOCÊ NÃO TEM PERMISSÃO PARA ACESSAR ESSA ÁREA</h4>
                     </div>
-                   <div class="modal-body">
+                    <div class="modal-body">
                         <p style="text-align: center">
                             <strong>CONSULTE O USUÁRIO QUE TENHA ESSA PERMISSÃO</strong>
                             <a href="#" data-toggle="popover" title="PROTOCOLO / GABINETE" style="text-decoration: none"><br>IDENTIFICAR USUÁRIO</span></a>
@@ -151,47 +150,38 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     </div><hr>
 
     <div class="row">
-        <div class="col-sm-2" style="">
-            <input type="text" name="parametro_num_processo" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"  placeholder="Nº PROCESSO" title="Digite Apenas Números">
+        <div class="col-sm-3" style="">
+            <input type="text" name="parametro_num_processo" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"  placeholder="Nº PROCESSO / PROTOCOLO" title="Digite Apenas Números">
         </div>
         <div class="col-sm-2" style="">
-            <select name="parametro_ano" id="ano" class="form-control" >
+            <select name="parametro_ano" id="parametro_ano" class="form-control" >
                 <option value="">ANO</option>
                 <option value="2019">2019</option>
                 <option value="2018">2018</option>
                 <option value="2017">2017</option>
             </select>
         </div> 
-        <div class="col-sm-2">
-            <select name="parametro_data"  class="form-control">
-                <option value="">MES</option>
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
-                <option value="04">04</option>
-                <option value="05">05</option>
-                <option value="06">06</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-            </select>
-        </div>
-           
-        <div class="col-sm-2" style="">
-            <select name="parametro_situacao" id="situacao" class="form-control" >
-                <option value="">STATUS</option>
-                <option value="ABERTO">ABERTO</option>
-                <option value="AGUARDANDO PAGAMENTO">AGUARDANDO PAGAMENTO</option>
-                <option value="AGUARDANDO COMANDA">AGUARDANDO COMANDA</option>
-                <option value="ANALISE">ANALISE</option>
-                <option value="FISCALIZACAO">FISCALIZACAO</option>
-                <option value="EMITIDO">EMITIDO</option>
-                <option value="SEMREC">SEMREC</option>
-            </select>
-        </div>
+
+
+        <!--        <div class="col-sm-3" style="">
+                    <input type="date" name="parametro_data" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"  placeholder="MÊS" title="Digite Apenas Números">
+                </div>-->
+
+        <!--        <div class="col-sm-2" style="">
+                    <select name="parametro_situacao" id="parametro_situacao" class="form-control" >
+                        <option value="">STATUS</option>
+                        <option value="ABERTO">ABERTO</option>
+                        <option value="AGUARDANDO PAGAMENTO">AGUARDANDO PAGAMENTO</option>
+                        <option value="AGUARDANDO COMANDA">AGUARDANDO COMANDA</option>
+                        <option value="ANALISE">ANALISE</option>
+                        <option value="FISCALIZACAO">FISCALIZACAO</option>
+                        <option value="EMITIDO">EMITIDO</option>
+                        <option value="SEMREC">SEMREC</option>
+                    </select>
+                </div>-->
+
+
+
         <div class="col-sm-2">
             <select name="parametro_assunto" id="atividade_empreendimento" class="form-control" >
                 <option value="">LICENÇA</option>
@@ -218,22 +208,26 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 </form>
 
 <?php
-
 $parametro_num_processo = filter_input(INPUT_GET, "parametro_num_processo");
 $parametro_ano = filter_input(INPUT_GET, "parametro_ano");
+//$parametro_situacao = filter_input(INPUT_GET, "parametro_situacao");
 $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
-$parametro_situacao = filter_input(INPUT_GET, "parametro_situacao");
-$parametro_data = filter_input(INPUT_GET, "parametro_data");
+//$parametro_mes = filter_input(INPUT_GET, "parametro_mes");
 
 $sql = "SELECT DISTINCT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.data_processo,tb_processo.assunto,tb_processo.situacao_processo,tb_empresa.razaosocial_pessoafisica,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_atividade 
             FROM 
             tb_processo, tb_empresa, tb_empreendimento
-            WHERE(numero_processo LIKE '$parametro_num_processo%' AND ano = '$parametro_ano' AND  MONTH (data_processo) = '$parametro_data' AND situacao_processo LIKE '$parametro_situacao%' AND assunto LIKE '$parametro_assunto%') AND
+            WHERE(numero_processo LIKE '$parametro_num_processo%' AND ano LIKE '$parametro_ano%' AND assunto LIKE '$parametro_assunto%') AND
             tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa AND tb_processo.fk4_codigo_empreendimento = tb_empreendimento.codigo_empreendimento ORDER BY codigo_processo";
+
 
 $recebe = mysqli_query($con, $sql);
 
+<<<<<<< HEAD
+if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR $parametro_ano OR $parametro_assunto) {
+=======
 if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR  $parametro_ano OR $parametro_situacao OR $parametro_assunto OR $parametro_data OR $parametro_data) {
+>>>>>>> afadd45f6628ccca6b14da5a1476135f573c3eeb
     ?>
 
     <div class = "row">
@@ -246,17 +240,17 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR  $parametro_ano 
                 }
             </style>
             <?php
-                //retorna a qtd de linha apos a filtragem
-                 $total = mysqli_num_rows($recebe);
-                 echo'<strong>TOTAL DE PROCESSOS FILTRADOS </strong><span class="badge">' . $total . '</span></a><br>';
+            //retorna a qtd de linha apos a filtragem
+            $total = mysqli_num_rows($recebe);
+            echo'<strong>TOTAL DE PROCESSOS FILTRADOS </strong><span class="badge">' . $total . '</span></a><br>';
             ?>
-            
+
             <div class = "table-overflow"><br>
                 <table class="table table-striped table-hover table-bordered">
                     <header>
                         <tr  style="text-align: center;background-color:#dff0d8;color: #000000" >
                             <!--<th style="text-align: center;font-size: 12px"><strong>COD</strong></th>-->
-                            <th style="text-align: center;font-size: 12px">Nº PROCESSO</th>                                                                   
+                            <th style="text-align: center;font-size: 12px">Nº PROCESSO / PROTOCOLO</th>                                                                   
                             <th style="text-align: center;font-size: 12px">ANO</th> 
                             <th style="text-align: center;font-size: 12px">EMPRESA / PESSSOA FÍSICA</th>                                                                              
                             <th style="text-align: center;font-size: 12px">ASSUNTO</th>
@@ -277,12 +271,12 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR  $parametro_ano 
                         echo'<td style="font-size:12px;">' . date('d/m/Y', strtotime($linhas['data_processo'])) . '</td>';
                         echo'<td style="font-size:12px">' . $linhas['situacao_processo'] . '</td>';
                         echo'<td style="height:30px;text-align:center" title="Detalhes"><a href=detalhes_processo.php?codigo_processo=' . $codigo_processo . '><button type="button" class="btn btn-xs btn-primary">VISUALIZAR</button></strong></a></td>';
-                        echo'</tr>';      
-                    }      
+                        echo'</tr>';
+                    }
                 }
-              
                 ?>     
             </table><br>
+            
         </div>
     </div>
 </div>
