@@ -171,8 +171,8 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 },
                 descricao_infracao: {
                     required: true,
-                    minlength: 10,
-                    isString: true
+                    minlength: 10
+
                 },
                 descricao_prazo: {
                     required: true,
@@ -216,11 +216,9 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     maxlength: 4
                 },
                 orgao_emissor_licenca: {
-
                     minlength: 4,
                     isString: true
                 },
-
                 nome_notificado: {
                     minlength: 12,
                     isString: true
@@ -327,7 +325,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 testemunha: {
                     minlength: "Erro! Por Favor Informe Mais Detalhes"
                 },
-
                 status_notificado: {
                     required: "Campo Obrigatório*"
                 },
@@ -367,7 +364,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             <li><a href="consultar_licencas.php" style="font-weight:bold; color:#2e6da4; text-decoration:none;margin-right: 20px">CONSULTAR LICENÇA<span class="glyphicon glyphicon-duplicate" style="margin-left: 5px"></a></li>
             <li><a href="consultar_notificacoes.php" style="font-weight:bold; color:#2e6da4; text-decoration:none;margin-right: 20px">CONSULTAR NOTIFICAÇÃO<span class="glyphicon glyphicon-bell" style="margin-left: 5px"></a></li>
             <li><a href="#" style="font-weight:bold; color:#2e6da4; text-decoration:none;margin-right: 20px">CONSULTAR AUTO DE INFRAÇÕES<span class="glyphicon glyphicon-alert" style="margin-left: 5px"></a></li>
-            
+
             <li>
                 <?php if ($_SESSION['nivel_acesso'] == "2") {
                     ?>  
@@ -404,12 +401,15 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                         <label for="empresa"><strong>RAZÃO SOCIAL / PESSOA FÍSICA *</strong><a href="cad_empresa.php" style="margin-left: 865px ">caso não encontre, clique aqui </a></label>
                                         <select name="empresa" id="empresa" class="form-control" autofocus="">
                                             <option value="">SELEIONE</option>
+                                            <option></option>
                                             <?php
                                             $parametro_empresa = filter_input(INPUT_GET, "parametro_empresa");
                                             $empresa = "SELECT *FROM tb_empresa WHERE razaosocial_pessoafisica LIKE '%$parametro_empresa%' ORDER BY razaosocial_pessoafisica";
                                             $recebe_empresas = mysqli_query($con, $empresa);
                                             while ($linha = mysqli_fetch_array($recebe_empresas)) {
                                                 echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                                echo '<option></option>';
+                                                
                                             }
                                             ?>
                                         </select>
@@ -428,7 +428,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="numero_auto_infracao"><strong>Nº DO AUTO DE INFRAÇÃO *</strong></label><br/>
-                                        <input type="text" name="numero_auto_infracao" id="numero_auto_infracao" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control" placeholder="Campo Obrigatório" autocomplete="off"/>
+                                        <input type="text" name="numero_auto_infracao" id="numero_auto_infracao" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control" placeholder="Campo Obrigatório" autocomplete="on|of"/>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -453,7 +453,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="profissao_atividade"><strong>PROFISSÃO E / OU  ATIVIDADE REALIZADA *</strong></label><br/>
-                                        <input type="text" name="profissao_atividade" id="profissao_atividade" class="form-control" onKeypress="return letras(event)"/>
+                                        <input type="text" name="profissao_atividade" id="profissao_atividade" class="form-control" onKeypress="return letras(event)" />
                                     </div>
                                 </div>
                             </div>
@@ -461,7 +461,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="descricao_infracao"><strong>DESCRICÃO DA INFRAÇÃO E DISPOSITIVOS LEGAIS INFRIGIDOS *</strong></label><br/>
-                                        <input type="text" name="descricao_infracao" id="descricao_infracao" class="form-control"/>
+                                        <input type="text" name="descricao_infracao" id="descricao_infracao" class="form-control" autocomplete="on|of"/>
                                     </div>
                                 </div>
                             </div>       
@@ -483,7 +483,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="material_apreendido">MATERIAL APREENDIDO</label>
-                                        <input type="text" name="material_apreendido" id="material_apreendido" class="form-control" />
+                                        <input type="text" name="material_apreendido" id="material_apreendido" class="form-control" autocomplete="on|of"/>
                                     </div>
                                 </div>
                             </div>
@@ -491,7 +491,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="valor_infracao">VALOR DA MULTA EM UFM</label>
-                                        <input type="text" name="valor_infracao" id="valor_infracao" onblur="calcularUFM()" onkeyup="somenteNumeros(this);" class="form-control" />
+                                        <input type="text" name="valor_infracao" id="valor_infracao" onblur="calcularUFM()" onkeyup="somenteNumeros(this);" class="form-control" autocomplete="on|of"/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -541,13 +541,13 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label for="nome_infrator"><strong>NOME DO AUTUADO E / OU REPONSÁVEL</strong></label><br/>
-                                        <input type="text" name="nome_infrator" id="nome_infrator" class="form-control" onKeypress="return letras(event)"/>
+                                        <input type="text" name="nome_infrator" id="nome_infrator" class="form-control" onKeypress="return letras(event)" autocomplete="on|of"/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="cpf"><strong>CPF</strong></label><br/>
-                                        <input type="text" name="cpf" id="cpf" class="form-control" onblur="validaFormato(this);" />
+                                        <input type="text" name="cpf" id="cpf" class="form-control" onblur="validaFormato(this);" autocomplete="on|of"/>
                                         <div id="divResultado"></div>         
                                         <style>
                                             #divResultado{
@@ -565,7 +565,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-6" >
                                     <div class="form-group">
                                         <label for="logradouro"><strong>RUA</strong></label><br/>
-                                        <input type="text" name="logradouro" id="logradouro" class="form-control"/>
+                                        <input type="text" name="logradouro" id="logradouro" class="form-control" autocomplete="off"/>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
@@ -577,7 +577,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                 <div class="col-sm-4" >
                                     <div class="form-group">
                                         <label for="bairro"><strong>BAIRRO</strong></label><br/>
-                                        <input type="text" name="bairro" id="bairro" class="form-control" onKeypress="return letras(event)"/>
+                                        <input type="text" name="bairro" id="bairro" class="form-control" onKeypress="return letras(event)" />
                                     </div>
                                 </div>
                             </div>
@@ -609,10 +609,12 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="chefe_fiscalizacao"><strong>CHEFE DE FISCALIZAÇÃO *</strong></label><br/>
-                                        <input type="text" name="chefe_fiscalizacao" id="chefe_fiscalizacao" value="CLAUDIO BASTOS FILGUEIRAS JUNIOR - 993200 " readonly="" class="form-control" />
-                                    </div>
+                                    <label for="chefe_fiscalizacao"><strong>CHEFE DE FISCALIZAÇÃO *</strong></label><br/>
+                                    <select name="chefe_fiscalizacao" id="chefe_fiscalizacao" class="form-control">
+                                        <option value="">SELECIONE</option>
+                                        <option value="CLAUDIO BASTOS FILGUEIRAS JUNIOR - 993200">CLAUDIO BASTOS FILGUEIRAS JUNIOR - 993200</option>
+                                        <option value="NÃO ESTAVA PRESENTE">NÃO ESTAVA PRESENTE</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -125,7 +125,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">-------  IR PARA -------
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">     
-                <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6")  {
+                <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6") {
                     ?> 
                     <li><a href="cadastros.php" style="font-weight:bold; color:#006600; text-decoration:none;margin-right: 20px">CADASTRO<span class="glyphicon glyphicon-plus" style="margin-left: 5px"></a></li>          
                     <li><a href="cad_empresa.php" style="font-weight:bold; color:#67b168; text-decoration:none;margin-right: 20px">CADASTRAR RAZÃO SOCIAL / PESSOA FÍSICA<span class="glyphicon glyphicon-home" style="margin-left: 5px"></a></li>          
@@ -157,7 +157,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 
 
                 <li>
-                    <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6")   {
+                    <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6") {
                         ?>  
                         <a href="editar.php" style="color:#985f0d">
                             <strong>REALIZAR EDICÃO<span class="glyphicon glyphicon-pencil" style="margin-left: 10px"></strong></a>
@@ -173,7 +173,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 <li><a href="logout.php" style="font-weight:bold; color: #ce8483">SAIR DO SISTEMA<span class="glyphicon glyphicon-off" style="margin-left: 5px"></a></li>
             </ul>
         </div>  
-        
+
         <!--MODAL PARA O CAMPO CADASTRO - BLOQEANDO USUARIO CASO ELE NÃO SEJA TENHA PERMISSÃO-->
         <div class="modal fade" id="myModalCadastro" role="dialog">
             <div class="modal-dialog">
@@ -228,20 +228,10 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 
     <div class="row">
         <div class="col-sm-2" style="">
-            <input type="text" name="parametro_empresa" onKeypress="return letras(event)" class="form-control" placeholder="Empresa / Pessoa Fisica" title="Digite Apenas Letras">
-        </div>
-        <div class="col-sm-2" style="">
-            <input type="text" name="parametro_nome_fantasia"  onKeypress="return letras(event)" class="form-control" placeholder="Nome Fantasia" title="Digite Apenas Letras">
+            <input type="text" name="parametro_empresa" onKeypress="return letras(event)" class="form-control" placeholder="Razão Social / Pª Fisica" title="Digite Apenas Letras">
         </div>
         <div class="col-sm-2" style="">
             <input type="text" name="parametro_cnpj_cpf" onkeyup="somenteNumeros(this);" maxlength="18" class="form-control" placeholder="Cnpj / Cpf" title="Digite Apenas Números">
-        </div>
-        <div class="col-sm-1" style="">
-            <input type="text" name="parametro_numero" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"  placeholder="Nº LIC" title="Digite Apenas Números">
-        </div>
-
-        <div class="col-sm-1" style="">
-            <input type="text" name="parametro_processo" onkeyup="somenteNumeros(this);" class="form-control" placeholder="Nº PROC" title="Digite Apenas Letras">
         </div>
         <div class="col-sm-2">
             <select name="parametro_assunto"  class="form-control" >
@@ -262,7 +252,22 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 <option value="RENOVAÇÃO DE LICENÇA DE OPERAÇÃO">R.L.O</option>
             </select>
         </div>
+        <div class="col-sm-2">
+            <select name="parametro_ano_licenca"  class="form-control" >
+                <option value="">ANO DA LICENÇA</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>                                          
+            </select>
+        </div>
+       
+        <div class="col-sm-1" style="">
+            <input type="text" name="parametro_numero" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"  placeholder="Nº LIC" title="Digite Apenas Números">
+        </div>
 
+        <div class="col-sm-1" style="">
+            <input type="text" name="parametro_processo" onkeyup="somenteNumeros(this);" class="form-control" placeholder="Nº PROC" title="Digite Apenas Letras">
+        </div>
 
         <div class="col-sm-1" style="">
             <input type="submit" value="BUSCAR" class="btn btn-primary" style="font-size: 15px; font-weight: bold;color: #fff;text-align: center">
@@ -273,20 +278,20 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 <?php
 $parametro_empresa = filter_input(INPUT_GET, "parametro_empresa");
 $parametro_cnpj_cpf = filter_input(INPUT_GET, "parametro_cnpj_cpf");
-$parametro_nome_fantasia = filter_input(INPUT_GET, "parametro_nome_fantasia");
 $parametro_numero = filter_input(INPUT_GET, "parametro_numero");
 $parametro_processo = filter_input(INPUT_GET, "parametro_processo");
+$parametro_ano_licenca = filter_input(INPUT_GET, "parametro_ano_licenca");
 $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
 
-$sql = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.descricao_atividade,
+$sql = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.descricao_atividade,tb_licenca.ano_licenca,
             tb_empresa.codigo_empresa,tb_empresa.razaosocial_pessoafisica,tb_empresa.nome_fantasia,tb_empresa.cnpj_cpf,tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_bairro,tb_empreendimento.nome_atividade,tb_processo.numero_processo,tb_processo.assunto, (if(current_date()<= data_validade,'<strong>VALIDA</strong>','<strong style=color:#F4C430>INVALIDA<strong>')) AS situacao
             FROM 
             tb_licenca,tb_empresa,tb_empreendimento,tb_processo
-            WHERE(razaosocial_pessoafisica LIKE '$parametro_empresa%' AND nome_fantasia LIKE '$parametro_nome_fantasia%' AND cnpj_cpf LIKE '$parametro_cnpj_cpf%' AND numero_licenca LIKE '$parametro_numero%' AND numero_processo LIKE '$parametro_processo%' AND assunto LIKE '$parametro_assunto%')AND 
+            WHERE(razaosocial_pessoafisica LIKE '$parametro_empresa%'  AND cnpj_cpf LIKE '$parametro_cnpj_cpf%' AND numero_licenca LIKE '$parametro_numero%' AND numero_processo LIKE '$parametro_processo%'  AND ano_licenca LIKE '$parametro_ano_licenca%' AND assunto LIKE '$parametro_assunto%')AND 
             tb_licenca.fk4_codigo_empresa = tb_empresa.codigo_empresa AND tb_licenca.fk1_codigo_empreendimento = tb_empreendimento.codigo_empreendimento  AND tb_licenca.fk1_codigo_processo = tb_processo.codigo_processo ORDER BY razaosocial_pessoafisica";
 $recebe = mysqli_query($con, $sql);
 
-if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_nome_fantasia OR $parametro_cnpj_cpf OR $parametro_numero OR $parametro_processo OR $parametro_assunto) {
+if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_cnpj_cpf OR $parametro_numero OR $parametro_processo OR $parametro_ano_licenca OR $parametro_assunto) {
     ?>
 
     <div class = "row">
@@ -309,12 +314,13 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_nome_fanta
                     <header>
                         <tr  style="text-align: center;background-color:#dff0d8;color: #000000" >
                             <!--<th style="text-align: center;font-size: 12px"><strong>COD</strong></th>-->
-                            <th style="text-align: center;font-size: 12px">EMPRESA / PESSSOA FÍSICA</th> 
-                            <th style="text-align: center;font-size: 12px">NOME FANTASIA</th>
+                            <th style="text-align: center;font-size: 12px">RAZÃO SOCIAL / Pª FÍSICA</th> 
+
                             <th style="text-align: center;font-size: 12px">CNPJ / CPF</th> 
                             <th style="text-align: center;font-size: 12px">LICENÇA</th> 
                             <th style="text-align: center;font-size: 12px">Nº LIC</th> 
-                            <th style="text-align: center;font-size: 12px">Nº PROC</th>                       
+                            <th style="text-align: center;font-size: 12px">Nº PROC</th> 
+                            <th style="text-align: center;font-size: 12px">ANO LICENÇA</th>
                             <th style="text-align: center;font-size: 12px">EMISSÃO</th> 
                             <th style="text-align: center;font-size: 12px">VALIDADE</th>  
                             <th style="text-align: center;font-size: 12px;" >SITUAÇÃO</th>            
@@ -327,11 +333,12 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_nome_fanta
                         $codigo_licenca = $linhas['codigo_licenca']; //variavel pararecupar o id do empreendimento
                         echo'<tr style="font-size:13px">';
                         echo'<td style="font-size:12px">' . $linhas['razaosocial_pessoafisica'] . '</td>';
-                        echo'<td style="font-size:12px;">' . $linhas['nome_fantasia'] . '</td>';
-                        echo'<td style="font-size:12px;width:10%">' . $linhas['cnpj_cpf'] . '</td>';
-                        echo'<td style="font-size:12px;width:10%">' . $linhas['assunto'] . '</td>';
+
+                        echo'<td style="font-size:12px;">' . $linhas['cnpj_cpf'] . '</td>';
+                        echo'<td style="font-size:12px;">' . $linhas['assunto'] . '</td>';
                         echo'<td style="font-size:12px">' . $linhas['numero_licenca'] . '</td>';
                         echo'<td style="font-size:12px;">' . $linhas['numero_processo'] . '</td>';
+                        echo'<td style="font-size:12px;">' . $linhas['ano_licenca'] . '</td>';
                         echo'<td style="font-size:12px;">' . date('d/m/Y', strtotime($linhas['data_emissao'])) . '</td>';
                         echo'<td style="font-size:12px">' . date('d/m/Y', strtotime($linhas['data_validade'])) . '</td>';
                         echo'<td style="font-size:12px;text-align:center;">' . $linhas['situacao'] . '</td>';

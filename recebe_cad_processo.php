@@ -28,14 +28,14 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                     $motivo_situacao = strtoupper(addslashes($_POST['motivo_situacao']));
 
                     //verificando se ja existe no banco de dados o numero do processo informado            
-                    $consulta_processo = "SELECT numero_processo,assunto,ano FROM tb_processo WHERE numero_processo ='" . $_POST['numero_processo'] . "' AND assunto ='" . $_POST['assunto'] . "' AND ano='". $_POST['ano']."' ";
+                    $consulta_processo = "SELECT numero_processo,assunto,ano FROM tb_processo WHERE numero_processo ='" . $_POST['numero_processo'] . "' AND assunto ='" . $_POST['assunto'] . "' AND ano='" . $_POST['ano'] . "' ";
                     $recebe_consulta = mysqli_query($con, $consulta_processo);
 
                     if (mysqli_num_rows($recebe_consulta) > 0) {
                         ?>
                         <script>
                             alert('ERRO! JÁ EXISTE UM PROCESSO COM O NÚMERO INFORMADO, POR FAVOR INFORME OUTRO NÚMERO! \n\n ATENÇÃO CASO O EMPREENDIMENTO / ATIVIDADE NÃO APAREÇA SELECIONE A RAZÃO SOCIAL / Pª FISICA NOVAMENTE ');
-                            window.history.back();  
+                            window.history.back();
                         </script>
                         <?php
                     } else {
@@ -50,7 +50,6 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                         $_SESSION['ultimo_processo'] = $ultimo_processo;
 //                      print_r($sql);                   
 //                        $_SESSION['controle_de_abas'] = 1;
-                       
                         // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
                         $emailUser = $_SESSION['email'];
                         $user = $_SESSION['nome'];
@@ -65,10 +64,15 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header btn-success">
-                                        <h4 class="modal-title text-center" id="myModalLabel"><strong>PROCESSO CADASTRADO COM SUCESSO!<br><br><P style="text-align: center">AGUARDE UM MOMENTO</strong></P></h4>
+                                        <h4 class="modal-title text-center"  id="myModalLabel"><strong>PROCESSO CADASTRADO COM SUCESSO!<br><br><P style="text-align: center">AGUARDE UM MOMENTO<br></strong></P></h4>
+                                         
+                                        <div class="spinner"></div>
+
                                         <script type="text/javascript">
                                             setTimeout('window.location.href="cadastros.php"', 3500);
                                         </script>
+                                        
+                                        
                                     </div>
 
                                 </div>

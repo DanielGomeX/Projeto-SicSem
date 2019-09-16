@@ -266,7 +266,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                             <div class="col-sm-12" id="ATIV">
                                 <div class="form-group">
                                     <label for="nome_atividade"><strong>ATIVIDADE A LICENCIAR *</strong></label><br/>
-                                    <input type="text" name="nome_atividade" id="nome_atividade" class="form-control" placeholder="Campo Obrigatório" autocomplete="off" />                          
+                                    <input type="text" name="nome_atividade" id="nome_atividade" class="form-control" placeholder="Campo Obrigatório" autocomplete="on|of"/>                          
                                 </div>
                             </div>
                         </div>

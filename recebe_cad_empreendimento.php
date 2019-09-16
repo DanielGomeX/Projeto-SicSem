@@ -67,7 +67,11 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
             <div class="modal-dialog btn-success" role="document">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel"><strong>EMPREENDIMENTO /  ATIVIDADE CADASTRADO COM SUCESSO!<br><br><P style="text-align: center">AGUARDE UM MOMENTO</strong></P></h4>
+                
+                <div class="spinner"></div>
+                
                 </div>
+                
                 <div class="modal-footer">
                     <?php if ($_POST['nome_atividade']) {
                         ?>

@@ -386,12 +386,14 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 
                                         <select name="empresa" id="empresa" class="form-control" autofocus="">
                                             <option value="">SELEIONE</option>
+                                            <option></option>
                                             <?php
                                             $parametro_empresa = filter_input(INPUT_GET, "parametro_empresa");
                                             $empresa = "SELECT *FROM tb_empresa WHERE razaosocial_pessoafisica LIKE '%$parametro_empresa%' ORDER BY razaosocial_pessoafisica";
                                             $recebe_empresas = mysqli_query($con, $empresa);
                                             while ($linha = mysqli_fetch_array($recebe_empresas)) {
                                                 echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                                echo '<option></option>';
                                             }
                                             ?>
                                         </select>

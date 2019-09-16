@@ -157,6 +157,14 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
         <div class="col-sm-2" style="">
             <input type="text" name="parametro_num_processo" onkeyup="somenteNumeros(this);" maxlength="4" class="form-control"  placeholder="Nº Processo" title="Digite Apenas Números">
         </div>
+       <div class="col-sm-2" style="">
+            <select name="parametro_ano" id="ano" class="form-control" >
+                <option value="">ANO</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+            </select>
+        </div> 
         <div class="col-sm-1" style="">
             <input type="submit" value="BUSCAR" class="btn btn-primary" style="font-size: 15px; font-weight: bold;color: #fff;text-align: center">
         </div>
@@ -166,15 +174,16 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 $parametro_empresa = filter_input(INPUT_GET, "parametro_empresa");
 $parametro_num_notificacao = filter_input(INPUT_GET, "parametro_num_notificacao");
 $parametro_num_processo = filter_input(INPUT_GET, "parametro_num_processo");
+$parametro_ano = filter_input(INPUT_GET, "parametro_ano");
 
 $sql = "SELECT tb_notificacao.codigo_notificacao,tb_notificacao.numero_notificacao,tb_notificacao.ano_notificacao,tb_notificacao.data_notificacao,tb_notificacao.data_comparecimento,tb_notificacao.profissao_atividade,tb_notificacao.descricao_prazo,tb_notificacao.status,tb_empresa.razaosocial_pessoafisica,tb_empresa.nome_fantasia,tb_processo.numero_processo,tb_fiscal.nome_matricula_fiscal,
             (if(current_date()<= data_comparecimento,'<strong>DENTRO DO PRAZO</strong>','<strong style=color:#F4C430>PRAZO VENCIDO<strong>')) AS situacao    
             FROM 
             tb_notificacao,tb_empresa,tb_processo,tb_fiscal
-            WHERE(razaosocial_pessoafisica LIKE '$parametro_empresa%' AND numero_notificacao LIKE '$parametro_num_notificacao%' AND numero_processo LIKE '$parametro_num_processo%')AND 
+            WHERE(razaosocial_pessoafisica LIKE '$parametro_empresa%' AND numero_notificacao LIKE '$parametro_num_notificacao%' AND numero_processo LIKE '$parametro_num_processo%' AND ano_notificacao LIKE '$parametro_ano%')AND 
             tb_notificacao.fk5_codigo_empresa = tb_empresa.codigo_empresa AND tb_notificacao.fk2_codigo_processo = tb_processo.codigo_processo AND tb_notificacao.fk1_codigo_fiscal = tb_fiscal.codigo_fiscal ORDER BY codigo_notificacao";
 $recebe = mysqli_query($con, $sql);
-if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_num_notificacao OR $parametro_num_processo) {
+if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_num_notificacao OR $parametro_num_processo OR $parametro_ano) {
     ?>
     <div class="row">
         <div class = "col-sm-12">
