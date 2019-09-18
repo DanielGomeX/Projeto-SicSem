@@ -40,10 +40,8 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     <table class="table table-striped table-hover table-bordered">
         <header>
             <tr>
-                <th style="text-align: center;font-size: 12px">EMPRESA / PESSSOA FÍSICA</th>            
                 <th style="text-align: center;font-size: 12px">LICENÇA</th> 
                 <th style="text-align: center;font-size: 12px">Nº LIC</th>   
-                <th style="text-align: center;font-size: 12px">Nº PRO</th> 
                 <th style="text-align: center;font-size: 12px">ANO</th>      
                 <th style="text-align: center;font-size: 12px">EMISSÃO</th> 
                 <th style="text-align: center;font-size: 12px">VALIDADE</th>            
@@ -68,10 +66,9 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             while ($linhas = mysqli_fetch_array($recebe)) {
                 $cod_licenca = $linhas['codigo_licenca']; //variavel pararecupar o id do empreendimento
                 echo'<tr style="font-size:13px">';
-                echo'<td style="font-size:12px">' . $linhas['razaosocial_pessoafisica'] . '</td>';
+
                 echo'<td style="font-size:12px;width:20%">' . $linhas['assunto'] . '</td>';
                 echo'<td style="font-size:12px;width:5%">' . $linhas['numero_licenca'] . '</td>';
-                echo'<td style="font-size:12px;width:5%">' . $linhas['numero_processo'] . '</td>';
                 echo'<td style="font-size:12px;width:3%">' . $linhas['ano_licenca'] . '</td>';
                 echo'<td style="font-size:12px;width:2%">' . date('d/m/Y', strtotime($linhas['data_emissao'])) . '</td>';
                 echo'<td style="font-size:12px;width:2%">' . date('d/m/Y', strtotime($linhas['data_validade'])) . '</td>';

@@ -39,13 +39,11 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     <table class="table table-striped table-hover table-bordered">
         <header>
             <tr style="text-align: center;background-color:#dff0d8;color: #000000" >
-                <th style="text-align: center;font-size: 12px">Pº FÍSICA / RÃZÃO SOCIAL</th> 
                 <th style="text-align: center;font-size: 12px"><strong>Nº DO AUTO</strong></th>
                 <th style="text-align: center;font-size: 12px">DATA</th>
                 <th style="text-align: center;font-size: 12px">NATUREZA</th>
                 <th style="text-align: center;font-size: 12px">VALOR UFM</th>
                 <th style="text-align: center;font-size: 12px">VALOR R$</th>
-                <th style="text-align: center;font-size: 12px">NÚMERO PROCESSO</th> 
                 <th style="text-align: center;font-size: 12px">SITUAÇÃO</th>             
                 <th style="width: 1%"><img  src="img/user.png" title="Editar" style="margin-left: 7px"></th>             
             </tr>
@@ -67,13 +65,11 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             while ($linhas = mysqli_fetch_array($recebe)) {
                 $autos = $linhas['codigo_auto_infracao']; //variavel para recupar o id da notificação
                 echo'<tr style="font-size:13px">';
-                echo'<td style="font-size:12px">' . $linhas['nome_fantasia'] . '</td>';
                 echo'<td style="font-size:12px">' . $linhas['numero_auto_infracao'] . '</td>';
                 echo'<td style="font-size:12px">' . date('d/m/Y', strtotime($linhas['data_auto_infracao'])) . '</td>'; 
                 echo'<td style="font-size:12px">' . $linhas['natureza_da_infracao'] . '</td>';
                 echo'<td style="font-size:12px">' . $linhas['valor_infracao'] . '</td>';
                 echo'<td style="font-size:12px">' . $linhas['valor_reais'] . '</td>';
-                echo'<td style="font-size:12px">' . $linhas['numero_processo'] . '</td>';
                 echo'<td style="font-size:12px">' . $linhas['status_auto'] . '</td>';
                 echo'<td  style="height:30px;text-align:center" title="Editar"><a href=alterar_auto.php?codigo_auto_infracao=' . $autos . '><span class="glyphicon glyphicon-pencil"></a></td>';
                 echo'</tr>';

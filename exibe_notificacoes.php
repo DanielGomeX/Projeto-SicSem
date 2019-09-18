@@ -39,7 +39,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     <table class="table table-striped table-hover table-bordered">
         <header>
             <tr style="text-align: center;background-color:#dff0d8;color: #000000" >
-                <th style="text-align: center;font-size: 12px">PROFISSÃO / ATIVIDADE</th> 
                 <th style="text-align: center;font-size: 12px"><strong>Nº NOTIFICACÃO</strong></th>
                 <th style="text-align: center;font-size: 12px">DATA  NOTIFICAÇÃO</th>
                 <th style="text-align: center;font-size: 12px">DATA COMPARECIMENTO</th>
@@ -65,7 +64,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             while ($linhas = mysqli_fetch_array($recebe)) {
                 $notificacoes = $linhas['codigo_notificacao']; //variavel para recupar o id da notificação
                 echo'<tr style="font-size:13px">';
-                echo'<td style="font-size:12px">' . $linhas['nome_fantasia'] . '</td>';
                 echo'<td style="font-size:12px">' . $linhas['numero_notificacao'] . '</td>';
                 echo'<td style="font-size:12px">' . date('d/m/Y', strtotime($linhas['data_notificacao'])) . '</td>';
                 echo'<td style="font-size:12px">' . date('d/m/Y', strtotime($linhas['data_comparecimento'])) . '</td>';

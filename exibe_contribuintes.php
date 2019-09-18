@@ -45,7 +45,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     <th style="text-align: center;font-size: 12px">RAZÃO SOCIAL / PESSOA FÍSICA</th>   
                     <th style="text-align: center;font-size: 12px">NOME FANTASIA</th>             
                     <th style="text-align: center;font-size: 12px">CNPJ / CPF</th>
-                    <th style="text-align: center;font-size: 12px">BAIRRO</th> 
                     <th style="text-align: center;font-size: 12px">TELEFONE</th> 
                     <th style="width: 1%"><img src="img/user.png" title="Editar" style="margin-left: 7px"></th>  
                 </tr>
@@ -69,7 +68,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     echo'<td style="font-size:12px">' . $linhas['razaosocial_pessoafisica'] . '</td>';
                     echo'<td style="font-size:12px">' . $linhas['nome_fantasia'] . '</td>';  
                     echo'<td style="font-size:12px">' . $linhas['cnpj_cpf'] . '</td>';
-                    echo'<td style="font-size:12px">' . $linhas['bairro'] . '</td>';
                     echo'<td style="font-size:12px">' . $linhas['telefone'] . '</td>';
                     echo'<td style="height:30px;text-align:center" title="Editar"><a href=alterar_empresa.php?codigo_empresa=' . $cod_empresa . '><span class="glyphicon glyphicon-pencil"></a></td>';
                     echo'</tr>';

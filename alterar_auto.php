@@ -442,13 +442,7 @@ $linha_sql = mysqli_fetch_array($exe_sql);
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="natureza_da_infracao">NATUREZA DA INFRAÇÃO</label>
-                                        <select name="natureza_da_infracao" id="natureza_da_infracao" class="form-control">
-                                            <option value="">SELECIONE</option>                                          
-                                            <option value="LEVE">LEVE</option>
-                                            <option value="MEDIA">MÉDIA</option>
-                                            <option value="GRAVE">GRAVE</option>
-                                            <option value="GRAVISSIMA">GRAVÍSSIMA</option>
-                                        </select>
+                                        <input type="text" name="ano_auto_infracao" id="ano_auto_infracao"  value="<?= $linha_sql['natureza_da_infracao'] ;?>" class="form-control">          
                                     </div>
                                 </div>
                             </div>

@@ -48,9 +48,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     <th style="text-align: center;font-size: 12px;">ANO</th>
                     <th style="text-align: center;font-size: 12px;">DATA</th>              
                     <th style="text-align: center;font-size: 12px;">ASSUNTO</th>
-                    <th style="text-align: center;font-size: 12px;">SITUAÇÃO</th> 
-                    <th style="text-align: center;font-size: 12px;">MOTIVO DA SITUAÇÃO</th> 
-                    <th style="text-align: center;font-size: 12px;">RAZÃO SOCIAL / Pª FÍSICA</th> 
+                    <th style="text-align: center;font-size: 12px;">SITUAÇÃO</th>                
                     <th style="width: 1%"><img src="img/user.png" title="Editar" style="margin-left: 7px"></th>  
                 </tr>
             </header>            
@@ -79,9 +77,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     echo'<td style="font-size:12px;text-align:center">' . $linhas['ano'] . '</td>';
                     echo'<td style="font-size:12px;text-align:center">' . date('d/m/Y', strtotime($linhas['data_processo'])) . '</td>';
                     echo'<td style="font-size:12px">' . $linhas['assunto'] . '</td>';
-                    echo'<td style="font-size:12px;text-align:center">' . $linhas['situacao_processo'] . '</td>';
-                    echo'<td style="font-size:12px;text-align:center">' . $linhas['motivo_situacao'] . '</td>';
-                    echo'<td style="font-size:12px;text-align:center">' . $linhas['razaosocial_pessoafisica'] . '</td>';        
+                    echo'<td style="font-size:12px;text-align:center">' . $linhas['situacao_processo'] . '</td>';                              
                     echo'<td style="height:30px;text-align:center" title="Editar"><a href=alterar_processo.php?codigo_processo=' . $cod_processo . '><span class="glyphicon glyphicon-pencil"></a></td>';
                     echo'</tr>';
                 }
