@@ -23,6 +23,30 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/estilo_cad_empresa.css">
 
+<script type='text/javascript' >
+    $(function () {
+        $("#razaosocial_pessoafisica").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "auto_complete_contribuinte.php",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        search: request.term
+                    },
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $('#razaosocial_pessoafisica').val(ui.item.label); // display the selected text
+                $('#selectuser_id').val(ui.item.value); // save selected id to input
+                return false;
+            }
+        });
+    });
+</script>
 
 
 <!--o script abaixo permite que somente letras sejam digitas nos campos que recebem essa validação-->

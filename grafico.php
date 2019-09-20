@@ -3,7 +3,7 @@ require './config/conexao.php';
 require './pages/header.php';
 session_start();
 
-$meses = array('','Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez');
+$meses = array('', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez');
 for ($x = 1; $x <= 12; $x = $x + 1) {
     $dinero[$x] = 0;
 }
@@ -15,12 +15,12 @@ $recebesql = mysqli_query($con, $sql);
 while ($row = mysqli_fetch_array($recebesql)) {
 
     $y = date('Y', strtotime($row['data_emissao']));
-   
+
     $mes = (int) date("m", strtotime($row['data_emissao']));
 
     if ($y == $anno) {
         $dinero[$mes] = $dinero[$mes] + $row['data_emissao'];
-    } 
+    }
     $dinero[$mes] = $dinero[$mes] + $row['data_emissao'];
 }
 ?>
@@ -38,7 +38,7 @@ while ($row = mysqli_fetch_array($recebesql)) {
 <?php
 for ($x = 1; $x <= 12; $x = $x + 1) {
     ?>
-                        ['<?php echo $meses[$x]; ?>', <?php  echo $dinero[$x] ?>],
+                        ['<?php echo $meses[$x]; ?>', <?php echo $dinero[$x] ?>],
 <?php } ?>
                 ]);
 

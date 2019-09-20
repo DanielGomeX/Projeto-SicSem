@@ -162,26 +162,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             </select>
         </div> 
 
-
-        <!--        <div class="col-sm-3" style="">
-                    <input type="date" name="parametro_data" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"  placeholder="MÊS" title="Digite Apenas Números">
-                </div>-->
-
-        <!--        <div class="col-sm-2" style="">
-                    <select name="parametro_situacao" id="parametro_situacao" class="form-control" >
-                        <option value="">STATUS</option>
-                        <option value="ABERTO">ABERTO</option>
-                        <option value="AGUARDANDO PAGAMENTO">AGUARDANDO PAGAMENTO</option>
-                        <option value="AGUARDANDO COMANDA">AGUARDANDO COMANDA</option>
-                        <option value="ANALISE">ANALISE</option>
-                        <option value="FISCALIZACAO">FISCALIZACAO</option>
-                        <option value="EMITIDO">EMITIDO</option>
-                        <option value="SEMREC">SEMREC</option>
-                    </select>
-                </div>-->
-
-
-
         <div class="col-sm-2">
             <select name="parametro_assunto" id="atividade_empreendimento" class="form-control" >
                 <option value="">LICENÇA</option>
@@ -212,7 +192,8 @@ $parametro_num_processo = filter_input(INPUT_GET, "parametro_num_processo");
 $parametro_ano = filter_input(INPUT_GET, "parametro_ano");
 $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
 
-$sql = "SELECT DISTINCT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.data_processo,tb_processo.assunto,tb_processo.situacao_processo,tb_empresa.razaosocial_pessoafisica,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_atividade 
+
+$sql = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.data_processo,tb_processo.assunto,tb_processo.situacao_processo,tb_empresa.razaosocial_pessoafisica,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_atividade 
             FROM 
             tb_processo, tb_empresa, tb_empreendimento
             WHERE(numero_processo LIKE '$parametro_num_processo%' AND ano LIKE '$parametro_ano%' AND assunto LIKE '$parametro_assunto%') AND
