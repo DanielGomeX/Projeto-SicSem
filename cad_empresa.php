@@ -42,6 +42,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
             select: function (event, ui) {
                 $('#razaosocial_pessoafisica').val(ui.item.label); // display the selected text
                 $('#selectuser_id').val(ui.item.value); // save selected id to input
+                
                 return false;
             }
         });
