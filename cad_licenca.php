@@ -101,6 +101,11 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 data_validade: {
                     required: true
                 },
+                taxa: {
+                    required: true,
+                    maxlength: 4,
+                     minlength: 2
+                },
                 atividade_realizada: {
                     required: true,
                     minlength: 10,
@@ -134,6 +139,11 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 },
                 data_validade: {
                     required: "Campo Obrigatório*"
+                },
+                taxa: {
+                    required: "Campo Obrigatório*",
+                    maxlength: "Erro! Informe no Máximo 4 Digitos!",
+                    minlength:  "Erro! Informe no Mínino 2 Digitos!"
                 },
                 atividade_realizada: {
                     required: "Campo Obrigatório*",
@@ -649,7 +659,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     <div class="col-sm-2">
                         <div class="form-group">
                             <label for=""><strong>VALOR DA TAXA *</strong></label><br/>
-                            <input type="" name="" id="" class="form-control"/>                                     
+                            <input type="text" name="taxa" id="taxa" onkeyup="somenteNumeros(this);" class="form-control"/>                                     
                         </div>
                     </div>
                 </div>

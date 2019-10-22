@@ -283,7 +283,7 @@ $parametro_processo = filter_input(INPUT_GET, "parametro_processo");
 $parametro_ano_licenca = filter_input(INPUT_GET, "parametro_ano_licenca");
 $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
 
-$sql = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.descricao_atividade,tb_licenca.ano_licenca,
+$sql = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.taxa,tb_licenca.descricao_atividade,tb_licenca.ano_licenca,
             tb_empresa.codigo_empresa,tb_empresa.razaosocial_pessoafisica,tb_empresa.nome_fantasia,tb_empresa.cnpj_cpf,tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_bairro,tb_empreendimento.nome_atividade,tb_processo.numero_processo,tb_processo.assunto, (if(current_date()<= data_validade,'<strong>VALIDA</strong>','<strong style=color:#F4C430>INVALIDA<strong>')) AS situacao
             FROM 
             tb_licenca,tb_empresa,tb_empreendimento,tb_processo
@@ -323,6 +323,7 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_cnpj_cpf O
                             <th style="text-align: center;font-size: 12px">ANO LICENÇA</th>
                             <th style="text-align: center;font-size: 12px">EMISSÃO</th> 
                             <th style="text-align: center;font-size: 12px">VALIDADE</th>  
+                            <th style="text-align: center;font-size: 12px">TAXA</th>  
                             <th style="text-align: center;font-size: 12px;" >SITUAÇÃO</th>            
                             <th style="width: 1%"><img  src="img/olho_1.png" title="Ver Mais Detalhes" style="margin-left:25px"></th> 
                         </tr>
@@ -341,6 +342,7 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_cnpj_cpf O
                         echo'<td style="font-size:12px;">' . $linhas['ano_licenca'] . '</td>';
                         echo'<td style="font-size:12px;">' . date('d/m/Y', strtotime($linhas['data_emissao'])) . '</td>';
                         echo'<td style="font-size:12px">' . date('d/m/Y', strtotime($linhas['data_validade'])) . '</td>';
+                        echo'<td style="font-size:12px;text-align:center;">' . $linhas['taxa'] . '</td>';
                         echo'<td style="font-size:12px;text-align:center;">' . $linhas['situacao'] . '</td>';
                         echo'<td style="height:30px;text-align:center" title="Detalhes"><a href=detalhes_licenca.php?codigo_licenca=' . $codigo_licenca . '><button type="button" class="btn btn-xs btn-primary">VISUALIZAR</button></strong></a></td>';
                         echo'</tr>';
