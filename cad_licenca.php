@@ -634,16 +634,22 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                             </select> 
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label for="data_emissao"><strong>DATA EMISSÃO *</strong></label><br/>
                             <input type="date" name="data_emissao" id="data_emissao" class="form-control"  onblur="comparaDataAno();" max="2019-12-31" min="2017-01-01" />                                       
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label for="data_validade"><strong>DATA VALIDADE *</strong></label><br/>
                             <input type="date" name="data_validade" id="data_validade" class="form-control" onblur="comparaDatas()" max="2021-12-31" min="2017-01-01"/>                                     
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for=""><strong>VALOR DA TAXA *</strong></label><br/>
+                            <input type="" name="" id="" class="form-control"/>                                     
                         </div>
                     </div>
                 </div>
