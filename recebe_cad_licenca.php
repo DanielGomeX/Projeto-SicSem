@@ -28,6 +28,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                     $ano_licenca = strtoupper(addslashes($_POST['ano_licenca']));
                                     $data_emissao = strtoupper(addslashes($_POST['data_emissao']));
                                     $data_validade = strtoupper(addslashes($_POST['data_validade']));
+                                    $taxa = strtoupper(addslashes($_POST['taxa']));
                                     $descricao_atividade = strtoupper(addslashes($_POST['descricao_atividade']));
 
                                     /* codigo responsavel pela comparaçõa entre as data de emissoa e validade */
@@ -53,8 +54,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                         <?php
                                     } else {
 
-                                        $sql = "INSERT INTO tb_licenca(fk4_codigo_empresa,fk1_codigo_empreendimento,fk1_codigo_processo,numero_licenca,ano_licenca,data_emissao,data_validade,descricao_atividade)"
-                                                . "VALUES('$empresa','$empreendimento','$processo','$numero_licenca','$ano_licenca','$data_emissao','$data_validade',UPPER('$descricao_atividade'))";
+                                        $sql = "INSERT INTO tb_licenca(fk4_codigo_empresa,fk1_codigo_empreendimento,fk1_codigo_processo,numero_licenca,ano_licenca,data_emissao,data_validade,taxa,descricao_atividade)"
+                                                . "VALUES('$empresa','$empreendimento','$processo','$numero_licenca','$ano_licenca','$data_emissao','$data_validade','$taxa',UPPER('$descricao_atividade'))";
                                         mysqli_query($con, $sql);
                                         $_SESSION['controle_de_abas'] = 2;
                                      

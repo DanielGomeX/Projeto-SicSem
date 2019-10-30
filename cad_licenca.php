@@ -101,6 +101,11 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 data_validade: {
                     required: true
                 },
+                taxa: {
+                    required: true,
+                    maxlength: 4,
+                     minlength: 2
+                },
                 atividade_realizada: {
                     required: true,
                     minlength: 10,
@@ -134,6 +139,11 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 },
                 data_validade: {
                     required: "Campo Obrigatório*"
+                },
+                taxa: {
+                    required: "Campo Obrigatório*",
+                    maxlength: "Erro! Informe no Máximo 4 Digitos!",
+                    minlength:  "Erro! Informe no Mínino 2 Digitos!"
                 },
                 atividade_realizada: {
                     required: "Campo Obrigatório*",
@@ -634,16 +644,22 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                             </select> 
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label for="data_emissao"><strong>DATA EMISSÃO *</strong></label><br/>
                             <input type="date" name="data_emissao" id="data_emissao" class="form-control"  onblur="comparaDataAno();" max="2019-12-31" min="2017-01-01" />                                       
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label for="data_validade"><strong>DATA VALIDADE *</strong></label><br/>
                             <input type="date" name="data_validade" id="data_validade" class="form-control" onblur="comparaDatas()" max="2021-12-31" min="2017-01-01"/>                                     
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for=""><strong>VALOR DA TAXA *</strong></label><br/>
+                            <input type="text" name="taxa" id="taxa" onkeyup="somenteNumeros(this);" class="form-control"/>                                     
                         </div>
                     </div>
                 </div>
