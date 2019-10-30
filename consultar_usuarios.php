@@ -66,8 +66,6 @@ $inicio = ($registros * $pagina) - $registros;
 
 
     $sql = "SELECT * FROM tb_controle_usuario WHERE email LIKE '%$parametro_usuario%' ORDER BY codigo_ctrlusu  limit $inicio,$registros";
-//    $sql = "SELECT email,data_acesso FROM tb_controle_usuario";
-
     $recebe = mysqli_query($con, $sql);
 
     if (mysqli_num_rows($recebe) > 0) {

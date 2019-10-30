@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require './config/conexao.php';
 if (isset($_POST['email']) && empty($_POST['email']) == FALSE) {
