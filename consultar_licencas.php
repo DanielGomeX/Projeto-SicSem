@@ -284,7 +284,7 @@ $parametro_ano_licenca = filter_input(INPUT_GET, "parametro_ano_licenca");
 $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
 
 $sql = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.taxa,tb_licenca.descricao_atividade,tb_licenca.ano_licenca,
-            tb_empresa.codigo_empresa,tb_empresa.razaosocial_pessoafisica,tb_empresa.nome_fantasia,tb_empresa.cnpj_cpf,tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_bairro,tb_empreendimento.nome_atividade,tb_processo.numero_processo,tb_processo.assunto, (if(current_date()<= data_validade,'<strong>VALIDA</strong>','<strong style=color:#F4C430>INVALIDA<strong>')) AS situacao
+            tb_empresa.codigo_empresa,tb_empresa.razaosocial_pessoafisica,tb_empresa.nome_fantasia,tb_empresa.cnpj_cpf,tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_bairro,tb_empreendimento.nome_atividade,tb_processo.numero_processo,tb_processo.assunto,curdate(),datediff(data_validade,curdate()) quantidade_de_dias, (if(current_date()<= data_validade,'<strong>VALIDA</strong>','<strong style=color:#8B0000>INVALIDA<strong>')) AS situacao
             FROM 
             tb_licenca,tb_empresa,tb_empreendimento,tb_processo
             WHERE(razaosocial_pessoafisica LIKE '$parametro_empresa%'  AND cnpj_cpf LIKE '$parametro_cnpj_cpf%' AND numero_licenca LIKE '$parametro_numero%' AND numero_processo LIKE '$parametro_processo%'  AND ano_licenca LIKE '$parametro_ano_licenca%' AND assunto LIKE '$parametro_assunto%')AND 
@@ -324,6 +324,7 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_cnpj_cpf O
                             <th style="text-align: center;font-size: 12px">EMISSÃO</th> 
                             <th style="text-align: center;font-size: 12px">VALIDADE</th>  
                             <th style="text-align: center;font-size: 12px">TAXA</th>  
+                            <th style="text-align: center;font-size: 12px;" >VENCE EM</th>            
                             <th style="text-align: center;font-size: 12px;" >SITUAÇÃO</th>            
                             <th style="width: 1%"><img  src="img/olho_1.png" title="Ver Mais Detalhes" style="margin-left:25px"></th> 
                         </tr>
@@ -334,7 +335,6 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_cnpj_cpf O
                         $codigo_licenca = $linhas['codigo_licenca']; //variavel pararecupar o id do empreendimento
                         echo'<tr style="font-size:13px">';
                         echo'<td style="font-size:12px">' . $linhas['razaosocial_pessoafisica'] . '</td>';
-
                         echo'<td style="font-size:12px;">' . $linhas['cnpj_cpf'] . '</td>';
                         echo'<td style="font-size:12px;">' . $linhas['assunto'] . '</td>';
                         echo'<td style="font-size:12px">' . $linhas['numero_licenca'] . '</td>';
@@ -342,9 +342,10 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_cnpj_cpf O
                         echo'<td style="font-size:12px;">' . $linhas['ano_licenca'] . '</td>';
                         echo'<td style="font-size:12px;">' . date('d/m/Y', strtotime($linhas['data_emissao'])) . '</td>';
                         echo'<td style="font-size:12px">' . date('d/m/Y', strtotime($linhas['data_validade'])) . '</td>';
-                        echo'<td style="font-size:12px;text-align:center;">' . $linhas['taxa'] . '</td>';
-                        echo'<td style="font-size:12px;text-align:center;">' . $linhas['situacao'] . '</td>';
-                        echo'<td style="height:30px;text-align:center" title="Detalhes"><a href=detalhes_licenca.php?codigo_licenca=' . $codigo_licenca . '><button type="button" class="btn btn-xs btn-primary">VISUALIZAR</button></strong></a></td>';
+                        echo'<td style="font-size:12px;text-align:center;background-color:#A9A9A9;color:#FFF">' . $linhas['taxa'] . '</td>';
+                        echo'<td style="font-size:12px;text-align:center;color:#FFF;background-color:#FF8C00">' . $linhas['quantidade_de_dias'] . ' DIAS </td>';
+                        echo'<td style="font-size:12px;text-align:center;color:#FFF;background-color:#008000">' . $linhas['situacao'] . '</td>';
+                        echo'<td style="height:30px;text-align:center;background-color:	#4682B4;color:#FFF" title="Detalhes"><a href=detalhes_licenca.php?codigo_licenca=' . $codigo_licenca . '><strong style="color:#FFF">VISUALIZAR</strong></a></td>';
                         echo'</tr>';
                     }
                 }
