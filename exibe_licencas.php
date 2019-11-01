@@ -47,6 +47,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 <th style="text-align: center;font-size: 12px">VALIDADE</th>            
                 <th style="text-align: center;font-size: 12px" >SITUAÇÃO</th> 
                 <th style="width: 1%"><img src="img/user.png" title="Editar" style="margin-left: 7px"></th>  
+                <th style="width: 1%"><img src="img/delete.png" title="Editar" style="margin-left: 7px;height: 25px"></th>  
             </tr>
         </header>
         <?php
@@ -74,6 +75,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 echo'<td style="font-size:12px;width:2%">' . date('d/m/Y', strtotime($linhas['data_validade'])) . '</td>';
                 echo'<td style="font-size:12px;text-align:center;width:2%">' . $linhas['situacao'] . '</td>';
                 echo'<td  style="height:30px;text-align:center" title="Editar"><a href=altera_licenca.php?codigo_licenca=' . $cod_licenca . '><span class="glyphicon glyphicon-pencil"></a></td>';
+                echo'<td  style="height:30px;text-align:center" title="Remover"><a href=remover_licenca.php?codigo_licenca=' . $cod_licenca . '><span class="glyphicon glyphicon-remove"></a></td>';
                 echo'</tr>';
             }
         } else {
