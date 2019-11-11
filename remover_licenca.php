@@ -18,9 +18,14 @@ if (isset($_GET['codigo_licenca']) && empty($_GET['codigo_licenca']) == FALSE) {
 
     $sql = "DELETE FROM tb_licenca WHERE codigo_licenca = $codigo";
     $exe_sql = mysqli_query($con, $sql);
-    header("Location:exibe_licencas.php");
-} else {
-    header("Location:editar.php");
+    
+    if (mysqli_affected_rows($con)) {
+        $_SESSION['msg'] = "<div class='alert alert-success text-center' role='alert'><strong>LICENÇA EXCLUÍDA COM SUCESSO!</strong></div>";
+        header("Location: exibe_licencas.php");
+    } else {
+       $_SESSION['msg'] = "<div class='alert alert-danger text-center' role='alert'><strong>ERRO A LICENÇA NÃO PODE SER APAGADA, CONSULTE O ADMINISTRADOR DA BASE DE DADOS!</strong></div>";
+        header("Location: exibe_licencas.php");
+    }
 }
 
 

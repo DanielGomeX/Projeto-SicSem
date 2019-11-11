@@ -20,10 +20,10 @@ if (isset($_GET['codigo_processo']) && empty($_GET['codigo_processo']) == FALSE)
     $exe_sql = mysqli_query($con, $sql);
     
     if(mysqli_affected_rows($con)){
-		$_SESSION['msg'] = "<p style='color:green;'>Usuário apagado com sucesso</p>";
+		$_SESSION['msg'] = "<div class='alert alert-success text-center' role='alert'><strong>PROCESSO EXCLUÍDO COM SUCESSO!</strong></div>";
 		header("Location: exibe_processo.php");
 	}else{
-		$_SESSION['msg'] = "<p style='color:red;'>Erro o usuário não foi apagado com sucesso</p>";
+		$_SESSION['msg'] = "<div class='alert alert-danger text-center' role='alert'><strong>ERRO O PROCESSO NÃO PODE SER APAGADO, CONSULTE O ADMINISTRADOR DA BASE DE DADOS!</strong></div>";
 		header("Location: exibe_processo.php");
         }
 }
