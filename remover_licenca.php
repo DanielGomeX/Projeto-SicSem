@@ -19,7 +19,7 @@ if (isset($_GET['codigo_licenca']) && empty($_GET['codigo_licenca']) == FALSE) {
     $sql = "DELETE FROM tb_licenca WHERE codigo_licenca = $codigo";
     $exe_sql = mysqli_query($con, $sql);
     
-    if (mysqli_affected_rows($con)) {
+    if (mysqli_affected_rows($con)>0) {
         $_SESSION['msg'] = "<div class='alert alert-success text-center' role='alert'><strong>LICENÇA EXCLUÍDA COM SUCESSO!</strong></div>";
         header("Location: exibe_licencas.php");
     } else {

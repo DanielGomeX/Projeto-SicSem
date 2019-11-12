@@ -19,7 +19,7 @@ if (isset($_GET['codigo_processo']) && empty($_GET['codigo_processo']) == FALSE)
     $sql = "DELETE FROM tb_processo WHERE codigo_processo = $codigo";
     $exe_sql = mysqli_query($con, $sql);
     
-    if(mysqli_affected_rows($con)){
+    if(mysqli_affected_rows($con)>0){
 		$_SESSION['msg'] = "<div class='alert alert-success text-center' role='alert'><strong>PROCESSO EXCLUÍDO COM SUCESSO!</strong></div>";
 		header("Location: exibe_processo.php");
 	}else{
