@@ -50,6 +50,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     <th style="text-align: center;font-size: 12px;">ASSUNTO</th>
                     <th style="text-align: center;font-size: 12px;">SITUAÇÃO</th>                
                     <th style="width: 1%"><img src="img/user.png" title="Editar" style="margin-left: 7px"></th>  
+                    <th style="width: 1%"><img src="img/excluir.png" title="Remover" style="margin-left: 7px;width: 25px;height: 25px"></th>  
                 </tr>
             </header>            
             <?php
@@ -79,6 +80,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     echo'<td style="font-size:12px">' . $linhas['assunto'] . '</td>';
                     echo'<td style="font-size:12px;text-align:center">' . $linhas['situacao_processo'] . '</td>';                              
                     echo'<td style="height:30px;text-align:center" title="Editar"><a href=alterar_processo.php?codigo_processo=' . $cod_processo . '><span class="glyphicon glyphicon-pencil"></a></td>';
+                    echo'<td style="height:30px;text-align:center" title="Remover"><a href=remover.php?codigo_processo=' . $cod_processo . '><span class="glyphicon glyphicon-remove btn-danger"></a></td>';
                     echo'</tr>';
                 }
             }
