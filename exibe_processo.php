@@ -13,6 +13,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 }
 ?>
 <link rel="stylesheet" href="css/estilo_exibeContribuintes.css">
+<script type="text/javascript" src="js/msg_de_erro.js"></script>
 <form name="fmrpesquisa">
     <div class="row">
         <div class="col-sm-3" style="">
@@ -30,8 +31,13 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
         </div> 
     </div>
 </form>
-
 <div class="row">
+    <?php
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+    }
+    ?>
     <h2>PROCESSOS</h2>
     <!--ESTE CSS RESPONSVEL POR AJUDAR NA INSERÇÃO DA BARRA DE ROLAGEM DA TABELA-->
     <style type="text/css">
@@ -50,7 +56,11 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     <th style="text-align: center;font-size: 12px;">ASSUNTO</th>
                     <th style="text-align: center;font-size: 12px;">SITUAÇÃO</th>                
                     <th style="width: 1%"><img src="img/user.png" title="Editar" style="margin-left: 7px"></th>  
+<<<<<<< HEAD
                     <th style="width: 1%"><img src="img/excluir.png" title="Remover" style="margin-left: 7px;width: 25px;height: 25px"></th>  
+=======
+                    <th style="width: 1%"><img src="img/delete.png" title="Editar" style="margin-left: 7px;height: 25px"></th>  
+>>>>>>> 7d0393100b5a5fcc8bd8aa988028cdb7e53d7e5f
                 </tr>
             </header>            
             <?php
@@ -78,9 +88,19 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     echo'<td style="font-size:12px;text-align:center">' . $linhas['ano'] . '</td>';
                     echo'<td style="font-size:12px;text-align:center">' . date('d/m/Y', strtotime($linhas['data_processo'])) . '</td>';
                     echo'<td style="font-size:12px">' . $linhas['assunto'] . '</td>';
-                    echo'<td style="font-size:12px;text-align:center">' . $linhas['situacao_processo'] . '</td>';                              
+                    echo'<td style="font-size:12px;text-align:center">' . $linhas['situacao_processo'] . '</td>';
                     echo'<td style="height:30px;text-align:center" title="Editar"><a href=alterar_processo.php?codigo_processo=' . $cod_processo . '><span class="glyphicon glyphicon-pencil"></a></td>';
+<<<<<<< HEAD
                     echo'<td style="height:30px;text-align:center" title="Remover"><a href=remover.php?codigo_processo=' . $cod_processo . '><span class="glyphicon glyphicon-remove btn-danger"></a></td>';
+=======
+                    if ($_SESSION['nivel_acesso'] == "4") {
+                        echo"<td><a href='remover_processo.php?codigo_processo=" . $cod_processo . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?'><span class='glyphicon glyphicon-remove'></a></td>";
+                    } else {
+                        ?>
+                        <td><a href="#myModalExclusao" data-toggle="modal" style="font-weight:bold; color:#CC0000; text-decoration:none;margin-left: 5px"><span class="glyphicon glyphicon-remove" style="margin-left: 5px"></a></td>
+                        <?php
+                    }
+>>>>>>> 7d0393100b5a5fcc8bd8aa988028cdb7e53d7e5f
                     echo'</tr>';
                 }
             }
@@ -90,6 +110,34 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     <br><br><br>
 </div>
 </div>
+<!--MODAL PARA O CAMPO CADASTRO - BLOQEANDO USUARIO CASO ELE NÃO SEJA TENHA PERMISSÃO-->
+<div class="modal fade" id="myModalExclusao" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">VOCÊ NÃO TEM PERMISSÃO PARA REALIZAR ESTA TAREFA</h4>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center">
+                    <strong>CONSULTE O USUÁRIO QUE TENHA ESSA PERMISSÃO</strong>
+                    <a href="#" data-toggle="popover" title="GABINETE" style="text-decoration: none"><br>IDENTIFICAR USUÁRIO</span></a>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Retornar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Este script chama o popover para indentificar quem é o usuario nivel 2-->
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
 <?php
 require './pages/footer.php';
 
