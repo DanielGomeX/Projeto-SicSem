@@ -33,12 +33,12 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     <?php if ($_SESSION['nivel_acesso'] == "4" || $_SESSION['nivel_acesso'] == "5" || $_SESSION['nivel_acesso'] == "6") {
                     ?>  
                     <a href="editar.php" style="color:#fff">
-                        <strong>EDITAR<span class="glyphicon glyphicon-pencil" style="margin-left: 10px"></strong></a>
+                        <strong>ACÕES<span class="glyphicon glyphicon-pencil" style="margin-left: 10px"></strong></a>
                     <?php
                     }else {
                     ?>                        
                      <a href="#myModal" data-toggle="modal" style="color:#fff">
-                        <strong>EDITAR<span class="glyphicon glyphicon-pencil" style="margin-left: 10px"></strong></a><?php
+                        <strong>ACÕES<span class="glyphicon glyphicon-pencil" style="margin-left: 10px"></strong></a><?php
                     }?>                  
                 </li>
                 <li>

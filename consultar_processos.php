@@ -153,6 +153,12 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
         <div class="col-sm-3" style="">
             <input type="text" name="parametro_num_processo" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"  placeholder="Nº PROCESSO / PROTOCOLO" title="Digite Apenas Números">
         </div>
+<!--        <div class="col-sm-2" style="">
+            <input type="date" name="parametro_data_inicio" class="form-control">
+        </div>
+        <div class="col-sm-2" style="">
+            <input type="date" name="parametro_data_fim" class="form-control">
+        </div>-->
         <div class="col-sm-2" style="">
             <select name="parametro_ano" id="parametro_ano" class="form-control" >
                 <option value="">ANO</option>
@@ -161,26 +167,37 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 <option value="2017">2017</option>
             </select>
         </div> 
+        <!--        <div class="col-sm-2" style="">
+                    <select name="parametro_mes" id="parametro_mes" class="form-control" >
+                        <option value="">MES</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                    </select>
+                </div> -->
 
-        <div class="col-sm-2">
-            <select name="parametro_assunto" id="atividade_empreendimento" class="form-control" >
-                <option value="">LICENÇA</option>
-                <option value="AUTO DE INFRAÇÃO">AUTO DE INFRAÇÃO</option>
-                <option value="AUTO DE NOTIFICAÇÃO E INTIMAÇÃO">AUTO DE NOTIFICAÇÃO E INTIMAÇÃO</option>                                           
-                <option value="AUTORIZAÇÃO PARA CORTE DE ARVORE">AUTORIZAÇÃO PARA CORTE DE ARVORE</option> 
-                <option value="AUTORIZAÇÃO PARA PODA DE ÁRVORE">AUTORIZAÇÃO PARA PODA DE ÁRVORE</option> 
-                <option value="AUTORIZAÇÃO DE LIMPEZA DE ÁREA">AUTORIZAÇÃO DE LIMPEZA DE ÁREA</option>                                                   
-                <option value="AUTORIZAÇÃO PARA SUPRESSÃO DE VEGETAÇÃO E LIMPEZA DE ÁREA">AUTORIZAÇÃO PARA SUPRESSÃO DE VEGETAÇÃO E LIMPEZA DE ÁREA</option>                                                  
-                <option value="LICENCA AMBIENTAL SIMPLIFICADA">L.A.S</option>
-                <option value="LICENÇA DE INSTALAÇÃO">L.I</option>
-                <option value="LICENÇA DE OPERAÇÃO">L.O</option>
-                <option value="LICENÇA DE OPERAÇÃO CORRETIVA">L.O.C</option>
-                <option value="LICENÇA DE PRÉVIA">L.P</option>                                                                                                                   
-                <option value="RENOVAÇÃO DE LICENCA PRÉVIA">R.L.P</option>
-                <option value="RENOVAÇÃO DE LICENÇA DE INSTALAÇÃO">R.L.I</option>
-                <option value="RENOVAÇÃO DE LICENÇA DE OPERAÇÃO">R.L.O</option>
-            </select>
-        </div>
+                <div class="col-sm-2">
+                    <select name="parametro_assunto" id="atividade_empreendimento" class="form-control" >
+                        <option value="">LICENÇA</option>
+                        <option value="AUTO DE INFRAÇÃO">AUTO DE INFRAÇÃO</option>
+                        <option value="AUTO DE NOTIFICAÇÃO E INTIMAÇÃO">AUTO DE NOTIFICAÇÃO E INTIMAÇÃO</option>                                           
+                        <option value="AUTORIZAÇÃO PARA CORTE DE ARVORE">AUTORIZAÇÃO PARA CORTE DE ARVORE</option> 
+                        <option value="AUTORIZAÇÃO PARA PODA DE ÁRVORE">AUTORIZAÇÃO PARA PODA DE ÁRVORE</option> 
+                        <option value="AUTORIZAÇÃO DE LIMPEZA DE ÁREA">AUTORIZAÇÃO DE LIMPEZA DE ÁREA</option>                                                   
+                        <option value="AUTORIZAÇÃO PARA SUPRESSÃO DE VEGETAÇÃO E LIMPEZA DE ÁREA">AUTORIZAÇÃO PARA SUPRESSÃO DE VEGETAÇÃO E LIMPEZA DE ÁREA</option>                                                  
+                        <option value="LICENCA AMBIENTAL SIMPLIFICADA">L.A.S</option>
+                        <option value="LICENÇA DE INSTALAÇÃO">L.I</option>
+                        <option value="LICENÇA DE OPERAÇÃO">L.O</option>
+                        <option value="LICENÇA DE OPERAÇÃO CORRETIVA">L.O.C</option>
+                        <option value="LICENÇA DE PRÉVIA">L.P</option>                                                                                                                   
+                        <option value="RENOVAÇÃO DE LICENCA PRÉVIA">R.L.P</option>
+                        <option value="RENOVAÇÃO DE LICENÇA DE INSTALAÇÃO">R.L.I</option>
+                        <option value="RENOVAÇÃO DE LICENÇA DE OPERAÇÃO">R.L.O</option>
+                    </select>
+                </div>
         <div class="col-sm-1" style="">
             <input type="submit" value="BUSCAR" class="btn btn-primary" style="font-size: 15px; font-weight: bold;color: #fff;text-align: center">
         </div>
@@ -188,22 +205,20 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 </form>
 
 <?php
-$parametro_num_processo = filter_input(INPUT_GET, "parametro_num_processo");
 $parametro_ano = filter_input(INPUT_GET, "parametro_ano");
+$parametro_num_processo = filter_input(INPUT_GET, "parametro_num_processo");
 $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
 
-
 $sql = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.data_processo,tb_processo.assunto,tb_processo.situacao_processo,tb_empresa.razaosocial_pessoafisica,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_atividade 
-            FROM 
+        FROM 
             tb_processo, tb_empresa, tb_empreendimento
-            WHERE(numero_processo LIKE '$parametro_num_processo%' AND ano LIKE '$parametro_ano%' AND assunto LIKE '$parametro_assunto%') AND
-            tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa AND tb_processo.fk4_codigo_empreendimento = tb_empreendimento.codigo_empreendimento ORDER BY codigo_processo";
+        WHERE(numero_processo LIKE '$parametro_num_processo%' AND ano LIKE '$parametro_ano%' AND assunto LIKE '$parametro_assunto%') AND
+            tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa AND tb_processo.fk4_codigo_empreendimento = tb_empreendimento.codigo_empreendimento";
 
 $recebe = mysqli_query($con, $sql);
 
 if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR $parametro_ano OR $parametro_assunto) {
     ?>
-
     <div class = "row">
         <div class = "col-sm-12">
             <!--ESTE CSS RESPONSVEL POR AJUDAR NA INSERÇÃO DA BARRA DE ROLAGEM DA TABELA-->
