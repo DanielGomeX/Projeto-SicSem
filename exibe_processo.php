@@ -56,7 +56,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     <th style="text-align: center;font-size: 12px;">ASSUNTO</th>
                     <th style="text-align: center;font-size: 12px;">SITUAÇÃO</th>                
                     <th style="width: 1%"><img src="img/user.png" title="Editar" style="margin-left: 7px"></th>  
-                    <th style="width: 1%"><img src="img/delete.png" title="Editar" style="margin-left: 7px;height: 25px"></th>  
+                    <th style="width: 1%"><img src="img/delete.png" title="Excluir" style="margin-left: 7px;height: 25px"></th>  
                 </tr>
             </header>            
             <?php
@@ -87,7 +87,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                     echo'<td style="font-size:12px;text-align:center">' . $linhas['situacao_processo'] . '</td>';
                     echo'<td style="height:30px;text-align:center" title="Editar"><a href=alterar_processo.php?codigo_processo=' . $cod_processo . '><span class="glyphicon glyphicon-pencil"></a></td>';
                     if ($_SESSION['nivel_acesso'] == "4") {
-                        echo"<td><a href='remover_processo.php?codigo_processo=" . $cod_processo . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?'><span class='glyphicon glyphicon-remove'></a></td>";
+                        echo"<td><a href='remover_processo.php?codigo_processo=" . $cod_processo . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?'><span class='glyphicon glyphicon-remove' style='font-weight:bold; color:#CC0000; text-decoration:none;margin-left: 5px'></span></a></td>";
                     } else {
                         ?>
                         <td><a href="#myModalExclusao" data-toggle="modal" style="font-weight:bold; color:#CC0000; text-decoration:none;margin-left: 5px"><span class="glyphicon glyphicon-remove" style="margin-left: 5px"></a></td>

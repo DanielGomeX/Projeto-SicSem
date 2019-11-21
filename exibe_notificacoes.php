@@ -13,6 +13,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 ?>
 
 <link rel="stylesheet" href="css/estilo_exibeLicencas.css">
+<script type="text/javascript" src="js/msg_de_erro.js"></script>
 <form name="fmrpesquisa">
     <div class="row">
         <div class="col-sm-4" style="">
@@ -45,7 +46,8 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 <th style="text-align: center;font-size: 12px">NÚMERO PROCESSO</th> 
                 <th style="text-align: center;font-size: 12px">STATUS</th>  
                 <th style="text-align: center;font-size: 12px">SITUAÇÃO</th>             
-                <th style="width: 1%"><img  src="img/user.png" title="Editar" style="margin-left: 7px"></th>             
+                <th style="width: 1%"><img  src="img/user.png" title="Editar" style="margin-left: 7px"></th>  
+                <th style="width: 1%"><img src="img/delete.png" title="Excluir" style="margin-left: 7px;height: 25px"></th> 
             </tr>
         </header>
         <?php
@@ -71,17 +73,51 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
                 echo'<td style="font-size:12px">' . $linhas['status'] . '</td>';
                 echo'<td style="font-size:12px">' . $linhas['situacao'] . '</td>';
                 echo'<td  style="height:30px;text-align:center" title="Editar"><a href=alterar_notificacao.php?codigo_notificacao=' . $notificacoes . '><span class="glyphicon glyphicon-pencil"></a></td>';
-                echo'</tr>';
+                if ($_SESSION['nivel_acesso'] == "4") {
+                    echo"<td><a href='remover_notificacoes.php?codigo_notificacao=" . $notificacoes . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?'><span class='glyphicon glyphicon-remove' style='font-weight:bold; color:#CC0000; text-decoration:none;margin-left: 10px'></a></td>";
+                } else {
+                    ?>
+                    <td><a href="#myModalExclusao" data-toggle="modal" style="font-weight:bold; color:#CC0000; text-decoration:none;margin-left: 5px"><span class="glyphicon glyphicon-remove" style="margin-left: 5px"></a></td>
+                        <?php
+                    }
+                    echo'</tr>';
+                }
+            } else {
+                echo "<div class='alert alert-danger fade in' style='text-align:center'><strong>NENHUM RESULTADO ENCONTRADO <img src=' img/sad-face-in-rounded-square (1).png' style='margin-bottom:5px'></strong><br/><br/>";
+                echo "<a href='consultar_notificacoes.php'style='color:blue'><strong>EXIBIR NOTIFICAÇÕES</strong></a></div>";
             }
-        } else {
-            echo "<div class='alert alert-danger fade in' style='text-align:center'><strong>NENHUM RESULTADO ENCONTRADO <img src=' img/sad-face-in-rounded-square (1).png' style='margin-bottom:5px'></strong><br/><br/>";
-            echo "<a href='consultar_notificacoes.php'style='color:blue'><strong>EXIBIR NOTIFICAÇÕES</strong></a></div>";
-        }
-        ?>
+            ?>
     </table><br>
 </div>
 <br><br><br>
+<!--MODAL PARA O CAMPO CADASTRO - BLOQEANDO USUARIO CASO ELE NÃO SEJA TENHA PERMISSÃO-->
+<div class="modal fade" id="myModalExclusao" role="dialog">
+    <div class="modal-dialog">
 
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">VOCÊ NÃO TEM PERMISSÃO PARA REALIZAR ESTA TAREFA</h4>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center">
+                    <strong>CONSULTE O USUÁRIO QUE TENHA ESSA PERMISSÃO</strong>
+                    <a href="#" data-toggle="popover" title="GABINETE" style="text-decoration: none"><br>IDENTIFICAR USUÁRIO</span></a>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Retornar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Este script chama o popover para indentificar quem é o usuario nivel 2-->
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
 <?php
 require './pages/footer.php';
 

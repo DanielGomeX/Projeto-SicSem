@@ -13,6 +13,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 ?>
 
 <link rel="stylesheet" href="css/estilo_exibeLicencas.css">
+<script type="text/javascript" src="js/msg_de_erro.js"></script>
 <form name="fmrpesquisa">
     <div class="row">
         <div class="col-sm-4" style="">
@@ -85,7 +86,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 //                echo'<td  style="height:30px;text-align:center" title="Remover"><a href=remover_licenca.php?codigo_licenca=' . $cod_licenca . '><span class="glyphicon glyphicon-remove"></a></td>';
 
                 if ($_SESSION['nivel_acesso'] == "4") {
-                    echo"<td><a href='remover_licenca.php?codigo_licenca=" . $cod_licenca . "'data-confirm='Tem certeza de que deseja excluir o item selecionado?'><span class='glyphicon glyphicon-remove'></a></td>";
+                    echo"<td><a href='remover_licenca.php?codigo_licenca=" . $cod_licenca . "'data-confirm='Tem certeza de que deseja excluir o item selecionado?'><span class='glyphicon glyphicon-remove' style='font-weight:bold; color:#CC0000; text-decoration:none;margin-left: 10px'></a></td>";
                 } else {
                     ?>
                     <td><a href="#myModalExclusao" data-toggle="modal" style="font-weight:bold; color:#CC0000; text-decoration:none;margin-left: 5px"><span class="glyphicon glyphicon-remove" style="margin-left: 5px"></a></td>

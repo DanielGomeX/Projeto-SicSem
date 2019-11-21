@@ -60,43 +60,43 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
         
         <div class="col-sm-2 grow">
             <div class="panel panel-default">
-                <div class="panel-heading" style="background-color:  #c0a16b;"><h5><strong>EDITAR<br>RAZÃO SOCIAL / Pª FÍSICA</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span></a></h5></div>
+                <div class="panel-heading" style="background-color:  #c0a16b;"><h5><strong>EDITAR / REMOVER<br>RAZÃO SOCIAL / Pª FÍSICA</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span><span class="glyphicon glyphicon-remove" style="color: #FFF; margin-left: 10px"></span></a></h5></div>
                 <div class="panel-body" style="background-color: #67b168;text-align: center"><a href="exibe_contribuintes.php"><span class="glyphicon glyphicon-home" style="color:#fff;font-size: 60px"></span></a></div>
             </div>
         </div>
         <div class="col-sm-2 grow">
             <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR<br>PROCESSOS</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span></h5></div>
+                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR / REMOVER<br>PROCESSOS</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span><span class="glyphicon glyphicon-remove" style="color: #FFF; margin-left: 10px"></span></h5></div>
                 <div class="panel-body" style="background-color: #67b168;text-align: center"><a href="exibe_processo.php"><span class="glyphicon glyphicon-th-list" style="color:#fff;font-size: 60px"></span></a></div>
             </div>
         </div>
         <div class="col-sm-2 grow">
             <div class="panel panel-default">
-                <div class="panel-heading" style="background-color:  #c0a16b;"><h5><strong>EDITAR<br>LICENÇAS</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span></h5></div>
+                <div class="panel-heading" style="background-color:  #c0a16b;"><h5><strong>EDITAR / REMOVER<br>LICENÇAS</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span><span class="glyphicon glyphicon-remove" style="color: #FFF; margin-left: 10px"></span></h5></div>
                 <div class="panel-body" style="background-color: #67b168;text-align: center"><a href="exibe_licencas.php"><span class="glyphicon glyphicon-list-alt" style="color:#fff;font-size: 60px"></span></a></div>
             </div>
         </div>
         <div class="col-sm-2 grow">
             <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR<br>ATIVIDADE ( PESSOAª / RAZÃO SOCIAL) </strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span></h5></div>
+                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR / REMOVER<br>ATIVIDADE ( PESSOAª / RAZÃO SOCIAL) </strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span><span class="glyphicon glyphicon-remove" style="color: #FFF; margin-left: 10px"></span></h5></div>
                 <div class="panel-body" style="background-color:  #67b168;text-align: center"><a href="exibe_atividade.php"><span class="glyphicon glyphicon-stats" style="color:#fff;font-size: 60px"></span></a></div>
             </div>
         </div>
         <div class="col-sm-2 grow">
             <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR<br>ATIVIDADE (EMPREENDIMENTO)</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span></h5></div>
+                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR / REMOVER<br>ATIVIDADE (EMPREENDIMENTO)</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span><span class="glyphicon glyphicon-remove" style="color: #FFF; margin-left: 10px"></span></h5></div>
                 <div class="panel-body" style="background-color:  #67b168;text-align: center"><a href="exibe_atividade_empreendimento.php"><span class="glyphicon glyphicon-briefcase" style="color:#fff;font-size: 60px"></span></a></div>
             </div>
         </div>
         <div class="col-sm-2 grow">
             <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR<br>NOTIFICAÇÃO</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span></h5></div>
+                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR / REMOVER<br>NOTIFICAÇÃO</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span><span class="glyphicon glyphicon-remove" style="color: #FFF; margin-left: 10px"></span></h5></div>
                 <div class="panel-body" style="background-color:  #67b168;text-align: center"><a href="exibe_notificacoes.php"><span class="glyphicon glyphicon-bell" style="color:#fff;font-size: 60px"></span></a></div>
             </div>
         </div>
         <div class="col-sm-2 grow">
             <div class="panel panel-default">
-                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR<br>AUTO DE IINFRAÇÃO</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span></h5></div>
+                <div class="panel-heading" style="background-color: #c0a16b;"><h5><strong>EDITAR / REMOVER<br>AUTO DE IINFRAÇÃO</strong><br><br><span class="glyphicon glyphicon-pencil" style="color: #FFF"></span><span class="glyphicon glyphicon-remove" style="color: #FFF; margin-left: 10px"></span></h5></div>
                 <div class="panel-body" style="background-color:  #67b168;text-align: center"><a href="exibe_autos.php"><span class="glyphicon glyphicon-alert" style="color:#fff;font-size: 60px"></span></a></div>
             </div>
         </div>
