@@ -150,9 +150,26 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
     </div><hr>
 
     <div class="row">
-        <div class="col-sm-3" style="">
-            <input type="text" name="parametro_num_processo" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"  placeholder="Nº PROCESSO / PROTOCOLO" title="Digite Apenas Números">
-        </div>
+        <!--        <div class="col-sm-3" style="">
+                    <input type="text" name="parametro_num_processo" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"  placeholder="Nº PROCESSO / PROTOCOLO" title="Digite Apenas Números">
+                </div>-->
+        <div class="col-sm-2" style="">
+            <select name="parametro_mes" id="parametro_mes" class="form-control" >
+                <option value="">MES</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div> 
         <div class="col-sm-2" style="">
             <select name="parametro_ano" id="parametro_ano" class="form-control" >
                 <option value="">ANO</option>
@@ -188,20 +205,35 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 </form>
 
 <?php
-$parametro_num_processo = filter_input(INPUT_GET, "parametro_num_processo");
+//$parametro_num_processo = filter_input(INPUT_GET, "parametro_num_processo");
+$parametro_mes = filter_input(INPUT_GET, "parametro_mes");
 $parametro_ano = filter_input(INPUT_GET, "parametro_ano");
 $parametro_assunto = filter_input(INPUT_GET, "parametro_assunto");
 
 
-$sql = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.data_processo,tb_processo.assunto,tb_processo.situacao_processo,tb_empresa.razaosocial_pessoafisica,tb_empreendimento.nome_empreendimento,tb_empreendimento.nome_atividade 
+$sql = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.data_processo,tb_processo.assunto,tb_processo.situacao_processo
             FROM 
-            tb_processo, tb_empresa, tb_empreendimento
-            WHERE(numero_processo LIKE '$parametro_num_processo%' AND ano LIKE '$parametro_ano%' AND assunto LIKE '$parametro_assunto%') AND
-            tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa AND tb_processo.fk4_codigo_empreendimento = tb_empreendimento.codigo_empreendimento ORDER BY codigo_processo";
+            tb_processo
+            WHERE(month(data_processo) = '$parametro_mes' and year(data_processo) = '$parametro_ano')
+            
+            ";
+
+if(!empty($_REQUEST['parametro_mes'])){
+    $sql .="AND MONTH(data_processo)=".$_REQUEST['parametro_mes']; 
+}
+if(!empty($_REQUEST['parametro_ano'])){
+    $sql .="AND YEAR(data_processo)=".$_REQUEST['parametro_ano']; 
+}
+
+
+
+echo $sql;
+
 
 $recebe = mysqli_query($con, $sql);
 
-if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR $parametro_ano OR $parametro_assunto) {
+
+if (mysqli_num_rows($recebe) > 0) {
     ?>
 
     <div class = "row">
@@ -240,7 +272,7 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_num_processo OR $parametro_ano O
                         echo'<tr style="font-size:13px">';
                         echo'<td style="font-size:12px;">' . $linhas['numero_processo'] . '</td>';
                         echo'<td style="font-size:12px;">' . $linhas['ano'] . '</td>';
-                        echo'<td style="font-size:12px">' . $linhas['razaosocial_pessoafisica'] . '</td>';
+//                        echo'<td style="font-size:12px">' . $linhas['razaosocial_pessoafisica'] . '</td>';
                         echo'<td style="font-size:12px;">' . $linhas['assunto'] . '</td>';
                         echo'<td style="font-size:12px;">' . date('d/m/Y', strtotime($linhas['data_processo'])) . '</td>';
                         echo'<td style="font-size:12px">' . $linhas['situacao_processo'] . '</td>';
