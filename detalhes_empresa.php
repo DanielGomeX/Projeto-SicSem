@@ -388,7 +388,7 @@ echo'<button type="button" class="btn btn-primary" style="margin-left:3px"><stro
 
         /* ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI */
         echo"<div class='row'>";
-        echo"<div class='col-sm-12 text-center' style='border:1px solid red'>";
+        echo"<div class='col-sm-12 text-center' style='border:'>";
 
         $sql_tipo_licenca = "SELECT tb_licenca.codigo_licenca,tb_empresa.codigo_empresa FROM tb_licenca,tb_empresa WHERE tb_licenca.fk4_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
@@ -447,29 +447,40 @@ echo'<button type="button" class="btn btn-primary" style="margin-left:3px"><stro
         }
 
         echo"</div>";
-        echo"</div><br><br>";
+        echo"</div>";
         ?>
         <div class="row">
-            <div class='col-sm-12 text-center' style='border:1px solid red'>
-                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                 cadasstrar   
-                </a>
-                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                 cadasstrar   
-                </a>
-                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                 cadasstrar   
-                </a>
-                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                 cadasstrar   
-                </a>
-                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                 cadasstrar   
-                </a>
-                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                 cadasstrar   
-                </a>
-
+            <div class='col-sm-12 text-center'>
+                <div class="col-sm-1" style="margin-left: 165px">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                     cadastrar   
+                    </a>
+                </div>
+                <div class="col-sm-1" style="margin-left: 20px">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                     cadastrar   
+                    </a>
+                </div>
+                <div class="col-sm-1" style="margin-left: 65px">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                     cadastrar   
+                    </a>
+                </div>
+                <div class="col-sm-1" style="margin-left: 65px">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                     cadastrar   
+                    </a>
+                </div>
+                <div class="col-sm-1" style="margin-left: 40px">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                     cadastrar   
+                    </a>
+                </div>
+                <div class="col-sm-1" style="margin-left: 80px">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                     cadastrar   
+                    </a>
+                </div>
             </div>
         </div><br>
         <?php
