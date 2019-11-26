@@ -13,7 +13,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 }
 if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
 
-     $empresa = strtoupper(addslashes($_POST['empresa']));
+    $empresa = strtoupper(addslashes($_POST['empresa']));
     $nome_atividade = strtoupper(addslashes($_POST['nome_atividade']));
     $nome_empreendimento = strtoupper(addslashes($_POST['nome_empreendimento']));
     $nome_logradouro = strtoupper(addslashes($_POST['nome_logradouro']));
@@ -26,7 +26,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
     $atividade_empreendimento = strtoupper(addslashes($_POST['atividade_empreendimento']));
     $grau_atividade = strtoupper(addslashes($_POST['grau_atividade']));
 //    $denominacao_comercial = strtoupper(addslashes($_POST['denominacao_comercial']));
-    
+
     $verifica = "SELECT fk1_codigo_empresa,nome_atividade FROM tb_empreendimento,tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa='" . $_POST['empresa'] . "' AND tb_empreendimento.nome_atividade='" . $_POST['nome_atividade'] . "'";
     $recebe_consulta = mysqli_query($con, $verifica);
     if (mysqli_num_rows($recebe_consulta) > 0 && $nome_atividade != '') {
@@ -57,6 +57,20 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                             setTimeout('window.location.href="cad_processo.php"', 3500);
                         </script>
                     </div>
+                    <div class="modal-footer">
+                        <?php if ($_POST['nome_atividade']) {
+                            ?>
+                            <script type="text/javascript">
+                                setTimeout('window.location.href="cadastros.php"', 3500);
+                            </script>
+                            <?php
+                        } else {
+                            ?>
+                            <script type="text/javascript">
+                                setTimeout('window.location.href="cad_atividade.php"', 3500);
+                            </script><?php }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,7 +82,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
         <?php
     }
 }
-    ?>
+?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
