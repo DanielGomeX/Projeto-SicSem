@@ -70,11 +70,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
 
                                         <script type="text/javascript">
                                             setTimeout('window.location.href="cadastros.php"', 3500);
-                                        </script>
-                                        
-                                        
+                                        </script>      
                                     </div>
-
                                 </div>
                             </div>
                         </div>
