@@ -13,7 +13,12 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 }
 ?>
 <h2 style="text-align:center;color: #1b6d85"><strong>DADOS DA RAZÃO SOCIAL / Pª FÍSICA</strong></h2><br><br>
-
+<?php
+if (isset($_SESSION['msg'])) {
+    echo ($_SESSION['msg']);
+    unset($_SESSION['msg']);
+}
+?>
 
 <?php
 //INFORMAÇÕES REFERENTES A EMPRESAS, EMPREENDIMENTOS,LICENCAS,PROCESSOS...
@@ -505,16 +510,50 @@ if (mysqli_num_rows($exe_empresa) > 0) {
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/validaempreendimento.js"></script>
 <link rel="stylesheet" type="text/css" href="css/estilo_cadEmpreendimento.css">
+<?php
+if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
+
+    $empresa = strtoupper(addslashes($_POST['empresa']));
+    $nome_atividade = strtoupper(addslashes($_POST['nome_atividade']));
+    $atividade_empreendimento = strtoupper(addslashes($_POST['atividade_empreendimento']));
+    $grau_atividade = strtoupper(addslashes($_POST['grau_atividade']));
+
+    $verifica = "SELECT fk1_codigo_empresa,nome_atividade FROM tb_empreendimento,tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa='" . $_POST['empresa'] . "' AND tb_empreendimento.nome_atividade='" . $_POST['nome_atividade'] . "'";
+    $recebe_consulta = mysqli_query($con, $verifica);
+    if (mysqli_num_rows($recebe_consulta) > 0 && $nome_atividade != '') {
+        ?>
+        <script>
+            alert('ERRO! ESTA RAZÃO SOCIAL / PESSOA FÍSICA JÁ POSSUI ESTA ATIVIDADE CADASTRADA');
+            window.history.back();
+        </script>
+        <?php
+    } else
+    if (isset($_POST['empresa'])) {
+        $sql = "INSERT INTO tb_empreendimento(fk1_codigo_empresa,nome_atividade,atividade_empreendimento,grau_atividade)"
+                . "VALUES($empresa,UPPER('$nome_atividade'),'$atividade_empreendimento','$grau_atividade')";
+        mysqli_query($con, $sql);
+        //recuperando o ultimo id do usuario inserido
+        $ultimo_cod = mysqli_insert_id($con);
+        //echo $ultimo_cod;
+        ?>
+        <script>
+            alert('CADASTRO REALIZADO COM SUCESSO!');
+            window.history.back();
+        </script>
+        <?php
+    }
+}
+?>
 
 <div class="modal fade" id="myModalcadEmpreendimento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Cancelar &times</span></button><br>
-                <h4 class="modal-title text-center" id="myModalLabel"><strong style="color: #048C46">CADASTRO ATIVIDADE</strong></h4>
+                <h4 class="modal-title text-center" id="myModalLabel"><strong style="color: #048C46">CADASTRO EMPREENDIMENTO / ATIVIDADE</strong></h4>
             </div>
             <div class="modal-body">
-                <form  action="guarda_empreendimento.php"  method="POST" name="frmempreendimento" id="frmempreendimento">
+                <form  action=""  method="POST" name="frmempreendimento" id="frmempreendimento">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="panel panel-success">
@@ -525,14 +564,11 @@ if (mysqli_num_rows($exe_empresa) > 0) {
                                 </div>
                                 <div id="collapse1" class="panel-collapse collapse in">
                                     <div class="panel-body">
-                                        
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="empresa"><strong>RAZÃO SOCIAL E / OU PESSOA FÍSICA *</strong></label><br/>
-                                                    <!--<input type="text" name="empresa" id="empresa" value="<?= $linha_sql['razaosocial_pessoafisica']; ?>" readonly="" class="form-control" autofocus="" />-->
-                                                <select name="empresa" id="empresa" class="form-control" autofocus="">
-                                                       
+                                                    <select name="empresa" id="empresa" class="form-control" autofocus="">
                                                         <?php
 //                                                        $codigo_empresa = $_GET['codigo_empresa']; /* link dinamico utilizando o get */
                                                         $empresa = "SELECT codigo_empresa, razaosocial_pessoafisica FROM tb_empresa WHERE codigo_empresa = $infor_empresa";
@@ -543,13 +579,14 @@ if (mysqli_num_rows($exe_empresa) > 0) {
                                                         ?>
                                                     </select>
                                                 </div>                                   
-                                            </div>
+                                            </div>                                  
                                         </div>
+
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <label for="atividade_empreendimento"><strong>ATIVIDADE*</strong></label><br/>
-                                                    <input type="text" name="atividade_empreendimento" id="atividade_empreendimento" value="ATIVIDADE"  readonly="" class="form-control" placeholder="Campo Obrigatório" autocomplete="off" />   
+                                                    <label for="atividade_empreendimento"><strong>EMPREENDIMENTO / ATIVIDADE*</strong></label><br/>
+                                                    <input type="text" name="atividade_empreendimento" id="atividade_empreendimento" value="ATIVIDADE" readonly="" class="form-control" />
                                                 </div>
                                             </div>
                                         </div> 
@@ -577,8 +614,7 @@ if (mysqli_num_rows($exe_empresa) > 0) {
                                         </div>                                        
                                     </div>
                                 </div>
-                            </div>
-                            
+                            </div>           
                             <div class="panel panel-default">
                                 <div class="panel-title" style="text-align: center;"><br/>
                                     <button type="submit" class="btn btn-success" style="font-size: 17px; font-weight: bold;">REALIZAR CADASTRO<span class="glyphicon glyphicon-saved" style="margin-left: 10px;"></span></button>
