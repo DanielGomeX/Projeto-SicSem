@@ -13,15 +13,8 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 }
 ?>
 <h2 style="text-align:center;color: #1b6d85"><strong>DADOS DA RAZÃO SOCIAL / Pª FÍSICA</strong></h2><br><br>
-<?php
-if (isset($_SESSION['msg'])) {
-    echo ($_SESSION['msg']);
-    unset($_SESSION['msg']);
-}
-?>
 
 <?php
-//INFORMAÇÕES REFERENTES A EMPRESAS, EMPREENDIMENTOS,LICENCAS,PROCESSOS...
 $infor_empresa = $_GET['codigo_empresa']; /* link dinamico utilizando o get */
 $sql_empresa = "SELECT tb_licenca.codigo_licenca,tb_licenca.numero_licenca,tb_licenca.ano_licenca,tb_licenca.data_emissao,tb_licenca.data_validade,tb_licenca.descricao_atividade,tb_empresa.codigo_empresa,tb_empresa.razaosocial_pessoafisica,tb_empresa.nome_fantasia,tb_empresa.pessoa_fisicajuridica,tb_empresa.cnpj_cpf,
 tb_empresa.logradouro,tb_empresa.numero,tb_empresa.uf,tb_empresa.municipio,tb_empresa.bairro,tb_empresa.cep,tb_empresa.email,tb_empresa.telefone,tb_empresa.complemento,tb_empresa.localizacao_map,tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.ano,tb_processo.assunto,
@@ -35,7 +28,7 @@ $exe_empresa = mysqli_query($con, $sql_empresa);
 if (mysqli_num_rows($exe_empresa) > 0) {
     while ($linhas = mysqli_fetch_array($exe_empresa)) {
         $licencas = $linhas['codigo_empresa']; //variavel pararecupar o id do empreendimento
-
+        
         echo"<div class='row'>";
         echo"<div class='col-sm-8' style='border:1px solid #EEE9E9;background-color:#EEE9E9'>";
         echo"<strong style='font-size:15px;margin-left:10px'>RAZÃO SOCIAL / PESSOA FÍSICA: </strong>" . $linhas['razaosocial_pessoafisica'] . "";
@@ -98,14 +91,7 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         echo"</div><br><br>";
         echo"</div>";
 
-//        echo"<div class='row'>";
-//        echo"<div class='col-sm-12' style='border:1px solid #EEE9E9;background-color:#EEE9E9'>";
-//        echo"<strong style='font-size:15px;margin-left:10px'>RAMO DA ATIVIDADE: </strong>" . $linhas['ramo_atividade_um'] . "";
-//        echo"</div><hr style='border:1px solid black'>";
-//        echo"</div>";
-//        echo"</div>";
-
-        /* ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI */
+        /*ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI*/
         echo"<div class='row'>";
         echo"<div class='col-sm-12 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_licenca.codigo_licenca,tb_empresa.codigo_empresa FROM tb_licenca,tb_empresa WHERE tb_licenca.fk4_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
@@ -237,13 +223,6 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         echo"<strong style='font-size:15px;text-aling:right'>EMAIL: </strong>" . $linhas['email'] . "<br>";
         echo"</div><br><br>";
         echo"</div>";
-
-//        echo"<div class='row'>";
-//        echo"<div class='col-sm-12' style='border:1px solid #EEE9E9;background-color:#EEE9E9'>";
-//        echo"<strong style='font-size:15px;margin-left:10px'>RAMO DA ATIVIDADE: </strong>" . $linhas['ramo_atividade_um'] . "";
-//        echo"</div><hr style='border:1px solid black'>";
-//        echo"</div>";
-//        echo"</div>";
 
         /* ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI */
         echo"<div class='row'>";
@@ -383,13 +362,6 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         echo"</div><br><br>";
         echo"</div>";
 
-//        echo"<div class='row'>";
-//        echo"<div class='col-sm-12' style='border:1px solid #EEE9E9;background-color:#EEE9E9'>";
-//        echo"<strong style='font-size:15px;margin-left:10px'>RAMO DA ATIVIDADE: </strong>" . $linhas['ramo_atividade_um'] . "";
-//        echo"</div><hr style='border:1px solid black'>";
-//        echo"</div>";
-//        echo"</div>";
-
         /* ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI */
         echo"<div class='row'>";
         echo"<div class='col-sm-12 text-center' style='border:'>";
@@ -460,7 +432,7 @@ if (mysqli_num_rows($exe_empresa) > 0) {
                     </a>
                 </div>
                 <div class="col-sm-1" style="margin-left: 20px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                    <a href="#myModalCadProcesso" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
                         cadastrar   
                     </a>
                 </div>
@@ -491,7 +463,6 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         echo"<div class='col-sm-12' style='text-align:center'>";
         echo"<div class='btn-group'>";
         ?>
-
         <?php
         echo'<button type="button" class="btn btn-primary" style="margin-left:3px"><strong style="font-size:17px"><a href="consultar_empresas.php" style="font-weight:bold; color:#FFF; text-decoration:none">NOVA CONSULTA <span  class="glyphicon glyphicon-remove" style="margin-left:10px; font-size:17px"></a></strong></button>';
         echo'<button type="button" class="btn btn-danger" style="margin-left:3px"><strong style="font-size:17px"><a href="inicio.php" style="font-weight:bold; color:#FFF; text-decoration:none">PAGINA INICIAL <span  class="glyphicon glyphicon-remove" style="margin-left:10px; font-size:17px"></a></strong></button>';
@@ -525,7 +496,6 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
     $bairro = strtoupper(addslashes($_POST['nome_bairro']));
     $atividade_empreendimento = strtoupper(addslashes($_POST['atividade_empreendimento']));
     $grau_atividade = strtoupper(addslashes($_POST['grau_atividade']));
-//    $denominacao_comercial = strtoupper(addslashes($_POST['denominacao_comercial']));
 
     $verifica = "SELECT fk1_codigo_empresa,nome_atividade FROM tb_empreendimento,tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa='" . $_POST['empresa'] . "' AND tb_empreendimento.nome_atividade='" . $_POST['nome_atividade'] . "'";
     $recebe_consulta = mysqli_query($con, $verifica);
@@ -534,7 +504,6 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
         <script>
             alert('ERRO! ESTA RAZÃO SOCIAL / PESSOA FÍSICA JÁ POSSUI ESTA ATIVIDADE CADASTRADA');
             window.history.back();
-
         </script>
         <?php
     } else
@@ -544,13 +513,13 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
         mysqli_query($con, $sql);
         //recuperando o ultimo id do usuario inserido
         $ultimo_cod = mysqli_insert_id($con);
-        echo $ultimo_cod;
+        //echo $ultimo_cod;
+       
         ?>
         <script>
-            alert('CADASTRADO REALIZADO COM SUCESSO!');
+            alert('ATIVIDADE / EMPREENDIMENTO REALIZADO COM SUCESSO!');
             window.history.back();
         </script>
-       
         <?php
     }
 }
@@ -579,10 +548,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="empresa"><strong>RAZÃO SOCIAL E / OU PESSOA FÍSICA *</strong></label><br/>
-
                                                     <select name="empresa" id="empresa" class="form-control" autofocus="">
                                                         <?php
-//                                                        $codigo_empresa = $_GET['codigo_empresa']; /* link dinamico utilizando o get */
                                                         $empresa = "SELECT codigo_empresa, razaosocial_pessoafisica FROM tb_empresa WHERE codigo_empresa = $infor_empresa";
                                                         $recebe_empresas = mysqli_query($con, $empresa);
                                                         while ($linha = mysqli_fetch_array($recebe_empresas)) {
@@ -593,7 +560,6 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                                 </div>                                   
                                             </div>                                  
                                         </div>
-
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group">
@@ -969,6 +935,193 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
         </div>
     </div>
 </div>
+
+<?php
+
+    if (isset($_POST['empreendimento']) && empty($_POST['empreendimento']) == FALSE) {
+        if (isset($_POST['numero_processo']) && empty($_POST['numero_processo']) == FALSE) {
+            if (isset($_POST['data_processo']) && empty($_POST['data_processo']) == FALSE) {
+                if (isset($_POST['assunto']) && empty($_POST['assunto']) == FALSE) {
+
+                    $empresa = strtoupper(addslashes($_POST['empresa']));
+                    $empreendimento = strtoupper(addslashes($_POST['empreendimento']));
+                    $numero_processo = strtoupper(addslashes($_POST['numero_processo']));
+                    $ano = strtoupper(addslashes($_POST['ano']));
+                    $data_processo = strtoupper(addslashes($_POST['data_processo']));
+                    $assunto = strtoupper(addslashes($_POST['assunto']));
+                    $situacao_processo = strtoupper(addslashes($_POST['situacao_processo']));
+                    $motivo_situacao = strtoupper(addslashes($_POST['motivo_situacao']));
+
+                    //verificando se ja existe no banco de dados o numero do processo informado            
+                    $consulta_processo = "SELECT numero_processo,assunto,ano FROM tb_processo WHERE numero_processo ='" . $_POST['numero_processo'] . "' AND assunto ='" . $_POST['assunto'] . "' AND ano='" . $_POST['ano'] . "' ";
+                    $recebe_consulta = mysqli_query($con, $consulta_processo);
+
+                    if (mysqli_num_rows($recebe_consulta) > 0) {
+                        ?>
+                        <script>
+                            alert('ERRO! JÁ EXISTE UM PROCESSO COM O NÚMERO INFORMADO, POR FAVOR INFORME OUTRO NÚMERO! \n\n ATENÇÃO CASO O EMPREENDIMENTO / ATIVIDADE NÃO APAREÇA SELECIONE A RAZÃO SOCIAL / Pª FISICA NOVAMENTE ');
+                            window.history.back();
+                        </script>
+                        <?php
+                    } else {
+
+                        $sql = "INSERT INTO tb_processo(fk3_codigo_empresa,fk4_codigo_empreendimento,numero_processo,ano,data_processo,assunto,situacao_processo,motivo_situacao)"
+                                . "VALUES('$empresa','$empreendimento','$numero_processo','$ano','$data_processo','$assunto','$situacao_processo','$motivo_situacao')";
+                        mysqli_query($con, $sql);
+
+                        //recuperando o ultimo processo inserido
+                        $ultimo_processo = mysqli_insert_id($con);
+//                        echo $ultimo_processo;
+                        $_SESSION['ultimo_processo'] = $ultimo_processo;
+//                      print_r($sql);                   
+//                        $_SESSION['controle_de_abas'] = 1;
+                        // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+                        $emailUser = $_SESSION['email'];
+                        $user = $_SESSION['nome'];
+                        $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+                        $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+                        $data = Date("Y-m-d H:i:s");
+                        $acaoUsuario = "Realizou o Cadastro do processo de numero ->$numero_processo, para o empreendimento de codigo->$empreendimento, e empresa de codigo $empreendimento";
+                        $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+                        mysqli_query($con, $sqlLog);
+                        
+                        ?>
+                        <script>
+                            alert('PROCESSSO CADASTRADO COM SUCESSO!');
+                            window.history.back();
+                        </script>
+                        <?php
+                    }
+                }
+            }
+        }
+    }
+?>
+<div class="modal fade" id="myModalCadProcesso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button><br>
+                <h4 class="modal-title text-center" id="myModalLabel"><strong style="color: #048C46">CADASTRO DE PROCESSO</strong></h4>
+            </div>
+            <div class="modal-body">
+                <form  action=""  method="POST" name="frmprocesso" id="frmprocesso">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">                                
+                            <div class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><strong>DADOS DO PROCESSO --- <span style="color: #d58512">Atenção Todos os Campos Com Asteriscos(*) São Obrigatórios</span></strong></a>
+                            </div>
+                        </div>
+                        <div  class="panel-collapse ">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">                                                
+                                            <label for="empresa"><strong>RAZÃO SOCIAL / Pª FÍSICA *</strong></label>
+                                            <select name="empresa" id="empresa" class="form-control" autofocus="">                                                                                                                                  
+                                                <?php
+                                                $empresa = "SELECT codigo_empresa, razaosocial_pessoafisica FROM tb_empresa WHERE codigo_empresa = $infor_empresa";
+                                                $recebe_empresas = mysqli_query($con, $empresa);
+                                                while ($linha = mysqli_fetch_array($recebe_empresas)) {
+                                                    echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                                }
+                                                ?>                                                                                                                    
+                                            </select>
+                                        </div>
+                                        <div class="form-group">  
+                                            <label for="empreendimento"><strong>EMPREENDIMENTO / ATIVIDADE*</strong></label>                                  
+                                            <select name="empreendimento" id="empreendimento" class="form-control" autofocus="">                                                                                                      
+                                                <?php
+                                                $ativ_empree = "SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_atividade,tb_empreendimento.nome_empreendimento,tb_empresa.codigo_empresa FROM tb_empreendimento,tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa AND codigo_empresa = $infor_empresa";
+                                                $recebe_ativ_empree = mysqli_query($con, $ativ_empree);
+                                                while ($linha = mysqli_fetch_array($recebe_ativ_empree)) {
+                                                    echo '<option value="' . $linha['codigo_empreendimento'] . '">' . $linha['nome_empreendimento'] . '</option>';
+                                                }
+                                                ?>                                    
+                                            </select>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">                                      
+                                        <div class="form-group">
+                                            <label for="assunto"><strong>ASSUNTO *</strong></label><br/>
+                                            <select name="assunto" id="assunto" class="form-control">
+                                                <option value="">SELECIONE</option>                                            
+                                                <option value="AUTO DE INFRAÇÃO">AUTO DE INFRAÇÃO</option>
+                                                <option value="AUTO DE NOTIFICAÇÃO E INTIMAÇÃO">AUTO DE NOTIFICAÇÃO E INTIMAÇÃO</option>                                           
+                                                <option value="AUTORIZAÇÃO PARA CORTE DE ARVORE">AUTORIZAÇÃO PARA CORTE DE ARVORE</option> 
+                                                <option value="AUTORIZAÇÃO PARA PODA DE ÁRVORE">AUTORIZAÇÃO PARA PODA DE ÁRVORE</option> 
+                                                <option value="AUTORIZAÇÃO DE LIMPEZA DE ÁREA">AUTORIZAÇÃO DE LIMPEZA DE ÁREA</option>                                                   
+                                                <option value="AUTORIZAÇÃO PARA SUPRESSÃO DE VEGETAÇÃO E LIMPEZA DE ÁREA">AUTORIZAÇÃO PARA SUPRESSÃO DE VEGETAÇÃO E LIMPEZA DE ÁREA</option>                                                  
+                                                <option value="LICENCA AMBIENTAL SIMPLIFICADA">L.A.S</option>
+                                                <option value="LICENÇA DE INSTALAÇÃO">L.I</option>
+                                                <option value="LICENÇA DE OPERAÇÃO">L.O</option>
+                                                <option value="LICENÇA DE OPERAÇÃO CORRETIVA">L.O.C</option>
+                                                <option value="LICENÇA DE PRÉVIA">L.P</option>                                                                                                                   
+                                                <option value="RENOVAÇÃO DE LICENCA PRÉVIA">R.L.P</option>
+                                                <option value="RENOVAÇÃO DE LICENÇA DE INSTALAÇÃO">R.L.I</option>
+                                                <option value="RENOVAÇÃO DE LICENÇA DE OPERAÇÃO">R.L.O</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="row">                          
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="numero_processo"><strong>Nº PROCESSO *</strong></label><br/>
+                                            <input type="text" name="numero_processo" id="numero_processo" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control" placeholder="Campo Obrigatório" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="ano"><strong>ANO *</strong></label><br/>
+                                            <select name="ano" id="ano" class="form-control">
+                                                <option value="">SELECIONE</option>
+                                                <option value="2017">2017</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                            </select>                              
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="data_processo">DATA *</label>
+                                            <input type="date" name="data_processo" id="data_processo" class="form-control" onblur="comparaDataAnoProcesso()" max="2020-12-31" min="2017-01-01" />
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="situacao_processo">SITUAÇÃO</label>
+                                            <input type="text" name="situacao_processo" id="situacao_processo" value="ABERTO" readonly="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="motivo_situacao">MOTIVO DA SITUAÇÃO</label>
+                                            <input type="text" name="motivo_situacao" id="motivo_situacao" value="A DEFINIR" readonly="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-title" style="text-align: center;"><br/>
+                            <button type="submit" class="btn btn-success" style="font-size: 17px; font-weight: bold;">REALIZAR CADASTRO <span class="glyphicon glyphicon-saved" style="margin-left: 10px;"></span></button>
+                            <button  class="btn btn-danger"><a href="cadastros.php"style="text-decoration: none;color:#FFF">CANCELAR CADASTRO<span class="glyphicon glyphicon-remove" style="margin-left: 10px;"></span></a></button><br/><br/>
+                        </div>   
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
