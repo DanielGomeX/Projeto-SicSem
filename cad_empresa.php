@@ -15,7 +15,6 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 }
 ?>
 
-
 <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/valida-documento.js"></script>
@@ -65,7 +64,7 @@ if (isset($_SESSION['email']) && empty($_SESSION['email']) == FALSE) {
 <!--o script acima permite que somente letras sejam digitas nos campos que recebem essa validação-->
 
 <!--O SCRIPT ABAIXO TEM COMO PROPÓSITO RESETAR OS CAMPOS REFERENTES AO ENDEREÇOS -->
-<script type="text/javascript" >
+<script type="text/javascript">
     function limpa_formulário_cep() {
         //Limpa valores do formulário de cep.
         document.getElementById('logradouro').value = ("");
