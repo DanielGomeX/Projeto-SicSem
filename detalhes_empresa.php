@@ -92,8 +92,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         echo"</div>";
 
         /* ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI */
-        echo"<div class='row'>";
-        echo"<div class='col-sm-12 text-center' style='border:'>";
+        echo"<div class='row text-center'>";
+        echo"<div class='col-sm-2 text-center' style='border:'>";
+        
         $sql_tipo_licenca = "SELECT tb_licenca.codigo_licenca,tb_empresa.codigo_empresa FROM tb_licenca,tb_empresa WHERE tb_licenca.fk4_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -102,7 +103,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">LICENÇAS<span class="glyphicon glyphicon-list-alt" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
-
+       echo "</div>";
+        
+        echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_processo.codigo_processo,tb_empresa.codigo_empresa FROM tb_processo,tb_empresa WHERE tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -111,7 +114,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">PROCESSOS<span class="glyphicon glyphicon-th-list" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
-
+         echo "</div>";
+         
+         echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empresa.codigo_empresa FROM tb_empreendimento, tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa AND atividade_empreendimento = 'EMPREENDIMENTO'";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -120,7 +125,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">EMPREENDIMENTO<span class="glyphicon glyphicon-stats" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
-
+         echo "</div>";
+        
+          echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_atividade,tb_empresa.codigo_empresa FROM tb_empreendimento, tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa AND atividade_empreendimento = 'ATIVIDADE'";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -129,7 +136,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">ATIVIDADE<span class="glyphicon glyphicon-briefcase" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+         echo "</div>";
 
+          echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_notificacao.codigo_notificacao,tb_empresa.codigo_empresa FROM tb_notificacao,tb_empresa WHERE tb_notificacao.fk5_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -138,6 +147,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">NOTIFICACÃO<span class="glyphicon glyphicon-bell" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo "</div>";
+        
+         echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_auto_infracao.codigo_auto_infracao,tb_empresa.codigo_empresa FROM tb_auto_infracao, tb_empresa WHERE tb_auto_infracao.fk9_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -146,42 +158,43 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">AUTO DE INFRAÇÃO<span class="glyphicon glyphicon-alert" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo "</div>";
         echo"</div>";
         echo"</div>";
         ?>
-        <div class="row">
-            <div class='col-sm-12 text-center'>
-                <div class="col-sm-1" style="margin-left: 165px">
-                    <a href="#myModalCadLicenca" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+        <div class="row text-center">
+            
+                <div class="col-sm-2" style="margin-left:">
+                    <a href="#myModalCadLicenca" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
                         cadastrar   
                     </a>
                 </div>
-                <div class="col-sm-1" style="margin-left: 20px">
-                    <a href="#myModalCadProcesso" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                <div class="col-sm-2" style="margin-left:">
+                    <a href="#myModalCadProcesso" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
                         cadastrar   
                     </a>
                 </div>
-                <div class="col-sm-1" style="margin-left: 65px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                <div class="col-sm-2" style="margin-left:">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
                         cadastrar   
                     </a>
                 </div>
-                <div class="col-sm-1" style="margin-left: 65px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                <div class="col-sm-2" style="margin-left:">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
                         cadastrar   
                     </a>
                 </div>
-                <div class="col-sm-1" style="margin-left: 40px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                <div class="col-sm-2" style="margin-left:">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
                         cadastrar   
                     </a>
                 </div>
-                <div class="col-sm-1" style="margin-left: 80px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
+                <div class="col-sm-2" style="margin-left:">
+                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
                         cadastrar   
                     </a>
                 </div>
-            </div>
+           
         </div><br>
 
         <?php
