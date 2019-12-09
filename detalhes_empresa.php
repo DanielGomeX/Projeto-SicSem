@@ -94,7 +94,7 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         /* ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI */
         echo"<div class='row text-center'>";
         echo"<div class='col-sm-2 text-center' style='border:'>";
-        
+
         $sql_tipo_licenca = "SELECT tb_licenca.codigo_licenca,tb_empresa.codigo_empresa FROM tb_licenca,tb_empresa WHERE tb_licenca.fk4_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -103,8 +103,8 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">LICENÇAS<span class="glyphicon glyphicon-list-alt" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
-       echo "</div>";
-        
+        echo "</div>";
+
         echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_processo.codigo_processo,tb_empresa.codigo_empresa FROM tb_processo,tb_empresa WHERE tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
@@ -114,9 +114,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">PROCESSOS<span class="glyphicon glyphicon-th-list" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
-         echo "</div>";
-         
-         echo"<div class='col-sm-2 text-center' style='border:'>";
+        echo "</div>";
+
+        echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empresa.codigo_empresa FROM tb_empreendimento, tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa AND atividade_empreendimento = 'EMPREENDIMENTO'";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -125,9 +125,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">EMPREENDIMENTO<span class="glyphicon glyphicon-stats" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
-         echo "</div>";
-        
-          echo"<div class='col-sm-2 text-center' style='border:'>";
+        echo "</div>";
+
+        echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_atividade,tb_empresa.codigo_empresa FROM tb_empreendimento, tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa AND atividade_empreendimento = 'ATIVIDADE'";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -136,9 +136,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">ATIVIDADE<span class="glyphicon glyphicon-briefcase" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
-         echo "</div>";
+        echo "</div>";
 
-          echo"<div class='col-sm-2 text-center' style='border:'>";
+        echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_notificacao.codigo_notificacao,tb_empresa.codigo_empresa FROM tb_notificacao,tb_empresa WHERE tb_notificacao.fk5_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -148,8 +148,8 @@ if (mysqli_num_rows($exe_empresa) > 0) {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#EEE9E9">NOTIFICACÃO<span class="glyphicon glyphicon-bell" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
         echo "</div>";
-        
-         echo"<div class='col-sm-2 text-center' style='border:'>";
+
+        echo"<div class='col-sm-2 text-center' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_auto_infracao.codigo_auto_infracao,tb_empresa.codigo_empresa FROM tb_auto_infracao, tb_empresa WHERE tb_auto_infracao.fk9_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -163,38 +163,38 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         echo"</div>";
         ?>
         <div class="row text-center">
-            
-                <div class="col-sm-2" style="margin-left:">
-                    <a href="#myModalCadLicenca" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-2" style="margin-left:">
-                    <a href="#myModalCadProcesso" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-2" style="margin-left:">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-2" style="margin-left:">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-2" style="margin-left:">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-2" style="margin-left:">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-           
+
+            <div class="col-sm-2" style="margin-left:">
+                <a href="#myModalCadLicenca" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="margin-left:">
+                <a href="#myModalCadProcesso" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="margin-left:">
+                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="margin-left:">
+                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="margin-left:">
+                <a href="#myModalCadNotificacao" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="margin-left:">
+                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+
         </div><br>
 
         <?php
@@ -275,9 +275,8 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         echo"</div>";
 
         /* ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI */
-        echo"<div class='row'>";
-        echo"<div class='col-sm-12 text-center' style='border:'>";
-
+        echo"<div class='row text-cente'>";
+        echo"<div class='col-sm-2' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_licenca.codigo_licenca,tb_empresa.codigo_empresa FROM tb_licenca,tb_empresa WHERE tb_licenca.fk4_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -286,7 +285,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">LICENÇAS<span class="glyphicon glyphicon-list-alt" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
 
+        echo"<div class='col-sm-2' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_processo.codigo_processo,tb_empresa.codigo_empresa FROM tb_processo,tb_empresa WHERE tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -295,7 +296,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">PROCESSOS<span class="glyphicon glyphicon-th-list" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
 
+        echo"<div class='col-sm-2' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empresa.codigo_empresa FROM tb_empreendimento, tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa AND atividade_empreendimento = 'EMPREENDIMENTO'";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -304,7 +307,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">EMPREENDIMENTOS<span class="glyphicon glyphicon-stats" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
 
+        echo"<div class='col-sm-2' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_atividade,tb_empresa.codigo_empresa FROM tb_empreendimento, tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa AND atividade_empreendimento = 'ATIVIDADE'";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -313,7 +318,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">ATIVIDADES<span class="glyphicon glyphicon-briefcase" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
 
+        echo"<div class='col-sm-2' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_notificacao.codigo_notificacao,tb_empresa.codigo_empresa FROM tb_notificacao, tb_empresa WHERE tb_notificacao.fk5_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -322,6 +329,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">NOTIFICAÇÃO<span class="glyphicon glyphicon-bell" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
+
+        echo"<div class='col-sm-2' style='border:'>";
         $sql_tipo_licenca = "SELECT tb_auto_infracao.codigo_auto_infracao,tb_empresa.codigo_empresa FROM tb_auto_infracao, tb_empresa WHERE tb_auto_infracao.fk9_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -330,43 +340,43 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">AUTO DE INFRAÇÃO<span class="glyphicon glyphicon-alert" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
-
+        echo"</div>";
         echo"</div>";
         echo"</div><br><br>";
         ?>
-        <div class="row">
-            <div class='col-sm-12 text-center'>
-                <div class="col-sm-1" style="margin-left: 165px">
-                    <a href="#myModalCadLicenca" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 20px">
-                    <a href="#myModalCadProcesso" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 65px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 65px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 40px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 80px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
+        <div class="row text-center">
+
+            <div class="col-sm-2" style="">
+                <a href="#myModalCadLicenca" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
             </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalCadProcesso" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalCadNotificacao" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+
         </div><br>
         <?php
         echo"<div class='row'>";
@@ -448,9 +458,8 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         echo"</div>";
 
         /* ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI */
-        echo"<div class='row'>";
-        echo"<div class='col-sm-12 text-center' style='border:'>";
-
+        echo"<div class='row text-center'>";
+        echo"<div class='col-sm-2'>";
         $sql_tipo_licenca = "SELECT tb_licenca.codigo_licenca,tb_empresa.codigo_empresa FROM tb_licenca,tb_empresa WHERE tb_licenca.fk4_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -459,7 +468,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">LICENÇAS<span class="glyphicon glyphicon-list-alt" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
 
+        echo"<div class='col-sm-2'>";
         $sql_tipo_licenca = "SELECT tb_processo.codigo_processo,tb_empresa.codigo_empresa FROM tb_processo,tb_empresa WHERE tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -468,7 +479,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">PROCESSOS<span class="glyphicon glyphicon-th-list" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
 
+        echo"<div class='col-sm-2'>";
         $sql_tipo_licenca = "SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empresa.codigo_empresa FROM tb_empreendimento, tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa AND atividade_empreendimento = 'EMPREENDIMENTO'";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -477,7 +490,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">EMPREENDIMENTOS<span class="glyphicon glyphicon-stats" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
 
+        echo"<div class='col-sm-2'>";
         $sql_tipo_licenca = "SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_atividade,tb_empresa.codigo_empresa FROM tb_empreendimento, tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa AND atividade_empreendimento = 'ATIVIDADE'";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -487,7 +502,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">ATIVIDADES<span class="glyphicon glyphicon-briefcase" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
 //            echo'<button type="button" data-toggle="modal" data-target="#myModalcadEmpreendimento" class="btn btn-link" style="text-decoration:none;background-color:#808080;color:#F5FFFA"><strong>CADASTRAR</strong><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px;"></span></button>';
         }
+        echo"</div>";
 
+        echo"<div class='col-sm-2'>";
         $sql_tipo_licenca = "SELECT tb_notificacao.codigo_notificacao,tb_empresa.codigo_empresa FROM tb_notificacao, tb_empresa WHERE tb_notificacao.fk5_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -496,6 +513,9 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">NOTIFICAÇÕES<span class="glyphicon glyphicon-bell" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
+
+        echo"<div class='col-sm-2'>";
         $sql_tipo_licenca = "SELECT tb_auto_infracao.codigo_auto_infracao,tb_empresa.codigo_empresa FROM tb_auto_infracao, tb_empresa WHERE tb_auto_infracao.fk9_codigo_empresa = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
         $sql_qtd = mysqli_query($con, $sql_tipo_licenca);
         $sql_total = mysqli_num_rows($sql_qtd);
@@ -504,43 +524,42 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         } else {
             echo'<a href=#=' . $infor_empresa . ' class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#D3D3D3">AUTOS DE INFRAÇÕES<span class="glyphicon glyphicon-alert" style="color:000;margin-left:5px"></span><br><span class="badge">' . $sql_total . '</span></a>';
         }
+        echo"</div>";
 
         echo"</div>";
         echo"</div>";
         ?>
 
-        <div class="row">
-            <div class='col-sm-12 text-center'>
-                <div class="col-sm-1" style="margin-left: 165px">
-                    <a href="#myModalCadLicenca" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 20px">
-                    <a href="#myModalCadProcesso" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 65px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 65px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 40px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
-                <div class="col-sm-1" style="margin-left: 80px">
-                    <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="margin-right:2px;font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000;margin-left:5px"></span><br><span class="badge"></span>
-                        cadastrar   
-                    </a>
-                </div>
+        <div class="row text-center">
+            <div class="col-sm-2" style="margin-left:">
+                <a href="#myModalCadLicenca" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9;"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalCadProcesso" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalCadNotificacao" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
+            </div>
+            <div class="col-sm-2" style="">
+                <a href="#myModalcadEmpreendimento" data-toggle="modal"  class="btn btn-basic" style="font-size:15px; font-weight: bold;color:000;background-color:#000\9"><span class="glyphicon glyphicon-plus" style="color:000"></span><br><span class="badge"></span>
+                    cadastrar   
+                </a>
             </div>
         </div><br>
         <?php
@@ -567,8 +586,10 @@ if (mysqli_num_rows($exe_empresa) > 0) {
 <script type="text/javascript" src="js/validaempreendimento.js"></script>
 <script type="text/javascript" src="js/validaprocesso.js"></script>
 <script type="text/javascript" src="js/validaLicenca.js"></script>
+<script type="text/javascript" src="js/validanotificacao.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/estilo_cadEmpreendimento.css">
+<link rel="stylesheet" type="text/css" href="css/estilo_cad_notificacao.css">
 <?php
 if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
 
@@ -1113,7 +1134,7 @@ if (isset($_POST['empreendimento']) && empty($_POST['empreendimento']) == FALSE)
                                                 $recebe_ativ_empre = mysqli_query($con, $ativ_empre);
                                                 while ($linha = mysqli_fetch_array($recebe_ativ_empre)) {
                                                     echo"<option></option>";
-                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_empreendimento'] . $linha['nome_atividade']."</option>";
+                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_empreendimento'] . $linha['nome_atividade'] . "</option>";
                                                 }
                                                 ?>                                    
                                             </select>
@@ -1327,7 +1348,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                             <label for="processo"><strong>PROCESSO *</strong></label><br/>                                                              
                                             <select name="processo" id="processo" class="form-control" autofocus="" >                                                                                                      
                                                 <?php
-                                                $proc_empre = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.assunto,tb_empresa.codigo_empresa FROM tb_processo,tb_empresa WHERE tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa AND codigo_empresa =". $infor_empresa." ORDER BY codigo_processo DESC";
+                                                $proc_empre = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.assunto,tb_empresa.codigo_empresa FROM tb_processo,tb_empresa WHERE tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa AND codigo_empresa =" . $infor_empresa . " ORDER BY codigo_processo DESC";
                                                 $recebe_proc_empre = mysqli_query($con, $proc_empre);
                                                 while ($linha = mysqli_fetch_array($recebe_proc_empre)) {
                                                     echo"<option value='" . $linha[''] . "'> " . $linha[''] . " " . $linha [''] . "</option>";
@@ -1348,7 +1369,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                                 $recebe_ativ_empre = mysqli_query($con, $ativ_empre);
                                                 while ($linha = mysqli_fetch_array($recebe_ativ_empre)) {
                                                     echo"<option></option>";
-                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_empreendimento']."</option>";
+                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_empreendimento'] . "</option>";
                                                 }
                                                 ?>
                                             </select>
@@ -1416,7 +1437,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                                 $recebe_ativ_empre = mysqli_query($con, $ativ_empre);
                                                 while ($linha = mysqli_fetch_array($recebe_ativ_empre)) {
                                                     echo"<option></option>";
-                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_atividade']."</option>";
+                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_atividade'] . "</option>";
                                                 }
                                                 ?>                                     
                                             </select>
@@ -1431,6 +1452,330 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                             <button type="submit" class="btn btn-success" style="font-size: 17px; font-weight: bold;">REALIZAR CADASTRO <span class="glyphicon glyphicon-saved" style="margin-left: 10px;"></span></button>
                             <button  class="btn btn-danger"><a href="cadastros.php"style="text-decoration: none;color:#FFF">CANCELAR CADASTRO<span class="glyphicon glyphicon-remove" style="margin-left: 10px;"></span></a></button><br/><br/>                                   
                         </div>   
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalCadNotificacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button><br>
+                <h4 class="modal-title text-center" id="myModalLabel"><strong style="color: #048C46">CADASTRO DE NOTIFICAÇÃO</strong></h4>
+            </div>
+            <div class="modal-body">
+                <form  action=""  method="POST" name="frmnotificacao" id="frmnotificacao">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-success">
+                                <div class="panel-heading"> 
+                                    <div class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><strong>DADOS DA NOTIFICAÇÃO</strong></a>
+                                    </div>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse in">
+                                    <div class="panel-body">                
+                                        <div class="row">
+                                            <div class="col-sm-12" >
+                                                <div class="form-group">
+                                                    <label for="empresa"><strong>RAZÃO SOCIAL / PESSOA FÍSICA *</strong></label>
+                                                    <select name="empresa" id="empresa" class="form-control" autofocus="">
+                                                        <option value="">SELEIONE</option>
+                                                        <option></option>
+                                                        <?php
+                                                        $parametro_empresa = filter_input(INPUT_GET, "parametro_empresa");
+                                                        $empresa = "SELECT *FROM tb_empresa WHERE razaosocial_pessoafisica LIKE '%$parametro_empresa%' ORDER BY razaosocial_pessoafisica";
+                                                        $recebe_empresas = mysqli_query($con, $empresa);
+                                                        while ($linha = mysqli_fetch_array($recebe_empresas)) {
+                                                            echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                                            echo '<option></option>';
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="processo"><strong>PROCESSO *</strong></label><br/>
+                                                    <select  name="processo" id="processo" class="form-control">
+                                                        <option>SELECIONE</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="numero_notificacao"><strong>Nº NOTIFICAÇÃO *</strong></label><br/>
+                                                    <input type="text" name="numero_notificacao" id="numero_notificacao" onkeyup="somenteNumeros(this);" maxlength="3" class="form-control" placeholder="Campo Obrigatório" autocomplete="off"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="ano_notificacao"><strong>ANO *</strong></label><br/>
+                                                    <select name="ano_notificacao" id="ano_notificacao" class="form-control">
+                                                        <option value="">SELECIONE</option>                                          
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                    </select>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="data_notificacao"><strong>DATA DA NOTIFICAÇÃO *</strong></label><br/>
+                                                    <input type="date" name="data_notificacao" id="data_notificacao" class="form-control" onblur="comparaAnoData()" max="2019-12-01"  min="2017-01-01"/>             
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="data_comparecimento"><strong>DATA PARA COMPARECIMENTO *</strong></label><br/>
+                                                    <input type="date" name="data_comparecimento" id="data_comparecimento" class="form-control" onblur="comparadatas()" max="2019-12-01"  min="2017-01-01"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="profissao_atividade"><strong>PROFISSÃO E / OU  ATIVIDADE REALIZADA *</strong></label><br/>
+                                                    <input type="text" name="profissao_atividade" id="profissao_atividade" class="form-control" onKeypress="return letras(event)"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="descricao_prazo"><strong>DESCRICÃO E PRAZO *</strong></label><br/>
+                                                    <input type="text" name="descricao_prazo" id="descricao_prazo" class="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="testemunha"><strong>NOME DA TESTEMUNHA</strong></label><br/>
+                                                    <input type="text" name="testemunha" id="testemunha" class="form-control" onKeypress="return letras(event)"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="status">SITUAÇÃO</label>
+                                                    <input type="text" name="status" id="status" value="NOTIFICADO" readonly="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-success">
+                                <div class="panel-heading"> 
+                                    <div class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" ><strong>INFORMAÇÕES ADICIONAIS (NOTIFICAÇÃO / PROCESSO / LICENÇA)</strong></a>
+                                    </div>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="status_informacoes_adicionais"><strong>A INFORMAÇÕES ADICIONAIS ? *</strong></label><br/>
+                                                    <select name="status_informacoes_adicionais" id="status_informacoes_adicionais" class="form-control" onchange="mostrardivinformacoes(this.value)">
+                                                        <option value="">SELECIONE</option>
+                                                        <option value="SIM">SIM</option>
+                                                        <option value="NAO">NÃO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>                        
+                                        <div class="row">
+                                            <div class="col-sm-3" id="NUMNOTANTERIOR">
+                                                <div class="form-group">
+                                                    <label for="numero_notificacao_anterior"><strong>NÚMERO DA NOTICAÇÃO ANTERIOR</strong></label><br/>
+                                                    <input type="text" name="numero_notificacao_anterior" id="numero_notificacao_anterior"  onkeyup="somenteNumeros(this);" maxlength="3" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3" id="NUMANOANTERIOR">
+                                                <div class="form-group">
+                                                    <label for="numero_notificacao_ano_anterior"><strong>ANO DA NOTIFICAÇÃO ANTERIOR</strong></label><br/>
+                                                    <input type="text" name="numero_notificacao_ano_anterior" id="numero_notificacao_ano_anterior"  onkeyup="somenteNumeros(this);"  maxlength="4" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3" id="NUMPROANTERIOR">
+                                                <div class="form-group">
+                                                    <label for="numero_processo_notificacao_anterior"><strong>NÚMERO DO PROCESSO ANTERIOR</strong></label><br/>
+                                                    <input type="text" name="numero_processo_notificacao_anterior" id="numero_processo_notificacao_anterior"  onkeyup="somenteNumeros(this);" maxlength="3" class="form-control" placeholder=""/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3" id="NUMANOPROANTERIOR">
+                                                <div class="form-group">
+                                                    <label for="ano_processo_notificacao_anterior"><strong>ANO DO PROCESSO ANTERIOR</strong></label><br/>
+                                                    <input type="text" name="ano_processo_notificacao_anterior" id="ano_processo_notificacao_anterior"  onkeyup="somenteNumeros(this);" maxlength="4"  class="form-control" placeholder=""/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12" id="LICENCAANTERIOR">
+                                                <div class="form-group">
+                                                    <label for="status_licenca"><strong>A LICENCA AMBIENTAL</strong></label><br/>
+                                                    <select name="status_licenca" id="status_licenca" class="form-control" onchange="mostrardivlicencas(this.value)">
+                                                        <option value="NAO">NÃO</option>
+                                                        <option value="SIM">SIM</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6" id="NUMLICENCA">
+                                                <div class="form-group" >
+                                                    <label for="numero_licenca_notificacao_anterior"><strong>NÚMERO DA LICENÇA</strong></label><br/>
+                                                    <input type="text" name="numero_licenca_notificacao_anterior" id="numero_licenca_notificacao_anterior" class="form-control"  onkeyup="somenteNumeros(this);" maxlength="3">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" id="NUMANOLICENCA">
+                                                <div class="form-group" >
+                                                    <label for="ano_licenca_notificacao_anterior"><strong>ANO DA LICENÇA</strong></label><br/>
+                                                    <input type="text" name="ano_licenca_notificacao_anterior" id="ano_licenca_notificacao_anterior" class="form-control"  onkeyup="somenteNumeros(this);" maxlength="4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6" id="ORGAOEMISSOR">
+                                                <div class="form-group" >
+                                                    <label for="orgao_emissor_licenca"><strong>ORGÃO EMITENTE DA LICENÇA</strong></label><br/>
+                                                    <input type="text" name="orgao_emissor_licenca" id="orgao_emissor_licenca" class="form-control" onKeypress="return letras(event)">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" id="DATAVALIDADE">
+                                                <div class="form-group" >
+                                                    <label for="data_validade"><strong>DATA VALIDADE</strong></label><br/>
+                                                    <input type="date" name="data_validade" id="data_validade" class="form-control" max="2019-12-31">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-success">
+                                <div class="panel-heading"> 
+                                    <div class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><strong>DADOS DO RESPONSÁVEL E / OU NOTIFICADO</strong></a>
+                                    </div>
+                                </div>
+                                <div id="collapse3" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="status_notificado"><strong>O NOTIFICADO INFORMOU SEU DADOS ? *</strong></label><br/>
+                                                    <select name="status_notificado" id="status_notificado" class="form-control" onchange="mostrardivnotificados(this.value)">
+                                                        <option value="">SELECIONE</option>
+                                                        <option value="SIM">SIM</option>
+                                                        <option value="NAO">NÃO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-8" id="NOMENOTIFICADO">
+                                                <div class="form-group">
+                                                    <label for="nome_notificado"><strong>NOME DO NOTIFICADO E / OU REPONSÁVEL</strong></label><br/>
+                                                    <input type="text" name="nome_notificado" id="nome_notificado" class="form-control" onKeypress="return letras(event)"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" id="CPFNOTIFICADO">
+                                                <div class="form-group">
+                                                    <label for="cpf"><strong>CPF</strong></label><br/>
+                                                    <input type="text" name="cpf" id="cpf" class="form-control" onblur="validaFormato(this);" />
+                                                    <div id="divResultado"></div>         
+                                                    <style>
+                                                        #divResultado{
+                                                            font-family: serif;
+                                                            font-size: 14px;
+                                                            color: #f00;
+                                                            margin-top:5px;
+                                                            font-weight: bold;
+                                                        }
+                                                    </style>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6" id="LOGRADOURONOTIFICADO">
+                                                <div class="form-group">
+                                                    <label for="logradouro"><strong>RUA</strong></label><br/>
+                                                    <input type="text" name="logradouro" id="logradouro" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2" id="NUMERONOTIFICADO">
+                                                <div class="form-group">
+                                                    <label for="numero"><strong>NÚMERO</strong></label><br/>
+                                                    <input type="text" name="numero" id="numero" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" id=BAIRRONOTIFICADO>
+                                                <div class="form-group">
+                                                    <label for="bairro"><strong>BAIRRO</strong></label><br/>
+                                                    <input type="text" name="bairro" id="bairro" class="form-control" onKeypress="return letras(event)"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-success">
+                                <div class="panel-heading"> 
+                                    <div class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><strong>DADOS DO FISCAL E CHEFE DE FISCALIZAÇÃO</strong></a>
+                                    </div>
+                                </div>
+                                <div id="collapse4" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="fiscal"><strong>FISCAL *</strong></label><br/>
+                                                    <select name="fiscal" id="fiscal" class="form-control">
+                                                        <option value="">SELECIONE O FISCAL</option>
+                                                        <?php
+                                                        $fiscal = "SELECT *FROM tb_fiscal";
+                                                        $recebe_fiscal = mysqli_query($con, $fiscal);
+                                                        while ($linha = mysqli_fetch_array($recebe_fiscal)) {
+                                                            echo '<option value="' . $linha['codigo_fiscal'] . '">' . $linha['nome_matricula_fiscal'] . '</option>';
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="chefe_fiscalizacao"><strong>CHEFE DE FISCALIZAÇÃO *</strong></label><br/>
+                                                    <input type="text" name="chefe_fiscalizacao" id="chefe_fiscalizacao" value="CLAUDIO BASTOS FILGUEIRAS JUNIOR - 993200 " readonly="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-title" style="text-align: center;"><br/>
+                                    <button type="submit" class="btn btn-success" style="font-size: 17px; font-weight: bold;">REALIZAR CADASTRO<span class="glyphicon glyphicon-saved" style="margin-left: 10px;"></span></button>
+                                    <button  class="btn btn-danger"><a href="cadastros.php"style="text-decoration: none;color:#FFF">CANCELAR CADASTRO<span class="glyphicon glyphicon-remove" style="margin-left: 10px;"></span></a></button><br/><br/>
+                                </div>   
+                            </div>
+                        </dIv>
                     </div>
                 </form>
             </div>
