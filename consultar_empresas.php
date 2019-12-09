@@ -229,8 +229,10 @@ if (mysqli_num_rows($recebe) > 0 AND $parametro_empresa OR $parametro_cnpj_cpf O
                         echo'<td style="font-size:12px;width:10%">' . $linhas['bairro'] . '</td>';
                         echo'<td style="height:30px;text-align:center" title="Detalhes"><a href=detalhes_empresa.php?codigo_empresa=' . $codigo_empresa . '><button type="button" class="btn btn-xs btn-primary">VISUALIZAR</button></strong></a></td>';
                         echo'</tr>';
-                    }
-                }
+                    }                
+                }else {?>
+                    <div class='alert alert-warning text-center' role='alert'>Caso não encontre a <span style="color: #CC0000">Razão Social / Pessoa Física</span> clique no link ao lado para cadastrar! <a href="cad_empresa.php" target="_blank">Razão Social / Pessoa Física</a></div>
+               <?php }
                 ?>
             </table><br>
         </div>

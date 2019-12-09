@@ -15,14 +15,14 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
 
     $empresa = strtoupper(addslashes($_POST['empresa']));
     $nome_atividade = strtoupper(addslashes($_POST['nome_atividade']));
-    $nome_empreendimento = strtoupper(addslashes($_POST['nome_empreendimento']));
-    $nome_logradouro = strtoupper(addslashes($_POST['nome_logradouro']));
-    $numero_empreendimento = strtoupper(addslashes($_POST['numero_empreendimento']));
-    $complemento = strtoupper(addslashes($_POST['complemento']));
-    $localizacao_map_empre = (addslashes($_POST['localizacao_map_empre']));
-    $uf = strtoupper(addslashes($_POST['nome_uf']));
-    $municipio = strtoupper(addslashes($_POST['nome_municipio']));
-    $bairro = strtoupper(addslashes($_POST['nome_bairro']));
+//    $nome_empreendimento = strtoupper(addslashes($_POST['nome_empreendimento']));
+//    $nome_logradouro = strtoupper(addslashes($_POST['nome_logradouro']));
+//    $numero_empreendimento = strtoupper(addslashes($_POST['numero_empreendimento']));
+//    $complemento = strtoupper(addslashes($_POST['complemento']));
+//    $localizacao_map_empre = (addslashes($_POST['localizacao_map_empre']));
+//    $uf = strtoupper(addslashes($_POST['nome_uf']));
+//    $municipio = strtoupper(addslashes($_POST['nome_municipio']));
+//    $bairro = strtoupper(addslashes($_POST['nome_bairro']));
     $atividade_empreendimento = strtoupper(addslashes($_POST['atividade_empreendimento']));
     $grau_atividade = strtoupper(addslashes($_POST['grau_atividade']));
 //    $denominacao_comercial = strtoupper(addslashes($_POST['denominacao_comercial']));
@@ -39,8 +39,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
         <?php
     } else
     if (isset($_POST['empresa'])) {
-        $sql = "INSERT INTO tb_empreendimento(fk1_codigo_empresa,nome_atividade,nome_empreendimento,nome_logradouro,numero_empreendimento,complemento,Localizacao_map_empre,nome_uf,nome_municipio,nome_bairro,atividade_empreendimento,grau_atividade)"
-                . "VALUES($empresa,UPPER('$nome_atividade'),UPPER('$nome_empreendimento'),UPPER('$nome_logradouro'),'$numero_empreendimento',UPPER('$complemento'),'$localizacao_map_empre','$uf','$municipio','$bairro','$atividade_empreendimento','$grau_atividade')";
+        $sql = "INSERT INTO tb_empreendimento(fk1_codigo_empresa,nome_atividade,atividade_empreendimento,grau_atividade)"
+                . "VALUES($empresa,UPPER('$nome_atividade'),'$atividade_empreendimento','$grau_atividade')";
         mysqli_query($con, $sql);
 
         //recuperando o ultimo id do usuario inserido
@@ -54,22 +54,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                     <div class="modal-header btn-success">
                         <h4 class="modal-title " id="myModalLabel">EMPREENDIMENTO CADASTRADO COM SUCESSO, AGUARDE UM MOMENTO!</h4>
                         <script type="text/javascript">
-                            setTimeout('window.location.href="cad_processo.php"', 3500);
+                            setTimeout('window.location.href="detalhes_empresa.php"', 3500);
                         </script>
-                    </div>
-                    <div class="modal-footer">
-                        <?php if ($_POST['nome_atividade']) {
-                            ?>
-                            <script type="text/javascript">
-                                setTimeout('window.location.href="cadastros.php"', 3500);
-                            </script>
-                            <?php
-                        } else {
-                            ?>
-                            <script type="text/javascript">
-                                setTimeout('window.location.href="cad_atividade.php"', 3500);
-                            </script><?php }
-                        ?>
                     </div>
                 </div>
             </div>
