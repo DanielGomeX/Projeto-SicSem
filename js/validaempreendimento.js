@@ -99,3 +99,17 @@ $(document).ready(function () {
         }
     });
 });
+
+
+function mostrarDivInformacoesAtiEmpre(valor) {
+    if (valor === "EMPREENDIMENTO") {
+        document.getElementById("LOGRADOURO").style.display = "block";
+        document.getElementById("ATIV").style.display = "none";
+        document.getElementById("ATIV_GRAU").style.display = "none";
+    } else if (valor === "ATIVIDADE") {
+        document.getElementById("ATIV").style.display = "block";
+        document.getElementById("ATIV_GRAU").style.display = "block";
+        document.getElementById("LOGRADOURO").style.display = "none";
+    }
+}
+                               

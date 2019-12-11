@@ -587,8 +587,10 @@ if (mysqli_num_rows($exe_empresa) > 0) {
 <script type="text/javascript" src="js/validaprocesso.js"></script>
 <script type="text/javascript" src="js/validaLicenca.js"></script>
 <script type="text/javascript" src="js/validanotificacao.js"></script>
+<script type="text/javascript" src="js/validaDatasNotificacao.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/estilo_cadEmpreendimento.css">
+<link rel="stylesheet" type="text/css" href="css/estilo_divEmpreendimento.css">
 <link rel="stylesheet" type="text/css" href="css/estilo_cad_notificacao.css">
 <?php
 if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
@@ -672,7 +674,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="atividade_empreendimento"><strong>EMPREENDIMENTO / ATIVIDADE*</strong></label><br/>
-                                                    <select name="atividade_empreendimento" id="atividade_empreendimento" class="form-control" onchange="mostrardivinformacoes(this.value)">
+                                                    <select name="atividade_empreendimento" id="atividade_empreendimento" class="form-control" onchange="mostrarDivInformacoesAtiEmpre(this.value)">
                                                         <option value="">SELECIONE</option>
                                                         <option value="EMPREENDIMENTO">EMPREENDIMENTO</option>
                                                         <option value="ATIVIDADE">ATIVIDADE</option>
@@ -705,26 +707,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-success" id="LOGRADOURO" >
-                                <style type="text/css">
-                                    #LOGRADOURO,#ATIV,#ATIV_GRAU
-                                    {
-                                        display:none;
-                                    }
-                                </style>
-                                <script type="text/javascript">
-                                    function mostrardivinformacoes(valor) {
-                                        if (valor === "EMPREENDIMENTO") {
-                                            document.getElementById("LOGRADOURO").style.display = "block";
-                                            document.getElementById("ATIV").style.display = "none";
-                                            document.getElementById("ATIV_GRAU").style.display = "none";
-                                        } else if (valor === "ATIVIDADE") {
-                                            document.getElementById("ATIV").style.display = "block";
-                                            document.getElementById("ATIV_GRAU").style.display = "block";
-                                            document.getElementById("LOGRADOURO").style.display = "none";
-                                        }
-                                    }
-                                </script>
+                            <div class="panel panel-success" id="LOGRADOURO">
                                 <div class="panel-heading"> 
                                     <div class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><strong>LOGRADOURO</strong></a>
@@ -1460,6 +1443,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
 </div>
 
 <div class="modal fade" id="myModalCadNotificacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <link rel="stylesheet" type="text/css" href="css/estilo_divsNotificacao.css">
+    <script type="text/javascript" src="js/scriptExibeDivs.js"></script>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -1626,7 +1611,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                             <div class="col-sm-12" id="LICENCAANTERIOR">
                                                 <div class="form-group">
                                                     <label for="status_licenca"><strong>A LICENCA AMBIENTAL</strong></label><br/>
-                                                    <select name="status_licenca" id="status_licenca" class="form-control" onchange="mostrardivlicencas(this.value)">
+                                                    <select name="status_licenca" id="status_licenca" class="form-control" onchange="mostrarDivLicencas(this.value)">
                                                         <option value="NAO">NÃO</option>
                                                         <option value="SIM">SIM</option>
 
@@ -1678,7 +1663,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="status_notificado"><strong>O NOTIFICADO INFORMOU SEU DADOS ? *</strong></label><br/>
-                                                    <select name="status_notificado" id="status_notificado" class="form-control" onchange="mostrardivnotificados(this.value)">
+                                                    <select name="status_notificado" id="status_notificado" class="form-control" onchange="mostrarDivNotificados(this.value)">
                                                         <option value="">SELECIONE</option>
                                                         <option value="SIM">SIM</option>
                                                         <option value="NAO">NÃO</option>
@@ -1715,7 +1700,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                             <div class="col-sm-6" id="LOGRADOURONOTIFICADO">
                                                 <div class="form-group">
                                                     <label for="logradouro"><strong>RUA</strong></label><br/>
-                                                    <input type="text" name="logradouro" id="logradouro" class="form-control"/>
+                                                    <input type="text" name="logradouro" id="logradouroR" class="form-control"/>
                                                 </div>
                                             </div>
                                             <div class="col-sm-2" id="NUMERONOTIFICADO">
