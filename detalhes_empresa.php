@@ -592,50 +592,51 @@ if (mysqli_num_rows($exe_empresa) > 0) {
 <link rel="stylesheet" type="text/css" href="css/estilo_cadEmpreendimento.css">
 <link rel="stylesheet" type="text/css" href="css/estilo_divEmpreendimento.css">
 <link rel="stylesheet" type="text/css" href="css/estilo_cad_notificacao.css">
-<?php
-if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
 
-    $empresa = strtoupper(addslashes($_POST['empresa']));
-    $nome_atividade = strtoupper(addslashes($_POST['nome_atividade']));
-    $nome_empreendimento = strtoupper(addslashes($_POST['nome_empreendimento']));
-    $nome_logradouro = strtoupper(addslashes($_POST['nome_logradouro']));
-    $numero_empreendimento = strtoupper(addslashes($_POST['numero_empreendimento']));
-    $complemento = strtoupper(addslashes($_POST['complemento']));
-    $localizacao_map_empre = (addslashes($_POST['localizacao_map_empre']));
-    $uf = strtoupper(addslashes($_POST['nome_uf']));
-    $municipio = strtoupper(addslashes($_POST['nome_municipio']));
-    $bairro = strtoupper(addslashes($_POST['nome_bairro']));
-    $atividade_empreendimento = strtoupper(addslashes($_POST['atividade_empreendimento']));
-    $grau_atividade = strtoupper(addslashes($_POST['grau_atividade']));
+<div class="modal fade" id="myModalcadEmpreendimento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <?php
+    if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
 
-    $verifica = "SELECT fk1_codigo_empresa,nome_atividade FROM tb_empreendimento,tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa='" . $_POST['empresa'] . "' AND tb_empreendimento.nome_atividade='" . $_POST['nome_atividade'] . "'";
-    $recebe_consulta = mysqli_query($con, $verifica);
-    if (mysqli_num_rows($recebe_consulta) > 0 && $nome_atividade != '') {
+        $empresa = strtoupper(addslashes($_POST['empresa']));
+        $nome_atividade = strtoupper(addslashes($_POST['nome_atividade']));
+        $nome_empreendimento = strtoupper(addslashes($_POST['nome_empreendimento']));
+        $nome_logradouro = strtoupper(addslashes($_POST['nome_logradouro']));
+        $numero_empreendimento = strtoupper(addslashes($_POST['numero_empreendimento']));
+        $complemento = strtoupper(addslashes($_POST['complemento']));
+        $localizacao_map_empre = (addslashes($_POST['localizacao_map_empre']));
+        $uf = strtoupper(addslashes($_POST['nome_uf']));
+        $municipio = strtoupper(addslashes($_POST['nome_municipio']));
+        $bairro = strtoupper(addslashes($_POST['nome_bairro']));
+        $atividade_empreendimento = strtoupper(addslashes($_POST['atividade_empreendimento']));
+        $grau_atividade = strtoupper(addslashes($_POST['grau_atividade']));
+
+        $verifica = "SELECT fk1_codigo_empresa,nome_atividade FROM tb_empreendimento,tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa='" . $_POST['empresa'] . "' AND tb_empreendimento.nome_atividade='" . $_POST['nome_atividade'] . "'";
+        $recebe_consulta = mysqli_query($con, $verifica);
+        if (mysqli_num_rows($recebe_consulta) > 0 && $nome_atividade != '') {
+            ?>
+            <script>
+                alert('ERRO! ESTA RAZÃO SOCIAL / PESSOA FÍSICA JÁ POSSUI ESTA ATIVIDADE CADASTRADA');
+                window.history.back();
+            </script>
+            <?php
+        } else
+        if (isset($_POST['empresa'])) {
+            $sql = "INSERT INTO tb_empreendimento(fk1_codigo_empresa,nome_atividade,nome_empreendimento,nome_logradouro,numero_empreendimento,complemento,Localizacao_map_empre,nome_uf,nome_municipio,nome_bairro,atividade_empreendimento,grau_atividade)"
+                    . "VALUES($empresa,UPPER('$nome_atividade'),UPPER('$nome_empreendimento'),UPPER('$nome_logradouro'),'$numero_empreendimento',UPPER('$complemento'),'$localizacao_map_empre','$uf','$municipio','$bairro','$atividade_empreendimento','$grau_atividade')";
+            mysqli_query($con, $sql);
+            //recuperando o ultimo id do usuario inserido
+            $ultimo_cod = mysqli_insert_id($con);
+            //echo $ultimo_cod;
+        }
         ?>
         <script>
-            alert('ERRO! ESTA RAZÃO SOCIAL / PESSOA FÍSICA JÁ POSSUI ESTA ATIVIDADE CADASTRADA');
+            alert('CADASTRADO REALIZADO COM SUCESSO!');
             window.history.back();
         </script>
         <?php
-    } else
-    if (isset($_POST['empresa'])) {
-        $sql = "INSERT INTO tb_empreendimento(fk1_codigo_empresa,nome_atividade,nome_empreendimento,nome_logradouro,numero_empreendimento,complemento,Localizacao_map_empre,nome_uf,nome_municipio,nome_bairro,atividade_empreendimento,grau_atividade)"
-                . "VALUES($empresa,UPPER('$nome_atividade'),UPPER('$nome_empreendimento'),UPPER('$nome_logradouro'),'$numero_empreendimento',UPPER('$complemento'),'$localizacao_map_empre','$uf','$municipio','$bairro','$atividade_empreendimento','$grau_atividade')";
-        mysqli_query($con, $sql);
-        //recuperando o ultimo id do usuario inserido
-        $ultimo_cod = mysqli_insert_id($con);
-        //echo $ultimo_cod;
     }
     ?>
-    <script>
-        alert('CADASTRADO REALIZADO COM SUCESSO!');
-        window.history.back();
-    </script>
-    <?php
-}
-?>
 
-<div class="modal fade" id="myModalcadEmpreendimento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -1025,60 +1026,62 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
     </div>
 </div>
 
-<?php
-if (isset($_POST['empreendimento']) && empty($_POST['empreendimento']) == FALSE) {
-    if (isset($_POST['numero_processo']) && empty($_POST['numero_processo']) == FALSE) {
-        if (isset($_POST['data_processo']) && empty($_POST['data_processo']) == FALSE) {
-            if (isset($_POST['assunto']) && empty($_POST['assunto']) == FALSE) {
+<!--os dados abaixo sao referentes ao cadadatro de processo-->
 
-                $empresa = strtoupper(addslashes($_POST['empresa']));
-                $empreendimento = strtoupper(addslashes($_POST['empreendimento']));
-                $numero_processo = strtoupper(addslashes($_POST['numero_processo']));
-                $ano = strtoupper(addslashes($_POST['ano']));
-                $data_processo = strtoupper(addslashes($_POST['data_processo']));
-                $assunto = strtoupper(addslashes($_POST['assunto']));
-                $situacao_processo = strtoupper(addslashes($_POST['situacao_processo']));
-                $motivo_situacao = strtoupper(addslashes($_POST['motivo_situacao']));
+<div class="modal fade" id="myModalCadProcesso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <?php
+    if (isset($_POST['empreendimento']) && empty($_POST['empreendimento']) == FALSE) {
+        if (isset($_POST['numero_processo']) && empty($_POST['numero_processo']) == FALSE) {
+            if (isset($_POST['data_processo']) && empty($_POST['data_processo']) == FALSE) {
+                if (isset($_POST['assunto']) && empty($_POST['assunto']) == FALSE) {
 
-                //verificando se ja existe no banco de dados o numero do processo informado            
-                $consulta_processo = "SELECT numero_processo,assunto,ano FROM tb_processo WHERE numero_processo ='" . $_POST['numero_processo'] . "' AND assunto ='" . $_POST['assunto'] . "' AND ano='" . $_POST['ano'] . "' ";
-                $recebe_consulta = mysqli_query($con, $consulta_processo);
+                    $empresa = strtoupper(addslashes($_POST['empresa']));
+                    $empreendimento = strtoupper(addslashes($_POST['empreendimento']));
+                    $numero_processo = strtoupper(addslashes($_POST['numero_processo']));
+                    $ano = strtoupper(addslashes($_POST['ano']));
+                    $data_processo = strtoupper(addslashes($_POST['data_processo']));
+                    $assunto = strtoupper(addslashes($_POST['assunto']));
+                    $situacao_processo = strtoupper(addslashes($_POST['situacao_processo']));
+                    $motivo_situacao = strtoupper(addslashes($_POST['motivo_situacao']));
 
-                if (mysqli_num_rows($recebe_consulta) > 0) {
-                    ?>
-                    <script>
-                        alert('ERRO! JÁ EXISTE UM PROCESSO COM O NÚMERO INFORMADO, POR FAVOR INFORME OUTRO NÚMERO! \n\n ATENÇÃO CASO O EMPREENDIMENTO / ATIVIDADE NÃO APAREÇA SELECIONE A RAZÃO SOCIAL / Pª FISICA NOVAMENTE ');
-                        window.history.back();
-                    </script>
-                    <?php
-                } else {
+                    //verificando se ja existe no banco de dados o numero do processo informado            
+                    $consulta_processo = "SELECT numero_processo,assunto,ano FROM tb_processo WHERE numero_processo ='" . $_POST['numero_processo'] . "' AND assunto ='" . $_POST['assunto'] . "' AND ano='" . $_POST['ano'] . "' ";
+                    $recebe_consulta = mysqli_query($con, $consulta_processo);
 
-                    $sql = "INSERT INTO tb_processo(fk3_codigo_empresa,fk4_codigo_empreendimento,numero_processo,ano,data_processo,assunto,situacao_processo,motivo_situacao)"
-                            . "VALUES('$empresa','$empreendimento','$numero_processo','$ano','$data_processo','$assunto','$situacao_processo','$motivo_situacao')";
-                    mysqli_query($con, $sql);
+                    if (mysqli_num_rows($recebe_consulta) > 0) {
+                        ?>
+                        <script>
+                            alert('ERRO! JÁ EXISTE UM PROCESSO COM O NÚMERO INFORMADO, POR FAVOR INFORME OUTRO NÚMERO! \n\n ATENÇÃO CASO O EMPREENDIMENTO / ATIVIDADE NÃO APAREÇA SELECIONE A RAZÃO SOCIAL / Pª FISICA NOVAMENTE ');
+                            window.history.back();
+                        </script>
+                        <?php
+                    } else {
 
-                    //recuperando o ultimo processo inserido
-                    $ultimo_processo = mysqli_insert_id($con);
+                        $sql = "INSERT INTO tb_processo(fk3_codigo_empresa,fk4_codigo_empreendimento,numero_processo,ano,data_processo,assunto,situacao_processo,motivo_situacao)"
+                                . "VALUES('$empresa','$empreendimento','$numero_processo','$ano','$data_processo','$assunto','$situacao_processo','$motivo_situacao')";
+                        mysqli_query($con, $sql);
+
+                        //recuperando o ultimo processo inserido
+                        $ultimo_processo = mysqli_insert_id($con);
 //                        echo $ultimo_processo;
-                    $_SESSION['ultimo_processo'] = $ultimo_processo;
+                        $_SESSION['ultimo_processo'] = $ultimo_processo;
 //                      print_r($sql);                   
 //                        $_SESSION['controle_de_abas'] = 1;
-                    // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
-                    $emailUser = $_SESSION['email'];
-                    $user = $_SESSION['nome'];
-                    $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
-                    $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
-                    $data = Date("Y-m-d H:i:s");
-                    $acaoUsuario = "Realizou o Cadastro do processo de numero ->$numero_processo, para o empreendimento de codigo->$empreendimento, e empresa de codigo $empreendimento";
-                    $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
-                    mysqli_query($con, $sqlLog);
+                        // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+                        $emailUser = $_SESSION['email'];
+                        $user = $_SESSION['nome'];
+                        $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+                        $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+                        $data = Date("Y-m-d H:i:s");
+                        $acaoUsuario = "Realizou o Cadastro do processo de numero ->$numero_processo, para o empreendimento de codigo->$empreendimento, e empresa de codigo $empreendimento";
+                        $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+                        mysqli_query($con, $sqlLog);
+                    }
                 }
             }
         }
     }
-}
-?>
-<div class="modal fade" id="myModalCadProcesso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    ?>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -1203,85 +1206,74 @@ if (isset($_POST['empreendimento']) && empty($_POST['empreendimento']) == FALSE)
         </div>
     </div>
 </div>
-<?php
-if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
-    if (isset($_POST['empreendimento']) && empty($_POST['empreendimento']) == FALSE) {
-        if (isset($_POST['processo']) && empty($_POST['processo']) == FALSE) {
-            if (isset($_POST['numero_licenca']) && empty($_POST['numero_licenca']) == FALSE) {
-                if (isset($_POST['ano_licenca']) && empty($_POST['ano_licenca']) == FALSE) {
-                    if (isset($_POST['data_emissao']) && empty($_POST['data_emissao']) == FALSE) {
-                        if (isset($_POST['data_validade']) && empty($_POST['data_validade']) == FALSE) {
-                            if (isset($_POST['descricao_atividade']) && empty($_POST['descricao_atividade']) == FALSE) {
 
-                                $empresa = strtoupper(addslashes($_POST['empresa']));
-                                $empreendimento = strtoupper(addslashes($_POST['empreendimento']));
-                                $processo = strtoupper(addslashes($_POST['processo']));
-                                $numero_licenca = strtoupper(addslashes($_POST['numero_licenca']));
-                                $ano_licenca = strtoupper(addslashes($_POST['ano_licenca']));
-                                $data_emissao = strtoupper(addslashes($_POST['data_emissao']));
-                                $data_validade = strtoupper(addslashes($_POST['data_validade']));
-                                $taxa = strtoupper(addslashes($_POST['taxa']));
-                                $descricao_atividade = strtoupper(addslashes($_POST['descricao_atividade']));
+<!--os dados abaixo sao referente ao cadastro de licenca-->
 
-                                /* codigo responsavel pela comparaçõa entre as data de emissoa e validade */
-                                if ($data_emissao >= $data_validade) {
-                                    ?>
-                                    <script>
-                                        alert('ERRO! A DATA DE EMISSÃO NÃO PODE SER MAIOR OU IGUAL A DATA DE VALIDADE');
-                                        window.history.back();
-                                    </script>
-                                    <?php
-                                }
-                                //VERIFICANDO SE JÁ EXISTE UM NÚMERO E O UM TIPO DE LICEÇA JÁ CADASTRADOS 
-                                $consulta_licenca = "SELECT fk1_codigo_processo,numero_licenca,ano_licenca FROM tb_licenca,tb_processo WHERE tb_licenca.fk1_codigo_processo='" . $_POST['processo'] . "' AND tb_licenca.numero_licenca='" . $_POST['numero_licenca'] . "'AND tb_licenca.ano_licenca='" . $_POST['ano_licenca'] . "'";
+<div class="modal fade" id="myModalCadLicenca" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <?php
+    if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
+        if (isset($_POST['empreendimento']) && empty($_POST['empreendimento']) == FALSE) {
+            if (isset($_POST['processo']) && empty($_POST['processo']) == FALSE) {
+                if (isset($_POST['numero_licenca']) && empty($_POST['numero_licenca']) == FALSE) {
+                    if (isset($_POST['ano_licenca']) && empty($_POST['ano_licenca']) == FALSE) {
+                        if (isset($_POST['data_emissao']) && empty($_POST['data_emissao']) == FALSE) {
+                            if (isset($_POST['data_validade']) && empty($_POST['data_validade']) == FALSE) {
+                                if (isset($_POST['descricao_atividade']) && empty($_POST['descricao_atividade']) == FALSE) {
 
-                                $recebe_consulta = mysqli_query($con, $consulta_licenca);
+                                    $empresa = strtoupper(addslashes($_POST['empresa']));
+                                    $empreendimento = strtoupper(addslashes($_POST['empreendimento']));
+                                    $processo = strtoupper(addslashes($_POST['processo']));
+                                    $numero_licenca = strtoupper(addslashes($_POST['numero_licenca']));
+                                    $ano_licenca = strtoupper(addslashes($_POST['ano_licenca']));
+                                    $data_emissao = strtoupper(addslashes($_POST['data_emissao']));
+                                    $data_validade = strtoupper(addslashes($_POST['data_validade']));
+                                    $taxa = strtoupper(addslashes($_POST['taxa']));
+                                    $descricao_atividade = strtoupper(addslashes($_POST['descricao_atividade']));
 
-                                if (mysqli_num_rows($recebe_consulta) > 0) {
-                                    ?>
-                                    <script>
-                                        alert('ERRO! JÁ EXISTE UM NÚMERO E O TIPO DE LICENÇA CADASTRO COM ESSAS INFORMÇÕES, POR FAVOR INFORME OUTRO NÚMERO OU TIPO DE LICENÇA!');
-                                        window.history.back();
-                                    </script>
-                                    <?php
-                                } else {
+                                    /* codigo responsavel pela comparaçõa entre as data de emissoa e validade */
+                                    if ($data_emissao >= $data_validade) {
+                                        ?>
+                                        <script>
+                                            alert('ERRO! A DATA DE EMISSÃO NÃO PODE SER MAIOR OU IGUAL A DATA DE VALIDADE');
+                                            window.history.back();
+                                        </script>
+                                        <?php
+                                    }
+                                    //VERIFICANDO SE JÁ EXISTE UM NÚMERO E O UM TIPO DE LICEÇA JÁ CADASTRADOS 
+                                    $consulta_licenca = "SELECT fk1_codigo_processo,numero_licenca,ano_licenca FROM tb_licenca,tb_processo WHERE tb_licenca.fk1_codigo_processo='" . $_POST['processo'] . "' AND tb_licenca.numero_licenca='" . $_POST['numero_licenca'] . "'AND tb_licenca.ano_licenca='" . $_POST['ano_licenca'] . "'";
 
-                                    $sql = "INSERT INTO tb_licenca(fk4_codigo_empresa,fk1_codigo_empreendimento,fk1_codigo_processo,numero_licenca,ano_licenca,data_emissao,data_validade,taxa,descricao_atividade)"
-                                            . "VALUES('$empresa','$empreendimento','$processo','$numero_licenca','$ano_licenca','$data_emissao','$data_validade','$taxa',UPPER('$descricao_atividade'))";
-                                    mysqli_query($con, $sql);
-                                    $_SESSION['controle_de_abas'] = 2;
+                                    $recebe_consulta = mysqli_query($con, $consulta_licenca);
 
-                                    // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
-                                    $emailUser = $_SESSION['email'];
-                                    $user = $_SESSION['nome'];
-                                    $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
-                                    $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
-                                    $data = Date("Y-m-d H:i:s");
-                                    $acaoUsuario = "Realizou o Cadastro da licenca de numero ->$numero_licenca, para o empreendimento de codigo->$empreendimento, empresa de codigo $empreendimento, e processo de codigo $processo";
-                                    $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
-                                    mysqli_query($con, $sqlLog);
-                                    ?>
-                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header btn-success">
-                                                    <h4 class="modal-title text-center" id="myModalLabel"><strong>LICENÇA CADASTRADA COM SUCESSO!<br><br><P style="text-align: center">AGUARDE UM MOMENTO</strong></P></h4>
-                                                    <div class="spinner"></div>
+                                    if (mysqli_num_rows($recebe_consulta) > 0) {
+                                        ?>
+                                        <script>
+                                            alert('ERRO! JÁ EXISTE UM NÚMERO E O TIPO DE LICENÇA CADASTRO COM ESSAS INFORMÇÕES, POR FAVOR INFORME OUTRO NÚMERO OU TIPO DE LICENÇA!');
+                                            window.history.back();
+                                        </script>
+                                        <?php
+                                    } else {
 
-                                                    <script type="text/javascript">
-                                                        setTimeout('window.location.href="cadastros.php"', 3500);
-                                                    </script>
-                                                </div>
+                                        $sql = "INSERT INTO tb_licenca(fk4_codigo_empresa,fk1_codigo_empreendimento,fk1_codigo_processo,numero_licenca,ano_licenca,data_emissao,data_validade,taxa,descricao_atividade)"
+                                                . "VALUES('$empresa','$empreendimento','$processo','$numero_licenca','$ano_licenca','$data_emissao','$data_validade','$taxa',UPPER('$descricao_atividade'))";
+                                        mysqli_query($con, $sql);
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <script>
-                                        $(document).ready(function () {
-                                            $('#myModal').modal('show');
-                                        });
-                                    </script>
-                                    <?php
+//                                    print_r($sql);
+
+                                        $_SESSION['controle_de_abas'] = 2;
+
+                                        // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+                                        $emailUser = $_SESSION['email'];
+                                        $user = $_SESSION['nome'];
+                                        $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+                                        $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+                                        $data = Date("Y-m-d H:i:s");
+                                        $acaoUsuario = "Realizou o Cadastro da licenca de numero ->$numero_licenca, para o empreendimento de codigo->$empreendimento, empresa de codigo $empreendimento, e processo de codigo $processo";
+                                        $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+                                        mysqli_query($con, $sqlLog);
+                                        ?>
+
+                                        <?php
+                                    }
                                 }
                             }
                         }
@@ -1290,9 +1282,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
             }
         }
     }
-}
-?>
-<div class="modal fade" id="myModalCadLicenca" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    ?>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -1348,9 +1338,9 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                             <label for="empreendimento"><strong>EMPREENDIMENTO*</strong></label><br/>
                                             <select  name="empreendimento" id="empreendimento" class="form-control">  
                                                 <?php
-                                                $ativ_empre = "SELECT  *FROM tb_empreendimento WHERE fk1_codigo_empresa=" . $infor_empresa . " ORDER BY nome_empreendimento";
-                                                $recebe_ativ_empre = mysqli_query($con, $ativ_empre);
-                                                while ($linha = mysqli_fetch_array($recebe_ativ_empre)) {
+                                                $ativ_empre = "SELECT tb_empresa.codigo_empresa,tb_empresa.nome_fantasia,tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento FROM tb_empreendimento,tb_empresa WHERE  tb_empreendimento.fk1_codigo_empresa  = tb_empresa.codigo_empresa and codigo_empresa = $infor_empresa";
+                                                $recebe_ativ_empreend = mysqli_query($con, $ativ_empre);
+                                                while ($linha = mysqli_fetch_array($recebe_ativ_empreend)) {
                                                     echo"<option></option>";
                                                     echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_empreendimento'] . "</option>";
                                                 }
@@ -1417,8 +1407,8 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                             <select name="descricao_atividade" id="descricao_atividade" class="form-control" autofocus="" >                                                                                                      
                                                 <?php
                                                 $ativ_empre = "SELECT  *FROM tb_empreendimento WHERE fk1_codigo_empresa=" . $infor_empresa . " ORDER BY nome_atividade";
-                                                $recebe_ativ_empre = mysqli_query($con, $ativ_empre);
-                                                while ($linha = mysqli_fetch_array($recebe_ativ_empre)) {
+                                                $recebe_ativ_empreen = mysqli_query($con, $ativ_empre);
+                                                while ($linha = mysqli_fetch_array($recebe_ativ_empreen)) {
                                                     echo"<option></option>";
                                                     echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_atividade'] . "</option>";
                                                 }
@@ -1442,6 +1432,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
     </div>
 </div>
 
+<!--os dados abaixo é referente ao cadastro de notificaçções-->
 <div class="modal fade" id="myModalCadNotificacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <link rel="stylesheet" type="text/css" href="css/estilo_divsNotificacao.css">
     <script type="text/javascript" src="js/scriptExibeDivs.js"></script>

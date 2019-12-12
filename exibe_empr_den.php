@@ -22,8 +22,6 @@ $sql = "SELECT tb_empresa.codigo_empresa,tb_empresa.nome_fantasia,tb_empreendime
         WHERE 
 tb_empreendimento.fk1_codigo_empresa  = tb_empresa.codigo_empresa and codigo_empresa = $codigo_empresas";   
 
-
-
 $recebesql = (mysqli_query($con, $sql));
 
 while ($linha = mysqli_fetch_array($recebesql)) {
