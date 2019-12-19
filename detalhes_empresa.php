@@ -85,11 +85,11 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         echo"</div><br><br>";
         echo"</div>";
 
-        echo"<div class='row'>";
-        echo"<div class='col-sm-12' style='border:1px solid #EEE9E9;background-color:#EEE9E9'>";
-        echo"<strong style='font-size:15px;text-aling:right'>ATIVIDADE: </strong>" . $linhas['nome_atividade'] . "<br>";
-        echo"</div><br><br>";
-        echo"</div>";
+//        echo"<div class='row'>";
+//        echo"<div class='col-sm-12' style='border:1px solid #EEE9E9;background-color:#EEE9E9'>";
+//        echo"<strong style='font-size:15px;text-aling:right'>ATIVIDADE: </strong>" . $linhas['nome_atividade'] . "<br>";
+//        echo"</div><br><br>";
+//        echo"</div>";
 
         /* ESTE CÓDIGO TEM COMO PROPÓSITO INFORMAR A QTD DE LICENCA QUE CADA EMPRESA POSSUI */
         echo"<div class='row text-center'>";
@@ -1620,40 +1620,40 @@ if (mysqli_num_rows($exe_empresa) > 0) {
                                             alert('ERRO! A DATA DE EMISSÃO NÃO PODE SER MAIOR OU IGUAL A DATA DE VALIDADE');
                                             window.history.back();
                                         </script>
-                                    <?php
-                                }
-                                //VERIFICANDO SE JÁ EXISTE UM NÚMERO E O UM TIPO DE LICEÇA JÁ CADASTRADOS 
-                                $consulta_licenca = "SELECT fk1_codigo_processo,numero_licenca,ano_licenca FROM tb_licenca,tb_processo WHERE tb_licenca.fk1_codigo_processo='" . $_POST['processo'] . "' AND tb_licenca.numero_licenca='" . $_POST['numero_licenca'] . "'AND tb_licenca.ano_licenca='" . $_POST['ano_licenca'] . "'";
+                                        <?php
+                                    }
+                                    //VERIFICANDO SE JÁ EXISTE UM NÚMERO E O UM TIPO DE LICEÇA JÁ CADASTRADOS 
+                                    $consulta_licenca = "SELECT fk1_codigo_processo,numero_licenca,ano_licenca FROM tb_licenca,tb_processo WHERE tb_licenca.fk1_codigo_processo='" . $_POST['processo'] . "' AND tb_licenca.numero_licenca='" . $_POST['numero_licenca'] . "'AND tb_licenca.ano_licenca='" . $_POST['ano_licenca'] . "'";
 
-                                $recebe_consulta = mysqli_query($con, $consulta_licenca);
+                                    $recebe_consulta = mysqli_query($con, $consulta_licenca);
 
-                                if (mysqli_num_rows($recebe_consulta) > 0) {
-                                    ?>
+                                    if (mysqli_num_rows($recebe_consulta) > 0) {
+                                        ?>
                                         <script>
                                             alert('ERRO! JÁ EXISTE UM NÚMERO E O TIPO DE LICENÇA CADASTRO COM ESSAS INFORMÇÕES, POR FAVOR INFORME OUTRO NÚMERO OU TIPO DE LICENÇA!');
                                             window.history.back();
                                         </script>
-                                    <?php
-                                } else {
+                                        <?php
+                                    } else {
 
-                                    $sql = "INSERT INTO tb_licenca(fk4_codigo_empresa,fk1_codigo_empreendimento,fk1_codigo_processo,numero_licenca,ano_licenca,data_emissao,data_validade,taxa,descricao_atividade)"
-                                            . "VALUES('$empresa','$empreendimento','$processo','$numero_licenca','$ano_licenca','$data_emissao','$data_validade','$taxa',UPPER('$descricao_atividade'))";
-                                    mysqli_query($con, $sql);
+                                        $sql = "INSERT INTO tb_licenca(fk4_codigo_empresa,fk1_codigo_empreendimento,fk1_codigo_processo,numero_licenca,ano_licenca,data_emissao,data_validade,taxa,descricao_atividade)"
+                                                . "VALUES('$empresa','$empreendimento','$processo','$numero_licenca','$ano_licenca','$data_emissao','$data_validade','$taxa',UPPER('$descricao_atividade'))";
+                                        mysqli_query($con, $sql);
 
 //                                    print_r($sql);
 
-                                    $_SESSION['controle_de_abas'] = 2;
+                                        $_SESSION['controle_de_abas'] = 2;
 
-                                    // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
-                                    $emailUser = $_SESSION['email'];
-                                    $user = $_SESSION['nome'];
-                                    $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
-                                    $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
-                                    $data = Date("Y-m-d H:i:s");
-                                    $acaoUsuario = "Realizou o Cadastro da licenca de numero ->$numero_licenca, para o empreendimento de codigo->$empreendimento, empresa de codigo $empreendimento, e processo de codigo $processo";
-                                    $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
-                                    mysqli_query($con, $sqlLog);
-                                    ?>
+                                        // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+                                        $emailUser = $_SESSION['email'];
+                                        $user = $_SESSION['nome'];
+                                        $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+                                        $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+                                        $data = Date("Y-m-d H:i:s");
+                                        $acaoUsuario = "Realizou o Cadastro da licenca de numero ->$numero_licenca, para o empreendimento de codigo->$empreendimento, empresa de codigo $empreendimento, e processo de codigo $processo";
+                                        $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+                                        mysqli_query($con, $sqlLog);
+                                        ?>
 
                                         <?php
                                     }
@@ -1687,13 +1687,13 @@ if (mysqli_num_rows($exe_empresa) > 0) {
                                         <div class="form-group">
                                             <label for="empresa"><strong>RAZÃO SOCIAL / PESSOA FÍSICA *</strong></label><br/>
                                             <select  name="empresa" id="empresa" class="form-control">                 
-<?php
-$empresa = "SELECT codigo_empresa, razaosocial_pessoafisica FROM tb_empresa WHERE codigo_empresa = $infor_empresa";
-$recebe_empresas = mysqli_query($con, $empresa);
-while ($linha = mysqli_fetch_array($recebe_empresas)) {
-    echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
-}
-?>   
+                                                <?php
+                                                $empresa = "SELECT codigo_empresa, razaosocial_pessoafisica FROM tb_empresa WHERE codigo_empresa = $infor_empresa";
+                                                $recebe_empresas = mysqli_query($con, $empresa);
+                                                while ($linha = mysqli_fetch_array($recebe_empresas)) {
+                                                    echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                                }
+                                                ?>   
                                             </select>
                                         </div>
                                     </div>
@@ -1703,14 +1703,14 @@ while ($linha = mysqli_fetch_array($recebe_empresas)) {
                                         <div class="form-group">
                                             <label for="processo"><strong>PROCESSO *</strong></label><br/>                                                              
                                             <select name="processo" id="processo" class="form-control" autofocus="" >                                                                                                      
-<?php
-$proc_empre = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.assunto,tb_empresa.codigo_empresa FROM tb_processo,tb_empresa WHERE tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa AND codigo_empresa =" . $infor_empresa . " ORDER BY codigo_processo DESC";
-$recebe_proc_empre = mysqli_query($con, $proc_empre);
-while ($linha = mysqli_fetch_array($recebe_proc_empre)) {
-    echo"<option value='" . $linha[''] . "'> " . $linha[''] . " " . $linha [''] . "</option>";
-    echo"<option value='" . $linha['codigo_processo'] . "'> " . $linha['numero_processo'] . " " . $linha ['assunto'] . "</option>";
-}
-?>                                     
+                                                <?php
+                                                $proc_empre = "SELECT tb_processo.codigo_processo,tb_processo.numero_processo,tb_processo.assunto,tb_empresa.codigo_empresa FROM tb_processo,tb_empresa WHERE tb_processo.fk3_codigo_empresa = tb_empresa.codigo_empresa AND codigo_empresa =" . $infor_empresa . " ORDER BY codigo_processo DESC";
+                                                $recebe_proc_empre = mysqli_query($con, $proc_empre);
+                                                while ($linha = mysqli_fetch_array($recebe_proc_empre)) {
+                                                    echo"<option value='" . $linha[''] . "'> " . $linha[''] . " " . $linha [''] . "</option>";
+                                                    echo"<option value='" . $linha['codigo_processo'] . "'> " . $linha['numero_processo'] . " " . $linha ['assunto'] . "</option>";
+                                                }
+                                                ?>                                     
                                             </select>
                                         </div> 
                                     </div>
@@ -1720,15 +1720,15 @@ while ($linha = mysqli_fetch_array($recebe_proc_empre)) {
                                         <div class="form-group">
                                             <label for="empreendimento"><strong>EMPREENDIMENTO*</strong></label><br/>
                                             <select  name="empreendimento" id="empreendimento" class="form-control">  
-<?php
-$sql = ("SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empresa.codigo_empresa,tb_empresa.nome_fantasia FROM tb_empreendimento,tb_empresa WHERE  tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa AND fk1_codigo_empresa=" . $infor_empresa . " ORDER BY nome_empreendimento asc");
+                                                <?php
+                                                $sql = ("SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empresa.codigo_empresa,tb_empresa.nome_fantasia FROM tb_empreendimento,tb_empresa WHERE  tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa AND fk1_codigo_empresa=" . $infor_empresa . " ORDER BY nome_empreendimento asc");
 //                                                $ativ_empre = "SELECT tb_empresa.codigo_empresa,tb_empresa.nome_fantasia,tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento FROM tb_empreendimento,tb_empresa WHERE  tb_empreendimento.fk1_codigo_empresa  = tb_empresa.codigo_empresa and codigo_empresa = $codigo_empresas";
-$recebe_ativ_empreend = mysqli_query($con, $ativ_empre);
-while ($linha = mysqli_fetch_array($recebe_ativ_empreend)) {
-    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha[''] . "</option>";
-    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_empreendimento'] . "</option>";
-}
-?>
+                                                $recebe_ativ_empreend = mysqli_query($con, $ativ_empre);
+                                                while ($linha = mysqli_fetch_array($recebe_ativ_empreend)) {
+                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha[''] . "</option>";
+                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_empreendimento'] . "</option>";
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -1789,14 +1789,14 @@ while ($linha = mysqli_fetch_array($recebe_ativ_empreend)) {
                                             <label for="descricao_atividade"><strong>ATIVIDADE A SER LICENCIADA*</strong></label><br/>
 <!--                                            <input type="text" name="descricao_atividade" id="descricao_atividade" class="form-control" > -->
                                             <select name="descricao_atividade" id="descricao_atividade" class="form-control" autofocus="" >                                                                                                      
-<?php
-$ativ_empre = "SELECT  *FROM tb_empreendimento WHERE fk1_codigo_empresa=" . $infor_empresa . " ORDER BY nome_atividade";
-$recebe_ativ_empreen = mysqli_query($con, $ativ_empre);
-while ($linha = mysqli_fetch_array($recebe_ativ_empreen)) {
-    echo"<option></option>";
-    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_atividade'] . "</option>";
-}
-?>                                     
+                                                <?php
+                                                $ativ_empre = "SELECT  *FROM tb_empreendimento WHERE fk1_codigo_empresa=" . $infor_empresa . " ORDER BY nome_atividade";
+                                                $recebe_ativ_empreen = mysqli_query($con, $ativ_empre);
+                                                while ($linha = mysqli_fetch_array($recebe_ativ_empreen)) {
+                                                    echo"<option></option>";
+                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_atividade'] . "</option>";
+                                                }
+                                                ?>                                     
                                             </select>
                                         </div>
                                     </div>
@@ -1818,73 +1818,74 @@ while ($linha = mysqli_fetch_array($recebe_ativ_empreen)) {
 
 <!--os dados abaixo é referente ao cadastro de notificaçções-->
 <div class="modal fade" id="myModalCadNotificacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-<?php
-if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
-    if (isset($_POST['numero_notificacao']) && empty($_POST['numero_notificacao']) == FALSE) {
-        if (isset($_POST['data_notificacao']) && empty($_POST['data_notificacao']) == FALSE) {
-            if (isset($_POST['data_comparecimento']) && empty($_POST['data_comparecimento']) == FALSE) {
-                if (isset($_POST['profissao_atividade']) && empty($_POST['profissao_atividade']) == FALSE) {
-                    if (isset($_POST['descricao_prazo']) && empty($_POST['descricao_prazo']) == FALSE) {
-                        if (isset($_POST['fiscal']) && empty($_POST['fiscal']) == FALSE) {
-                            if (isset($_POST['chefe_fiscalizacao']) && empty($_POST['chefe_fiscalizacao']) == FALSE) {
-                                if (isset($_POST['status_notificado']) && empty($_POST['status_notificado']) == FALSE) {
-                                    if (isset($_POST['status_informacoes_adicionais']) && empty($_POST['status_informacoes_adicionais']) == FALSE) {
+    <?php
+    if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
+        if (isset($_POST['numero_notificacao']) && empty($_POST['numero_notificacao']) == FALSE) {
+            if (isset($_POST['data_notificacao']) && empty($_POST['data_notificacao']) == FALSE) {
+                if (isset($_POST['data_comparecimento']) && empty($_POST['data_comparecimento']) == FALSE) {
+                    if (isset($_POST['profissao_atividade']) && empty($_POST['profissao_atividade']) == FALSE) {
+                        if (isset($_POST['descricao_prazo']) && empty($_POST['descricao_prazo']) == FALSE) {
+                            if (isset($_POST['fiscal']) && empty($_POST['fiscal']) == FALSE) {
+                                if (isset($_POST['chefe_fiscalizacao']) && empty($_POST['chefe_fiscalizacao']) == FALSE) {
+                                    if (isset($_POST['status_notificado']) && empty($_POST['status_notificado']) == FALSE) {
+                                        if (isset($_POST['status_informacoes_adicionais']) && empty($_POST['status_informacoes_adicionais']) == FALSE) {
 
 
-                                        $empresa = strtoupper(addslashes($_POST['empresa']));
-                                        $processo = strtoupper(addslashes($_POST['processo']));
-                                        $fiscal = strtoupper(addslashes($_POST['fiscal']));
-                                        $numero_notificacao = strtoupper(addslashes($_POST['numero_notificacao']));
-                                        $ano_notificacao = strtoupper(addslashes($_POST['ano_notificacao']));
-                                        $data_notificacao = strtoupper(addslashes($_POST['data_notificacao']));
-                                        $data_comparecimento = strtoupper(addslashes($_POST['data_comparecimento']));
-                                        $profissao_atividade = strtoupper(addslashes($_POST['profissao_atividade']));
-                                        $descricao_prazo = strtoupper(addslashes($_POST['descricao_prazo']));
-                                        $status = strtoupper(addslashes($_POST['status']));
-                                        $status_informacoes_adicionais = strtoupper(addslashes($_POST['status_informacoes_adicionais']));
-                                        $numero_notificacao_anterior = strtoupper(addslashes($_POST['numero_notificacao_anterior']));
-                                        $numero_notificacao_ano_anterior = strtoupper(addslashes($_POST['numero_notificacao_ano_anterior']));
-                                        $numero_processo_notificacao_anterior = strtoupper(addslashes($_POST['numero_processo_notificacao_anterior']));
-                                        $ano_processo_notificacao_anterior = strtoupper(addslashes($_POST['ano_processo_notificacao_anterior']));
-                                        $status_licenca = strtoupper(addslashes($_POST['status_licenca']));
-                                        $numero_licenca_notificacao_anterior = strtoupper(addslashes($_POST['numero_licenca_notificacao_anterior']));
-                                        $ano_licenca_notificacao_anterior = strtoupper(addslashes($_POST['ano_licenca_notificacao_anterior']));
-                                        $orgao_emissor_licenca = strtoupper(addslashes($_POST['orgao_emissor_licenca']));
-                                        $data_validade = strtoupper(addslashes($_POST['data_validade']));
-                                        $status_notificado = strtoupper(addslashes($_POST['status_notificado']));
-                                        $nome_notificado = strtoupper(addslashes($_POST['nome_notificado']));
-                                        $cpf = strtoupper(addslashes($_POST['cpf']));
-                                        $logradouro = strtoupper(addslashes($_POST['logradouro']));
-                                        $numero = strtoupper(addslashes($_POST['numero']));
-                                        $bairro = strtoupper(addslashes($_POST['bairro']));
-                                        $testemunha = strtoupper(addslashes($_POST['testemunha']));
-                                        $chefe_fiscalizacao = strtoupper(addslashes($_POST['chefe_fiscalizacao']));
+                                            $empresa = strtoupper(addslashes($_POST['empresa']));
+                                            $processo = strtoupper(addslashes($_POST['processo']));
+                                            $fiscal = strtoupper(addslashes($_POST['fiscal']));
+                                            $numero_notificacao = strtoupper(addslashes($_POST['numero_notificacao']));
+                                            $ano_notificacao = strtoupper(addslashes($_POST['ano_notificacao']));
+                                            $data_notificacao = strtoupper(addslashes($_POST['data_notificacao']));
+                                            $data_comparecimento = strtoupper(addslashes($_POST['data_comparecimento']));
+                                            $profissao_atividade = strtoupper(addslashes($_POST['profissao_atividade']));
+                                            $descricao_prazo = strtoupper(addslashes($_POST['descricao_prazo']));
+                                            $status = strtoupper(addslashes($_POST['status']));
+                                            $status_informacoes_adicionais = strtoupper(addslashes($_POST['status_informacoes_adicionais']));
+                                            $numero_notificacao_anterior = strtoupper(addslashes($_POST['numero_notificacao_anterior']));
+                                            $numero_notificacao_ano_anterior = strtoupper(addslashes($_POST['numero_notificacao_ano_anterior']));
+                                            $numero_processo_notificacao_anterior = strtoupper(addslashes($_POST['numero_processo_notificacao_anterior']));
+                                            $ano_processo_notificacao_anterior = strtoupper(addslashes($_POST['ano_processo_notificacao_anterior']));
+                                            $status_licenca = strtoupper(addslashes($_POST['status_licenca']));
+                                            $numero_licenca_notificacao_anterior = strtoupper(addslashes($_POST['numero_licenca_notificacao_anterior']));
+                                            $ano_licenca_notificacao_anterior = strtoupper(addslashes($_POST['ano_licenca_notificacao_anterior']));
+                                            $orgao_emissor_licenca = strtoupper(addslashes($_POST['orgao_emissor_licenca']));
+                                            $data_validade = strtoupper(addslashes($_POST['data_validade']));
+                                            $status_notificado = strtoupper(addslashes($_POST['status_notificado']));
+                                            $nome_notificado = strtoupper(addslashes($_POST['nome_notificado']));
+                                            $cpf = strtoupper(addslashes($_POST['cpf']));
+                                            $logradouro = strtoupper(addslashes($_POST['logradouro']));
+                                            $numero = strtoupper(addslashes($_POST['numero']));
+                                            $bairro = strtoupper(addslashes($_POST['bairro']));
+                                            $testemunha = strtoupper(addslashes($_POST['testemunha']));
+                                            $chefe_fiscalizacao = strtoupper(addslashes($_POST['chefe_fiscalizacao']));
 
-                                        //verificando se ja existe uma notificação com o numero informado banco de dados
-                                        $consulta_notificacao = "SELECT *FROM tb_notificacao WHERE numero_notificacao ='" . $_POST['numero_notificacao'] . "'";
-                                        $recebe_consulta = mysqli_query($con, $consulta_notificacao);
+                                            //verificando se ja existe uma notificação com o numero informado banco de dados
+                                            $consulta_notificacao = "SELECT *FROM tb_notificacao WHERE numero_notificacao ='" . $_POST['numero_notificacao'] . "'";
+                                            $recebe_consulta = mysqli_query($con, $consulta_notificacao);
 
-                                        if (mysqli_num_rows($recebe_consulta) > 0) {
-                                            ?>
+                                            if (mysqli_num_rows($recebe_consulta) > 0) {
+                                                ?>
                                                 <script>
                                                     alert('ERRO JÁ EXISTE UMA NOTIFICAÇÃO COM O NÚMERO INFORMADO, POR FAVOR INFORME OUTRO NÚMERO!');
                                                     window.history.back();
                                                 </script>                       
-                                            <?php
-                                        } else {
-                                            $sql = "INSERT INTO tb_notificacao(fk5_codigo_empresa,fk2_codigo_processo,fk1_codigo_fiscal,numero_notificacao,ano_notificacao,data_notificacao,data_comparecimento,profissao_atividade,descricao_prazo,status,status_informacoes_adicionais,numero_notificacao_anterior,numero_notificacao_ano_anterior,numero_processo_notificacao_anterior,ano_processo_notificacao_anterior,status_licenca,numero_licenca_notificacao_anterior,ano_licenca_notificacao_anterior,orgao_emissor_licenca,data_validade,status_notificado,nome_notificado,cpf,logradouro,numero,bairro,testemunha,chefe_fiscalizacao)"
-                                                    . "VALUES('$empresa','$processo','$fiscal','$numero_notificacao','$ano_notificacao','$data_notificacao','$data_comparecimento',UPPER('$profissao_atividade'),UPPER('$descricao_prazo'),'$status','$status_informacoes_adicionais','$numero_notificacao_anterior','$numero_notificacao_ano_anterior','$numero_processo_notificacao_anterior','$ano_processo_notificacao_anterior','$status_licenca','$numero_licenca_notificacao_anterior','$ano_licenca_notificacao_anterior',UPPER('$orgao_emissor_licenca'),'$data_validade',UPPER('$status_notificado'),UPPER('$nome_notificado'),'$cpf',UPPER('$logradouro'),'$numero',UPPER('$bairro'),UPPER('$testemunha'),UPPER('$chefe_fiscalizacao'))";
-                                            mysqli_query($con, $sql);
+                                                <?php
+                                            } else {
+                                                $sql = "INSERT INTO tb_notificacao(fk5_codigo_empresa,fk2_codigo_processo,fk1_codigo_fiscal,numero_notificacao,ano_notificacao,data_notificacao,data_comparecimento,profissao_atividade,descricao_prazo,status,status_informacoes_adicionais,numero_notificacao_anterior,numero_notificacao_ano_anterior,numero_processo_notificacao_anterior,ano_processo_notificacao_anterior,status_licenca,numero_licenca_notificacao_anterior,ano_licenca_notificacao_anterior,orgao_emissor_licenca,data_validade,status_notificado,nome_notificado,cpf,logradouro,numero,bairro,testemunha,chefe_fiscalizacao)"
+                                                        . "VALUES('$empresa','$processo','$fiscal','$numero_notificacao','$ano_notificacao','$data_notificacao','$data_comparecimento',UPPER('$profissao_atividade'),UPPER('$descricao_prazo'),'$status','$status_informacoes_adicionais','$numero_notificacao_anterior','$numero_notificacao_ano_anterior','$numero_processo_notificacao_anterior','$ano_processo_notificacao_anterior','$status_licenca','$numero_licenca_notificacao_anterior','$ano_licenca_notificacao_anterior',UPPER('$orgao_emissor_licenca'),'$data_validade',UPPER('$status_notificado'),UPPER('$nome_notificado'),'$cpf',UPPER('$logradouro'),'$numero',UPPER('$bairro'),UPPER('$testemunha'),UPPER('$chefe_fiscalizacao'))";
+                                                mysqli_query($con, $sql);
 //                                            print_r($sql);
-                                            // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
-                                            $emailUser = $_SESSION['email'];
-                                            $user = $_SESSION['nome'];
-                                            $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
-                                            $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
-                                            $data = Date("Y-m-d H:i:s");
-                                            $acaoUsuario = "Realizou o Cadastro da Notificação de Numero ->$numero_notificacao, para empresa de codigo $empresa, e processo de codigo $processo";
-                                            $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
-                                            mysqli_query($con, $sqlLog);
+                                                // O CÓDIGO ABAIXO REGISTRA O USUARIO QUE REALIZOU O CADASTRO DE CERTO EMPRESA / PESSOA FISICA
+                                                $emailUser = $_SESSION['email'];
+                                                $user = $_SESSION['nome'];
+                                                $ip_rem = getenv('REMOTE_ADDR'); //pega o ip da maquina ususario
+                                                $ip_maq = $_SERVER["REMOTE_ADDR"]; //Pego o IP
+                                                $data = Date("Y-m-d H:i:s");
+                                                $acaoUsuario = "Realizou o Cadastro da Notificação de Numero ->$numero_notificacao, para empresa de codigo $empresa, e processo de codigo $processo";
+                                                $sqlLog = "INSERT INTO tb_controle_usuario(acao,data_acesso,ip_maquina,ip_remoto,email,nome)VALUES(UPPER('$acaoUsuario'),'$data','$ip_maq','$ip_rem','$emailUser','$user')";
+                                                mysqli_query($con, $sqlLog);
+                                            }
                                         }
                                     }
                                 }
@@ -1895,8 +1896,7 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
             }
         }
     }
-}
-?>
+    ?>
     <link rel="stylesheet" type="text/css" href="css/estilo_divsNotificacao.css">
     <script type="text/javascript" src="js/scriptExibeDivs.js"></script>
     <div class="modal-dialog" role="document">
@@ -1922,13 +1922,13 @@ if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
                                                 <div class="form-group">
                                                     <label for="empresa"><strong>RAZÃO SOCIAL / PESSOA FÍSICA *</strong></label>
                                                     <select name="empresa" id="empresa" class="form-control" autofocus="">            
-<?php
-$empresa = "SELECT codigo_empresa, razaosocial_pessoafisica FROM tb_empresa WHERE codigo_empresa = $infor_empresa";
-$recebe_empresas = mysqli_query($con, $empresa);
-while ($linha = mysqli_fetch_array($recebe_empresas)) {
-    echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
-}
-?> 
+                                                        <?php
+                                                        $empresa = "SELECT codigo_empresa, razaosocial_pessoafisica FROM tb_empresa WHERE codigo_empresa = $infor_empresa";
+                                                        $recebe_empresas = mysqli_query($con, $empresa);
+                                                        while ($linha = mysqli_fetch_array($recebe_empresas)) {
+                                                            echo '<option value="' . $linha['codigo_empresa'] . '">' . $linha['razaosocial_pessoafisica'] . '</option>';
+                                                        }
+                                                        ?> 
                                                     </select>
                                                 </div>
                                             </div>
@@ -1939,14 +1939,14 @@ while ($linha = mysqli_fetch_array($recebe_empresas)) {
                                                     <label for="processo"><strong>PROCESSO *</strong></label><br/>
                                                     <select  name="processo" id="processo" class="form-control">
                                                         <option value="">SELECIONE</option>
-<?php
-$sql = "SELECT *FROM tb_processo WHERE fk3_codigo_empresa= $infor_empresa" . " and assunto='AUTO DE NOTIFICAÇÃO E INTIMAÇÃO' ORDER BY codigo_processo DESC";
-$recebesql = (mysqli_query($con, $sql));
-while ($linha = mysqli_fetch_array($recebesql)) {
-    echo"<option value='" . $linha[''] . "'> " . $linha[''] . " " . $linha [''] . "</option>";
-    echo"<option value='" . $linha['codigo_processo'] . "'> " . $linha['numero_processo'] . " </option>";
-}
-?>
+                                                        <?php
+                                                        $sql = "SELECT *FROM tb_processo WHERE fk3_codigo_empresa= $infor_empresa" . " and assunto='AUTO DE NOTIFICAÇÃO E INTIMAÇÃO' ORDER BY codigo_processo DESC";
+                                                        $recebesql = (mysqli_query($con, $sql));
+                                                        while ($linha = mysqli_fetch_array($recebesql)) {
+                                                            echo"<option value='" . $linha[''] . "'> " . $linha[''] . " " . $linha [''] . "</option>";
+                                                            echo"<option value='" . $linha['codigo_processo'] . "'> " . $linha['numero_processo'] . " </option>";
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -2192,13 +2192,13 @@ while ($linha = mysqli_fetch_array($recebesql)) {
                                                     <label for="fiscal"><strong>FISCAL *</strong></label><br/>
                                                     <select name="fiscal" id="fiscal" class="form-control">
                                                         <option value="">SELECIONE O FISCAL</option>
-<?php
-$fiscal = "SELECT *FROM tb_fiscal";
-$recebe_fiscal = mysqli_query($con, $fiscal);
-while ($linha = mysqli_fetch_array($recebe_fiscal)) {
-    echo '<option value="' . $linha['codigo_fiscal'] . '">' . $linha['nome_matricula_fiscal'] . '</option>';
-}
-?>
+                                                        <?php
+                                                        $fiscal = "SELECT *FROM tb_fiscal";
+                                                        $recebe_fiscal = mysqli_query($con, $fiscal);
+                                                        while ($linha = mysqli_fetch_array($recebe_fiscal)) {
+                                                            echo '<option value="' . $linha['codigo_fiscal'] . '">' . $linha['nome_matricula_fiscal'] . '</option>';
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
