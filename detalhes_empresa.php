@@ -588,6 +588,7 @@ if (mysqli_num_rows($exe_empresa) > 0) {
 <script type="text/javascript" src="js/validaLicenca.js"></script>
 <script type="text/javascript" src="js/validanotificacao.js"></script>
 <script type="text/javascript" src="js/validaDatasNotificacao.js"></script>
+<script type="text/javascript" src="js/auto_complete_atividades.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/estilo_cadEmpreendimento.css">
 <link rel="stylesheet" type="text/css" href="css/estilo_divEmpreendimento.css">
@@ -609,7 +610,7 @@ if (mysqli_num_rows($exe_empresa) > 0) {
         $bairro = strtoupper(addslashes($_POST['nome_bairro']));
         $atividade_empreendimento = strtoupper(addslashes($_POST['atividade_empreendimento']));
         $grau_atividade = strtoupper(addslashes($_POST['grau_atividade']));
-       
+
 
         $verifica = "SELECT fk1_codigo_empresa,nome_atividade FROM tb_empreendimento,tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa='" . $_POST['empresa'] . "' AND tb_empreendimento.nome_atividade='" . $_POST['nome_atividade'] . "'";
         $recebe_consulta = mysqli_query($con, $verifica);
@@ -1030,7 +1031,6 @@ if (mysqli_num_rows($exe_empresa) > 0) {
 <!--os dados abaixo sao referentes ao cadadatro de processo-->
 <div class="modal fade" id="myModalCadProcesso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <?php
-     
     if (isset($_POST['empreendimento']) && empty($_POST['empreendimento']) == FALSE) {
         if (isset($_POST['numero_processo']) && empty($_POST['numero_processo']) == FALSE) {
             if (isset($_POST['data_processo']) && empty($_POST['data_processo']) == FALSE) {
@@ -1117,7 +1117,7 @@ if (mysqli_num_rows($exe_empresa) > 0) {
                                             <label for="empreendimento"><strong>EMPREENDIMENTO / ATIVIDADE*</strong></label>                                  
                                             <select name="empreendimento" id="empreendimento" class="form-control" autofocus="">                                                                                                      
                                                 <?php
-                                                $ativ_empre = "SELECT  *FROM tb_empreendimento WHERE fk1_codigo_empresa=" . $infor_empresa . " ORDER BY codigo_empreendimento DESC ";
+                                                $ativ_empre = "SELECT  *FROM tb_empreendimento WHERE fk1_codigo_empresa=" . $infor_empresa . " ORDER BY codigo_empreendimento ASC";
                                                 $recebe_ativ_empre = mysqli_query($con, $ativ_empre);
                                                 while ($linha = mysqli_fetch_array($recebe_ativ_empre)) {
                                                     echo"<option></option>";
@@ -1211,7 +1211,6 @@ if (mysqli_num_rows($exe_empresa) > 0) {
 <!--os dados abaixo sao referente ao cadastro de licenca-->
 <div class="modal fade" id="myModalCadLicenca" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <?php
-    
     if (isset($_POST['empresa']) && empty($_POST['empresa']) == FALSE) {
         if (isset($_POST['empreendimento']) && empty($_POST['empreendimento']) == FALSE) {
             if (isset($_POST['processo']) && empty($_POST['processo']) == FALSE) {
@@ -1338,15 +1337,14 @@ if (mysqli_num_rows($exe_empresa) > 0) {
                                         <div class="form-group">
                                             <label for="empreendimento"><strong>EMPREENDIMENTO*</strong></label><br/>
                                             <select  name="empreendimento" id="empreendimento" class="form-control">  
+                                                <option value=""></option>
+                                                <option value="">SELECIONE O EMPREENDIMENTO ABAIXO</option>
                                                 <?php
-                                                $sql = ("SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empresa.codigo_empresa,tb_empresa.nome_fantasia FROM tb_empreendimento,tb_empresa WHERE  tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa AND fk1_codigo_empresa=" . $infor_empresa . " ORDER BY nome_empreendimento asc");
-//                                                $ativ_empre = "SELECT tb_empresa.codigo_empresa,tb_empresa.nome_fantasia,tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento FROM tb_empreendimento,tb_empresa WHERE  tb_empreendimento.fk1_codigo_empresa  = tb_empresa.codigo_empresa and codigo_empresa = $codigo_empresas";
+                                                $sql = ("SELECT tb_empreendimento.codigo_empreendimento,tb_empreendimento.nome_empreendimento,tb_empresa.codigo_empresa,tb_empresa.nome_fantasia FROM tb_empreendimento,tb_empresa WHERE tb_empreendimento.fk1_codigo_empresa = tb_empresa.codigo_empresa AND fk1_codigo_empresa=" . $infor_empresa . " ORDER BY nome_empreendimento ASC");
                                                 $recebe_ativ_empreend = mysqli_query($con, $ativ_empre);
                                                 while ($linha = mysqli_fetch_array($recebe_ativ_empreend)) {
-                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha[''] . "</option>";
                                                     echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_empreendimento'] . "</option>";
                                                 }
-                                                
                                                 ?>
                                             </select>
                                         </div>
@@ -1403,20 +1401,16 @@ if (mysqli_num_rows($exe_empresa) > 0) {
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <!--esse trecho de código, permite que a lista de auto complete de atividade apareça na frente do modal-->
+                                    <style type="text/css">
+                                        .ui-autocomplete{
+                                            z-index: 1050 !important;
+                                        }
+                                    </style>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label for="descricao_atividade"><strong>ATIVIDADE A SER LICENCIADA*</strong></label><br/>
-<!--                                            <input type="text" name="descricao_atividade" id="descricao_atividade" class="form-control" > -->
-                                            <select name="descricao_atividade" id="descricao_atividade" class="form-control" autofocus="" >                                                                                                      
-                                                <?php
-                                                $ativ_empre = "SELECT  *FROM tb_empreendimento WHERE fk1_codigo_empresa=" . $infor_empresa . " ORDER BY nome_atividade";
-                                                $recebe_ativ_empreen = mysqli_query($con, $ativ_empre);
-                                                while ($linha = mysqli_fetch_array($recebe_ativ_empreen)) {
-                                                    echo"<option></option>";
-                                                    echo"<option value='" . $linha['codigo_empreendimento'] . "'>" . $linha['nome_atividade'] . "</option>";
-                                                }
-                                                ?>                                     
-                                            </select>
+                                            <input type="text" name="descricao_atividade" id="descricao_atividade" class="form-control" > 
                                         </div>
                                     </div>
                                 </div>                          
